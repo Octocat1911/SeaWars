@@ -1,4 +1,4 @@
-package com.team5.seawar.Game;
+package com.team5.seawar.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
