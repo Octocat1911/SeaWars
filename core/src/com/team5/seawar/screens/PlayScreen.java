@@ -17,8 +17,8 @@ public class PlayScreen extends ScreenAdapter{
     private Viewport viewport;
 
     public static final float SCALE = 12;
-    public static final float hexWidth = Assets.getInstance().getTexture("hexEau.png").getWidth();
-    public static final float hexHeight = Assets.getInstance().getTexture("hexEau.png").getHeight();
+    public static final float hexWidth = Assets.getInstance().getTexture("hexEau.png").getWidth()/SCALE;
+    public static final float hexHeight = Assets.getInstance().getTexture("hexEau.png").getHeight()/SCALE;
 
     public PlayScreen(Game game, Map map){
         this.game = game;
@@ -46,9 +46,9 @@ public class PlayScreen extends ScreenAdapter{
 
     public void renderTexture(Texture texture, float colonne, float ligne){
         if (colonne%2==0){
-            game.getBatch().draw(texture, colonne * hexWidth *3/4 / SCALE, ligne * hexHeight / SCALE, hexWidth / SCALE, hexHeight / SCALE);
+            game.getBatch().draw(texture, colonne * hexWidth *3/4, ligne * hexHeight, hexWidth, hexHeight);
         } else {
-            game.getBatch().draw(texture, colonne * hexWidth *3/4 / SCALE, ligne * hexHeight / SCALE + hexHeight/SCALE/2, hexWidth / SCALE, hexHeight / SCALE);
+            game.getBatch().draw(texture, colonne * hexWidth *3/4, ligne * hexHeight + hexHeight/2, hexWidth, hexHeight);
         }
     }
 
