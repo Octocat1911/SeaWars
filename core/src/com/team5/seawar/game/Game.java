@@ -17,7 +17,7 @@ public class Game extends com.badlogic.gdx.Game {
 	@Override
 	public void create () {
 		Assets.getInstance().load();
-		Assets.getInstance().manager.finishLoading();
+		Assets.getInstance().finishLoading();
 		batch = new SpriteBatch();
         Gdx.gl.glClearColor(0, 0, 0, 1);
         setScreen(new PlayScreen(this, new Map1()));
@@ -32,6 +32,7 @@ public class Game extends com.badlogic.gdx.Game {
 	@Override
 	public void dispose () {
 		batch.dispose();
+		Assets.getInstance().dispose();
 	}
 
     public SpriteBatch getBatch() {

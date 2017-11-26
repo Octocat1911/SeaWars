@@ -19,7 +19,7 @@ public class Terre extends Element{
     }
 
     public Texture getTexture() {
-        return Assets.getInstance().manager.get("hexTerre.png",Texture.class);
+        return Assets.getInstance().getTexture("hexTerre.png");
     }
 
 }

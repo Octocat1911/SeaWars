@@ -16,18 +16,15 @@ public class PlayScreen extends ScreenAdapter{
     private OrthographicCamera cam;
     private Viewport viewport;
 
-    private Texture texture; //variable
-
     public static final float SCALE = 12;
-    public static final float hexWidth = Assets.getInstance().manager.get("hexEau.png",Texture.class).getWidth();
-    public static final float hexHeight = Assets.getInstance().manager.get("hexEau.png",Texture.class).getHeight();
+    public static final float hexWidth = Assets.getInstance().getTexture("hexEau.png").getWidth();
+    public static final float hexHeight = Assets.getInstance().getTexture("hexEau.png").getHeight();
 
     public PlayScreen(Game game, Map map){
         this.game = game;
         this.map = map;
         cam = new OrthographicCamera();
         viewport = new FitViewport(Game.WIDTH, Game.HEIGHT, cam);
-        texture = new Texture("badtheory.png");
     }
 
     public void update(float dt){
@@ -60,6 +57,5 @@ public class PlayScreen extends ScreenAdapter{
     }
 
     public void dispose() {
-        texture.dispose();
     }
 }

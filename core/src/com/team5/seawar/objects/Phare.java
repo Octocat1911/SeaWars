@@ -10,6 +10,6 @@ public class Phare extends Element{
     }
 
     public Texture getTexture() {
-        return Assets.getInstance().manager.get("hexPhare.png",Texture.class);
+        return Assets.getInstance().getTexture("hexPhare.png");
     }
 }

@@ -19,6 +19,6 @@ public class Eau extends Element{
     }
 
     public Texture getTexture() {
-        return Assets.getInstance().manager.get("hexEau.png",Texture.class);
+        return Assets.getInstance().getTexture("hexEau.png");
     }
 }
