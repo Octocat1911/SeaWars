@@ -20,7 +20,7 @@ public class InputHandler {
     private static int A = Keys.I;
     private static int B = Keys.J;
     private static int X = Keys.K;
-    private static int Y = Keys.L;
+    private static int Y = Keys.P;
     private static int CLIC_GAUCHE = Buttons.LEFT;
     private static int CLIC_DROITE = Buttons.RIGHT;
     private static int nb = 12;
