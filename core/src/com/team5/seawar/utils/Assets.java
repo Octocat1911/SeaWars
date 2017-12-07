@@ -20,6 +20,13 @@ public class Assets {
     }
 
     public void load() {
+        // MenuScreen
+        manager.load("background.png", Texture.class);
+        manager.load("play.png", Texture.class);
+        manager.load("exit.png", Texture.class);
+
+        // PlayScreen
+        manager.load("hexPointeur.png", Texture.class);
         manager.load("hexEau.png", Texture.class);
         manager.load("hexTerre.png", Texture.class);
         manager.load("hexPhare.png", Texture.class);

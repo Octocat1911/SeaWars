@@ -50,9 +50,11 @@ public class InputHandler {
     public String toString(int bouton){
         return Input.Keys.toString(bouton);
     }
+
     public boolean isPressed(int bouton) {
         return Gdx.input.isKeyPressed(bouton);
     }
+
     public boolean isJustPressed(int bouton) {
         return Gdx.input.isKeyJustPressed(bouton);
     }
@@ -64,6 +66,7 @@ public class InputHandler {
     public boolean isMousePressed(int toucheSouris) {
         return Gdx.input.isButtonPressed(toucheSouris);
     }
+
     public void setHaut(int bouton){
         check(bouton);
         HAUT.setValeur(bouton);
@@ -184,9 +187,6 @@ public class InputHandler {
         CLIC_DROITE_2.setValeur(bouton);
     }
 
-
-
-
     private void check(int bouton){
         for(int i=0;i<L.size();i++){
             if (L.get(i).getValeur()==bouton){
@@ -194,6 +194,7 @@ public class InputHandler {
             }
         }
     }
+
     public int getHaut(){
         return HAUT.getValeur();
     }
