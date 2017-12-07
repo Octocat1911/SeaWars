@@ -1,18 +1,17 @@
 package com.team5.seawar.screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.team5.seawar.game.Game;
+import com.team5.seawar.game.GameApp;
 
 public class MenuScreen extends ScreenAdapter {
 
     private static MenuScreen instance;
 
-    private Game game;
+    private GameApp gameApp;
     private OrthographicCamera cam;
     private Viewport viewport;
 
@@ -20,20 +19,20 @@ public class MenuScreen extends ScreenAdapter {
     private Texture playbutton;
     private Texture exitbutton;
 
-    private MenuScreen(Game game){
-        this.game = game;
+    private MenuScreen(GameApp gameApp){
+        this.gameApp = gameApp;
         this.cam = new OrthographicCamera();
 
         background = new Texture("background.png");
         playbutton = new Texture("play.png");
         exitbutton = new Texture("exit.png");
 
-        viewport = new FitViewport(Game.WIDTH, Game.HEIGHT, cam);
+        viewport = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, cam);
     }
 
-    public static void init(Game game){
+    public static void init(GameApp gameApp){
         if(instance ==null){
-            instance = new MenuScreen(game);
+            instance = new MenuScreen(gameApp);
         }
     }
 
@@ -47,11 +46,11 @@ public class MenuScreen extends ScreenAdapter {
 
     public void render(float dt){
         update(dt);
-        game.getBatch().begin();
-        game.getBatch().draw(background,0,0);
-        game.getBatch().draw(playbutton, Game.WIDTH/3 - playbutton.getWidth()/2, 2*Game.HEIGHT/3 - playbutton.getHeight()/10, playbutton.getWidth()/5, playbutton.getHeight()/5);
-        game.getBatch().draw(exitbutton, Game.WIDTH/3 - exitbutton.getWidth()/2, 2*Game.HEIGHT/3 - exitbutton.getHeight()/3, exitbutton.getWidth()/5, exitbutton.getHeight()/5);
-        game.getBatch().end();
+        gameApp.getBatch().begin();
+        gameApp.getBatch().draw(background,0,0);
+        gameApp.getBatch().draw(playbutton, GameApp.WIDTH/3 - playbutton.getWidth()/2, 2*GameApp.HEIGHT/3 - playbutton.getHeight()/10, playbutton.getWidth()/5, playbutton.getHeight()/5);
+        gameApp.getBatch().draw(exitbutton, GameApp.WIDTH/3 - exitbutton.getWidth()/2, 2*GameApp.HEIGHT/3 - exitbutton.getHeight()/3, exitbutton.getWidth()/5, exitbutton.getHeight()/5);
+        gameApp.getBatch().end();
     }
 
     public void resize(int width, int height) {
