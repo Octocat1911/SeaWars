@@ -188,9 +188,9 @@ public class InputHandler {
     }
 
     private void check(int bouton){
-        for(int i=0;i<L.size();i++){
-            if (L.get(i).getValeur()==bouton){
-                L.get(i).setValeur(Keys.UNKNOWN);
+        for (Touche touche : L){
+            if (touche.getValeur() == bouton){
+                touche.setValeur(Keys.UNKNOWN);
             }
         }
     }
