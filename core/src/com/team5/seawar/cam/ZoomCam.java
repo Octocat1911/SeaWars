@@ -1,8 +1,9 @@
 package com.team5.seawar.cam;
 
+import com.team5.seawar.inputHandler.InputHandler;
 import com.team5.seawar.screens.PlayScreen;
 
-public class ZoomCam extends PlayScreenCam{
+public class ZoomCam extends CamState {
 
     private static ZoomCam instance = new ZoomCam();
 
@@ -19,9 +20,13 @@ public class ZoomCam extends PlayScreenCam{
     }
 
     public void update(float dt) {
-        playScreen.getCam().zoom += (zoom - playScreen.getCam().zoom) * 0.02f;
-        playScreen.getCam().position.add((playScreen.hexWidth/2 + playScreen.getPosition().x * playScreen.hexWidth*.75f - playScreen.getPosition().x)*0.03f,
-                (playScreen.hexHeight/2 + playScreen.getPosition().y * playScreen.hexHeight - playScreen.getCam().position.y)*0.03f,
+        if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getSelect())){
+            playScreen.setCamState(GlobalCam.getInstance());
+        }
+        cam.zoom += (zoom - cam.zoom) * 0.02f;
+        cam.position.add((hexWidth/2 + position.x * hexWidth*.75f - cam.position.x)*0.03f,
+                (hexHeight/2 + position.y * hexHeight - cam.position.y)*0.03f,
                 0);
+        cam.update();
     }
 }
