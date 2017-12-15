@@ -110,6 +110,18 @@ public class PlayScreen extends ScreenAdapter{
         viewport.update(width, height);
     }
 
+    public Map getMap() {
+        return map;
+    }
+
+    public OrthographicCamera getCam() {
+        return cam;
+    }
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
     public void dispose() {
 
     }
