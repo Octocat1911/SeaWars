@@ -10,36 +10,63 @@ import java.util.List;
 public class InputHandler {
 
     private static InputHandler uniqueInstance;
-    private static Touche HAUT = new Touche(Keys.Z);
-    private static Touche BAS = new Touche(Keys.S);
-    private static Touche GAUCHE = new Touche(Keys.Q);
-    private static Touche DROITE = new Touche(Keys.D);
-    private static Touche START = new Touche(Keys.ESCAPE);
-    private static Touche  SELECT = new Touche (Keys.CONTROL_LEFT);
-    private static Touche  A = new Touche(Keys.I);
-    private static Touche B = new Touche(Keys.J);
-    private static Touche  X = new Touche(Keys.K);
-    private static Touche  Y = new Touche(Keys.L);
-    private static Touche  CLIC_GAUCHE = new Touche(Buttons.LEFT);
-    private static Touche  CLIC_DROITE = new Touche(Buttons.RIGHT);
-    private static List<Touche> L = new ArrayList<Touche>(Arrays.asList(HAUT,BAS,GAUCHE,DROITE,START,SELECT,A,B,X,Y,CLIC_DROITE,CLIC_GAUCHE));
-    private static Touche HAUT_2 = new Touche(Keys.Z);
-    private static Touche BAS_2 = new Touche(Keys.S);
-    private static Touche GAUCHE_2 = new Touche(Keys.Q);
-    private static Touche DROITE_2 = new Touche(Keys.D);
-    private static Touche START_2 = new Touche(Keys.ESCAPE);
-    private static Touche  SELECT_2 = new Touche (Keys.CONTROL_LEFT);
-    private static Touche  A_2 = new Touche(Keys.I);
-    private static Touche B_2 = new Touche(Keys.J);
-    private static Touche  X_2 = new Touche(Keys.K);
-    private static Touche  Y_2 = new Touche(Keys.L);
-    private static Touche  CLIC_GAUCHE_2 = new Touche(Buttons.LEFT);
-    private static Touche  CLIC_DROITE_2 = new Touche(Buttons.RIGHT);
-    private static List<Touche> L_2 = new ArrayList<Touche>(Arrays.asList(HAUT_2,BAS_2,GAUCHE_2,DROITE_2,START_2,SELECT_2,A_2,B_2,X_2,Y_2,CLIC_DROITE_2,CLIC_GAUCHE_2));
+    private static Touche HAUT;
+    private static Touche BAS;
+    private static Touche GAUCHE;
+    private static Touche DROITE;
+    private static Touche START;
+    private static Touche SELECT;
+    private static Touche A;
+    private static Touche B;
+    private static Touche X;
+    private static Touche Y;
+    private static Touche CLIC_GAUCHE;
+    private static Touche CLIC_DROITE;
+    private static List<Touche> L;
+    private static Touche HAUT_2;
+    private static Touche BAS_2;
+    private static Touche GAUCHE_2;
+    private static Touche DROITE_2;
+    private static Touche START_2;
+    private static Touche SELECT_2;
+    private static Touche A_2;
+    private static Touche B_2;
+    private static Touche X_2;
+    private static Touche Y_2;
+    private static Touche CLIC_GAUCHE_2;
+    private static Touche CLIC_DROITE_2;
+    private static List<Touche> L_2;
 
 
     private InputHandler(){
+        HAUT = new Touche(Keys.Z);
+        BAS = new Touche(Keys.S);
+        GAUCHE = new Touche(Keys.Q);
+        DROITE = new Touche(Keys.D);
+        START = new Touche(Keys.ESCAPE);
+        SELECT = new Touche (Keys.CONTROL_LEFT);
+        A = new Touche(Keys.I);
+        B = new Touche(Keys.J);
+        X = new Touche(Keys.K);
+        Y = new Touche(Keys.L);
+        CLIC_GAUCHE = new Touche(Buttons.LEFT);
+        CLIC_DROITE = new Touche(Buttons.RIGHT);
+        L = new ArrayList<Touche>(Arrays.asList(HAUT,BAS,GAUCHE,DROITE,START,SELECT,A,B,X,Y,CLIC_DROITE,CLIC_GAUCHE));
+        HAUT_2 = new Touche(Keys.Z);
+        BAS_2 = new Touche(Keys.S);
+        GAUCHE_2 = new Touche(Keys.Q);
+        DROITE_2 = new Touche(Keys.D);
+        START_2 = new Touche(Keys.ESCAPE);
+        SELECT_2 = new Touche (Keys.CONTROL_LEFT);
+        A_2 = new Touche(Keys.I);
+        B_2 = new Touche(Keys.J);
+        X_2 = new Touche(Keys.K);
+        Y_2 = new Touche(Keys.L);
+        CLIC_GAUCHE_2 = new Touche(Buttons.LEFT);
+        CLIC_DROITE_2 = new Touche(Buttons.RIGHT);
+        L_2 = new ArrayList<Touche>(Arrays.asList(HAUT_2,BAS_2,GAUCHE_2,DROITE_2,START_2,SELECT_2,A_2,B_2,X_2,Y_2,CLIC_DROITE_2,CLIC_GAUCHE_2));
     }
+
     public static InputHandler getInstance(){
         if(uniqueInstance==null){
             uniqueInstance=new InputHandler();

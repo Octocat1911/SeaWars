@@ -13,7 +13,6 @@ import com.team5.seawar.maps.Map1;
 import com.team5.seawar.utils.Assets;
 
 public class MenuScreen extends ScreenAdapter {
-    private Vector3 mouse;
 
     private static MenuScreen instance;
 
@@ -29,7 +28,6 @@ public class MenuScreen extends ScreenAdapter {
         this.gameApp = gameApp;
         this.cam = new OrthographicCamera();
         this.cam.setToOrtho(false);
-        mouse = new Vector3();
 
         background = Assets.getInstance().getTexture("background.png");
         playbutton = Assets.getInstance().getTexture("play.png");
@@ -59,13 +57,11 @@ public class MenuScreen extends ScreenAdapter {
 
     public void render(float dt){
         handleInput(dt);
-        cam.unproject(mouse.set(Gdx.input.getX(), Gdx.input.getY(), 0));
         gameApp.getBatch().begin();
         gameApp.getBatch().draw(background,0,0);
         gameApp.getBatch().draw(playbutton, GameApp.WIDTH/3 - playbutton.getWidth()/2, 2*GameApp.HEIGHT/3 - playbutton.getHeight()/10, playbutton.getWidth()/5, playbutton.getHeight()/5);
         gameApp.getBatch().draw(exitbutton, GameApp.WIDTH/3 - exitbutton.getWidth()/2, 2*GameApp.HEIGHT/3 - exitbutton.getHeight()/3, exitbutton.getWidth()/5, exitbutton.getHeight()/5);
         gameApp.getBatch().end();
-        System.out.println(mouse.y);
     }
 
     public void resize(int width, int height) {
