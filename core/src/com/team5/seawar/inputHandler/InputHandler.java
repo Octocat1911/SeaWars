@@ -3,12 +3,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Input.Buttons;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 public class InputHandler {
 
+    private static Vector3 mouse;
     private static InputHandler uniqueInstance;
     private static Touche HAUT;
     private static Touche BAS;
@@ -39,6 +45,7 @@ public class InputHandler {
 
 
     private InputHandler(){
+        mouse = new Vector3();
         HAUT = new Touche(Keys.Z);
         BAS = new Touche(Keys.S);
         GAUCHE = new Touche(Keys.Q);
@@ -76,6 +83,21 @@ public class InputHandler {
 
     public String toString(int bouton){
         return Input.Keys.toString(bouton);
+    }
+
+    public boolean isTouched(Sprite sprite, Camera camera, Viewport viewport){
+        camera.unproject(mouse.set(Gdx.input.getX(), Gdx.input.getY(), 0), viewport.getScreenX(), viewport.getScreenY(), viewport.getScreenWidth(), viewport.getScreenHeight());
+        return sprite.getBoundingRectangle().contains(mouse.x, mouse.y);
+    }
+
+    public boolean isJustTouched(Sprite sprite, Camera camera, Viewport viewport){
+        // a modifier !!!
+        if (Gdx.input.justTouched()) {
+            camera.unproject(mouse.set(Gdx.input.getX(), Gdx.input.getY(), 0), viewport.getScreenX(), viewport.getScreenY(), viewport.getScreenWidth(), viewport.getScreenHeight());
+            return sprite.getBoundingRectangle().contains(mouse.x, mouse.y);
+        } else {
+            return false;
+        }
     }
 
     public boolean isPressed(int bouton) {
