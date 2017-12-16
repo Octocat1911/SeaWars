@@ -3,23 +3,22 @@ package com.team5.seawar.objects;
 import com.badlogic.gdx.graphics.Texture;
 import com.team5.seawar.utils.Assets;
 
-public class Terre extends Element{
+public class Water extends Element{
 
-    private static Terre instance = null;
+    private static Water instance = null;
 
-    protected Terre(){
+    protected Water(){
         navigable = true;
     }
 
-    public static Terre getInstance() {
+    public static Water getInstance() {
         if(instance == null) {
-            instance = new Terre();
+            instance = new Water();
         }
         return instance;
     }
 
     public Texture getTexture() {
-        return Assets.getInstance().getTexture("hexTerre.png");
+        return Assets.getInstance().getTexture("hexEau.png");
     }
-
 }
