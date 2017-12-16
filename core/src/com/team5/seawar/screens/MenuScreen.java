@@ -23,7 +23,6 @@ public class MenuScreen extends ScreenAdapter {
     private Sprite background;
     private Action2DSprite playButton;
     private Action2DSprite exitButton;
-    private Image image;
 
     private MenuScreen(final GameApp gameApp){
         this.gameApp = gameApp;
