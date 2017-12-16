@@ -20,7 +20,7 @@ public class GlobalCam extends PlayScreenCam{
 
     public void init(PlayScreen playScreen) {
         super.init(playScreen);
-        zoom = Math.max(playScreen.hexWidth * (1+(playScreen.getMap().getColonne()-1) *.75f) / GameApp.WIDTH, playScreen.hexHeight * (playScreen.getMap().getLigne()+.5f) / GameApp.HEIGHT);
+        this.zoom = Math.max(playScreen.hexWidth * (1+(playScreen.getMap().getColonne()-1) *.75f) / GameApp.WIDTH, playScreen.hexHeight * (playScreen.getMap().getLigne()+.5f) / GameApp.HEIGHT);
     }
 
 
