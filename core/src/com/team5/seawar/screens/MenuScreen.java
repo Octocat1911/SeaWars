@@ -2,13 +2,8 @@ package com.team5.seawar.screens;
 
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.game.GameApp;
@@ -18,7 +13,6 @@ import com.team5.seawar.utils.Action2DSprite;
 import com.team5.seawar.utils.ActionSprite;
 import com.team5.seawar.utils.Assets;
 
-import java.awt.event.ActionListener;
 
 public class MenuScreen extends ScreenAdapter {
 
@@ -27,8 +21,6 @@ public class MenuScreen extends ScreenAdapter {
     private OrthographicCamera cam;
     private Viewport viewport;
     private Sprite background;
-    /*private Sprite playButton;
-    private Sprite exitButton;*/
     private Action2DSprite playButton;
     private Action2DSprite exitButton;
     private Image image;
@@ -38,8 +30,6 @@ public class MenuScreen extends ScreenAdapter {
         this.cam = new OrthographicCamera();
         this.cam.position.set(GameApp.WIDTH/2f, GameApp.HEIGHT/2f, 0);
         this.background = new Sprite(Assets.getInstance().getTexture("background.png"));
-        //this.playButton = new Sprite(Assets.getInstance().getTexture("play.png"));
-        //this.exitButton = new Sprite(Assets.getInstance().getTexture("exit.png"));
         this.playButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("play.png")), new ActionSprite() {
             @Override
             public void touchAction(Sprite sprite) {
@@ -90,13 +80,6 @@ public class MenuScreen extends ScreenAdapter {
     }
 
     public void handleInput(float dt){
-       /* if (InputHandler.getInstance().isJustClicked(playButton,cam,viewport)){
-            gameApp.setScreen(new PlayScreen(gameApp, new Map1()));
-        }if(InputHandler.getInstance().isTouched(playButton,cam,viewport)){
-            playButton.setTexture(Assets.getInstance().getTexture("play2.png"));
-        }else {
-            playButton.setTexture(Assets.getInstance().getTexture("play.png"));
-        }*/
        InputHandler.getInstance().isTouched(playButton,cam,viewport);
        InputHandler.getInstance().isJustClicked(playButton,cam,viewport);
     }
