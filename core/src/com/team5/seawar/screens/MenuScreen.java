@@ -1,5 +1,6 @@
 package com.team5.seawar.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -45,7 +46,22 @@ public class MenuScreen extends ScreenAdapter {
                 sprite.setTexture(Assets.getInstance().getTexture("play.png"));
             }
         });
-        this.exitButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("exit.png")),null);
+        this.exitButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("exit.png")), new ActionSprite() {
+            @Override
+            public void touchAction(Sprite sprite) {
+
+            }
+
+            @Override
+            public void clickedAction(Sprite sprite) {
+                Gdx.app.exit();
+            }
+
+            @Override
+            public void defaultAction(Sprite sprite) {
+
+            }
+        });
         this.viewport = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, cam);
         this.playButton.getSprite().setPosition(GameApp.WIDTH/3 - playButton.getSprite().getWidth()/2, 2*GameApp.HEIGHT/3 - playButton.getSprite().getHeight()/10);
         this.playButton.getSprite().setSize(playButton.getSprite().getWidth()/5,playButton.getSprite().getHeight()/5);
@@ -66,6 +82,8 @@ public class MenuScreen extends ScreenAdapter {
     public void handleInput(float dt){
        InputHandler.getInstance().isTouched(playButton,cam,viewport);
        InputHandler.getInstance().isJustClicked(playButton,cam,viewport);
+       InputHandler.getInstance().isTouched(exitButton,cam,viewport);
+       InputHandler.getInstance().isJustClicked(exitButton,cam,viewport);
     }
 
     public void render(float dt){
