@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.team5.seawar.utils.Action2DSprite;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,18 +86,22 @@ public class InputHandler {
         return Input.Keys.toString(bouton);
     }
 
-    public boolean isTouched(Sprite sprite, Camera camera, Viewport viewport){
+    public void isTouched(Action2DSprite sprite, Camera camera, Viewport viewport){
         camera.unproject(mouse.set(Gdx.input.getX(), Gdx.input.getY(), 0), viewport.getScreenX(), viewport.getScreenY(), viewport.getScreenWidth(), viewport.getScreenHeight());
-        return sprite.getBoundingRectangle().contains(mouse.x, mouse.y);
+        if(sprite.getSprite().getBoundingRectangle().contains(mouse.x, mouse.y)){
+            sprite.touchAction();
+        }else {
+            sprite.defaultAction();
+        }
     }
 
-    public boolean isJustTouched(Sprite sprite, Camera camera, Viewport viewport){
+    public void isJustClicked(Action2DSprite sprite, Camera camera, Viewport viewport){
         // a modifier !!!
         if (Gdx.input.justTouched()) {
             camera.unproject(mouse.set(Gdx.input.getX(), Gdx.input.getY(), 0), viewport.getScreenX(), viewport.getScreenY(), viewport.getScreenWidth(), viewport.getScreenHeight());
-            return sprite.getBoundingRectangle().contains(mouse.x, mouse.y);
-        } else {
-            return false;
+            if (sprite.getSprite().getBoundingRectangle().contains(mouse.x, mouse.y)){
+                sprite.clickedAction();
+            }
         }
     }
 
