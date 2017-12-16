@@ -45,22 +45,7 @@ public class MenuScreen extends ScreenAdapter {
                 sprite.setTexture(Assets.getInstance().getTexture("play.png"));
             }
         });
-        this.exitButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("exit.png")), new ActionSprite() {
-            @Override
-            public void touchAction(Sprite sprite) {
-
-            }
-
-            @Override
-            public void clickedAction(Sprite sprite) {
-
-            }
-
-            @Override
-            public void defaultAction(Sprite sprite) {
-
-            }
-        });
+        this.exitButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("exit.png")),null);
         this.viewport = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, cam);
         this.playButton.getSprite().setPosition(GameApp.WIDTH/3 - playButton.getSprite().getWidth()/2, 2*GameApp.HEIGHT/3 - playButton.getSprite().getHeight()/10);
         this.playButton.getSprite().setSize(playButton.getSprite().getWidth()/5,playButton.getSprite().getHeight()/5);
