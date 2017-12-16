@@ -19,7 +19,6 @@ public class PlayScreen extends ScreenAdapter{
     private GameApp gameApp;
     private Map map;
 
-    private Vector3 mouse;
     private CamState camState;
 
     private Vector2 position;
@@ -33,7 +32,6 @@ public class PlayScreen extends ScreenAdapter{
     public PlayScreen(GameApp gameApp, Map map){
         this.gameApp = gameApp;
         this.map = map;
-        mouse = new Vector3();
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
         cam = new OrthographicCamera();
         cam.position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);

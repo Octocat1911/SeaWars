@@ -21,8 +21,8 @@ public abstract class CamState {
         cam = playScreen.getCam();
         nbColonne = playScreen.getMap().getColonne();
         nbLigne = playScreen.getMap().getLigne();
-        hexHeight = playScreen.hexHeight;
-        hexWidth = playScreen.hexWidth;
+        hexHeight = PlayScreen.hexHeight;
+        hexWidth = PlayScreen.hexWidth;
         position = playScreen.getPosition();
     }
 
