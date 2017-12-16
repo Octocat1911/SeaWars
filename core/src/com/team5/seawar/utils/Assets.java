@@ -24,6 +24,7 @@ public class Assets {
         manager.load("background.png", Texture.class);
         manager.load("play.png", Texture.class);
         manager.load("exit.png", Texture.class);
+        manager.load("play2.png",Texture.class);
 
         // PlayScreen
         manager.load("hexPointeur.png", Texture.class);
