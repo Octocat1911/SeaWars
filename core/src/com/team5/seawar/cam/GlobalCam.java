@@ -32,3 +32,4 @@ public class GlobalCam extends CamState {
         cam.update();
     }
 }
+
