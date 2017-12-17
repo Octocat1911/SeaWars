@@ -1,5 +1,6 @@
 package com.team5.seawar.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,12 +19,14 @@ import com.team5.seawar.utils.Assets;
 public class PlayScreen extends ScreenAdapter{
     private GameApp gameApp;
     private Map map;
-
     private CamState camState;
-
     private Vector2 position;
     private OrthographicCamera cam;
     private Viewport viewport;
+    private enum CamState{zoomCam, globalCam}
+    private CamState camState;
+    private float zoom = 1;
+    private float globalZoom;
 
     public static final float SCALE = 12;
     public static final float hexWidth = Assets.getInstance().getTexture("Maptextures/hexEau.png").getWidth()/SCALE;
@@ -97,7 +100,6 @@ public class PlayScreen extends ScreenAdapter{
     public void setCamState(CamState camState) {
         this.camState = camState;
     }
-
     public void dispose() {
 
     }
