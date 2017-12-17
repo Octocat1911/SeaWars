@@ -19,6 +19,6 @@ public class Water extends Element{
     }
 
     public Texture getTexture() {
-        return Assets.getInstance().getTexture("hexEau.png");
+        return Assets.getInstance().getTexture("Maptextures/hexEau.png");
     }
 }

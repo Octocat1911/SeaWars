@@ -26,8 +26,8 @@ public class PlayScreen extends ScreenAdapter{
     private Viewport viewport;
 
     public static final float SCALE = 12;
-    public static final float hexWidth = Assets.getInstance().getTexture("hexEau.png").getWidth()/SCALE;
-    public static final float hexHeight = Assets.getInstance().getTexture("hexEau.png").getHeight()/SCALE;
+    public static final float hexWidth = Assets.getInstance().getTexture("Maptextures/hexEau.png").getWidth()/SCALE;
+    public static final float hexHeight = Assets.getInstance().getTexture("Maptextures/hexEau.png").getHeight()/SCALE;
 
     public PlayScreen(GameApp gameApp, Map map){
         this.gameApp = gameApp;
@@ -66,7 +66,7 @@ public class PlayScreen extends ScreenAdapter{
                 renderTexture(map.getElement(i,j).getTexture(), i, j);
             }
         }
-        renderTexture(Assets.getInstance().getTexture("hexPointeur.png"), position.x, position.y);
+        renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), position.x, position.y);
         gameApp.getBatch().end();
     }
 
