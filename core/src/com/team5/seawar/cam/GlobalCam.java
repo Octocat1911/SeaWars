@@ -1,12 +1,15 @@
 package com.team5.seawar.cam;
 
 import com.team5.seawar.game.GameApp;
-import com.team5.seawar.inputHandler.InputHandler;
 import com.team5.seawar.screens.PlayScreen;
 
-public class GlobalCam extends CamState {
+public class GlobalCam extends PlayScreenCam{
+    @Override
+    public void update(float dt) {
 
-    private static GlobalCam instance = new GlobalCam();
+    }
+
+  /*  private static GlobalCam instance = new GlobalCam();
 
     private GlobalCam(){
     }
@@ -17,18 +20,14 @@ public class GlobalCam extends CamState {
 
     public void init(PlayScreen playScreen) {
         super.init(playScreen);
-        zoom = Math.max(hexWidth * (1+(nbColonne-1) *.75f) / GameApp.WIDTH, hexHeight * (nbLigne+.5f) / GameApp.HEIGHT);
+        this.zoom = Math.max(playScreen.hexWidth * (1+(playScreen.getMap().getColonne()-1) *.75f) / GameApp.WIDTH, playScreen.hexHeight * (playScreen.getMap().getLigne()+.5f) / GameApp.HEIGHT);
     }
 
 
     public void update(float dt) {
-        if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getSelect())){
-            playScreen.setCamState(ZoomCam.getInstance());
-        }
-        cam.zoom += (zoom - cam.zoom) * 0.02f;
-        cam.position.add((( (1 + (nbColonne-1)*.75f) * hexWidth) /2 - cam.position.x) *0.03f,
-                ((nbLigne+.5f) * hexHeight / 2- cam.position.y) *0.03f,
+        playScreen.getCam().zoom += (globalZoom - cam.zoom) * 0.02f;
+        cam.position.add((( (1 + (map.getColonne()-1)*.75f) * hexWidth) /2 - cam.position.x) *0.03f,
+                ((map.getLigne()+.5f) * hexHeight / 2- cam.position.y) *0.03f,
                 0);
-        cam.update();
-    }
+    }*/
 }

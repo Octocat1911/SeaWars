@@ -21,16 +21,16 @@ public class Assets {
 
     public void load() {
         // MenuScreen
-        manager.load("Menutextures/background.png", Texture.class);
-        manager.load("Menutextures/play.png", Texture.class);
-        manager.load("Menutextures/exit.png", Texture.class);
-        manager.load("Menutextures/play2.png",Texture.class);
+        manager.load("background.png", Texture.class);
+        manager.load("play.png", Texture.class);
+        manager.load("exit.png", Texture.class);
+        manager.load("play2.png",Texture.class);
 
         // PlayScreen
-        manager.load("Maptextures/hexPointeur.png", Texture.class);
-        manager.load("Maptextures/hexEau.png", Texture.class);
-        manager.load("Maptextures/hexTerre.png", Texture.class);
-        manager.load("Maptextures/hexPhare.png", Texture.class);
+        manager.load("hexPointeur.png", Texture.class);
+        manager.load("hexEau.png", Texture.class);
+        manager.load("hexTerre.png", Texture.class);
+        manager.load("hexPhare.png", Texture.class);
     }
 
     public Texture getTexture(String fileName){

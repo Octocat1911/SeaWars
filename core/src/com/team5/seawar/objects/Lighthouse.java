@@ -10,6 +10,6 @@ public class Lighthouse extends Element{
     }
 
     public Texture getTexture() {
-        return Assets.getInstance().getTexture("Maptextures/hexPhare.png");
+        return Assets.getInstance().getTexture("hexPhare.png");
     }
 }

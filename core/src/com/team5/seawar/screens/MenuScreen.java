@@ -2,7 +2,6 @@ package com.team5.seawar.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -30,11 +29,11 @@ public class MenuScreen extends ScreenAdapter {
         this.gameApp = gameApp;
         this.cam = new OrthographicCamera();
         this.cam.position.set(GameApp.WIDTH/2f, GameApp.HEIGHT/2f, 0);
-        this.background = new Sprite(Assets.getInstance().getTexture("Menutextures/background.png"));
-        this.playButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("Menutextures/play.png")), new ActionSprite() {
+        this.background = new Sprite(Assets.getInstance().getTexture("background.png"));
+        this.playButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("play.png")), new ActionSprite() {
             @Override
             public void touchAction(Sprite sprite) {
-                sprite.setTexture(Assets.getInstance().getTexture("Menutextures/play2.png"));
+                sprite.setTexture(Assets.getInstance().getTexture("play2.png"));
             }
 
             @Override
@@ -44,10 +43,10 @@ public class MenuScreen extends ScreenAdapter {
 
             @Override
             public void defaultAction(Sprite sprite) {
-                sprite.setTexture(Assets.getInstance().getTexture("Menutextures/play.png"));
+                sprite.setTexture(Assets.getInstance().getTexture("play.png"));
             }
         });
-        this.exitButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("Menutextures/exit.png")), new ActionSprite() {
+        this.exitButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("exit.png")), new ActionSprite() {
             @Override
             public void touchAction(Sprite sprite) {
 
