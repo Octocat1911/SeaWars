@@ -19,7 +19,7 @@ public class Dirt extends Element{
     }
 
     public Texture getTexture() {
-        return Assets.getInstance().getTexture("hexTerre.png");
+        return Assets.getInstance().getTexture("Maptextures/hexTerre.png");
     }
 
 }
