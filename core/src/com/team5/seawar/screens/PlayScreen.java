@@ -54,11 +54,7 @@ public class PlayScreen extends ScreenAdapter{
         if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getBas()) && position.y>0){
             position.y--;
         }
-        for (int i=0; i<map.getColonne(); i++){
-            for (int j=0; j<map.getLigne(); j++) {
-                InputHandler.getInstance().isTouched(map.getElement(i,j).getAction2DSprite(),cam,viewport);
-            }
-        }
+        map.handleInput(cam, viewport);
     }
 
     public void render(float dt) {
@@ -66,11 +62,7 @@ public class PlayScreen extends ScreenAdapter{
         camState.update(dt);
         gameApp.getBatch().setProjectionMatrix(cam.combined);
         gameApp.getBatch().begin();
-        for (int i=0; i<map.getColonne(); i++){
-            for (int j=0; j<map.getLigne(); j++) {
-                map.getElement(i, j).getAction2DSprite().getSprite().draw(gameApp.getBatch());
-            }
-        }
+        map.draw(gameApp.getBatch());
         renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), position.x, position.y);
         gameApp.getBatch().end();
     }

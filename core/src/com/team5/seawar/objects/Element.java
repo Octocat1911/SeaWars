@@ -2,9 +2,9 @@ package com.team5.seawar.objects;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.team5.seawar.screens.PlayScreen;
-import com.team5.seawar.utils.*;
-
-import java.util.List;
+import com.team5.seawar.utils.Action2DSprite;
+import com.team5.seawar.utils.ActionSprite;
+import com.team5.seawar.utils.Assets;
 
 public class Element {
     public enum Type {WATER, DIRT, LIGHTHOUSE, VOID};
@@ -21,12 +21,41 @@ public class Element {
             case WATER:
                 this.navigable = true;
                 sprite = new Sprite(Assets.getInstance().getTexture("Maptextures/hexEau.png"));
-                actionSprite = WaterAction.getInstance();
+                actionSprite = new ActionSprite() {
+                    @Override
+                    public void touchAction(Sprite sprite) {
+                        sprite.setTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"));
+                    }
+
+                    @Override
+                    public void clickedAction(Sprite sprite) {
+                    }
+
+                    @Override
+                    public void defaultAction(Sprite sprite) {
+                        sprite.setTexture(Assets.getInstance().getTexture("Maptextures/hexEau.png"));
+                    }
+                };
                 break;
             case DIRT:
                 this.navigable = false;
                 sprite = new Sprite(Assets.getInstance().getTexture("Maptextures/hexTerre.png"));
-                actionSprite = DirtAction.getInstance();
+                actionSprite = new ActionSprite() {
+                    @Override
+                    public void touchAction(Sprite sprite) {
+
+                    }
+
+                    @Override
+                    public void clickedAction(Sprite sprite) {
+
+                    }
+
+                    @Override
+                    public void defaultAction(Sprite sprite) {
+
+                    }
+                };
                 break;
             case LIGHTHOUSE:
                 this.navigable = false;
