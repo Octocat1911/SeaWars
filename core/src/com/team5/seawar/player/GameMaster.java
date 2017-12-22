@@ -19,7 +19,6 @@ public class GameMaster {
     }
 
     public void attackShip(Ship ship, int i, int j){
-        map.getElement(i,j);
     }
 }
 
