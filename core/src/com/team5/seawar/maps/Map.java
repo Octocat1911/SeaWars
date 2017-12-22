@@ -42,7 +42,7 @@ public abstract class Map {
     public void handleInput(OrthographicCamera cam, Viewport viewport){
         for (int i=0; i<colonne; i++){
             for (int j=0; j<ligne; j++) {
-                InputHandler.isTouched(getCase(i,j).getElement().getAction2DSprite(),cam,viewport);
+                getCase(i,j).handleInput(cam, viewport);
             }
         }
     }

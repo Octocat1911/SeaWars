@@ -21,7 +21,7 @@ public class PlayScreen extends ScreenAdapter{
 
     private CamState camState;
 
-    private Vector2 position;
+    public static Vector2 position;
     private OrthographicCamera cam;
     private Viewport viewport;
 

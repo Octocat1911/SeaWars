@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.team5.seawar.objects.Case;
+import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Action2DSprite;
 
 import java.util.ArrayList;
@@ -45,6 +47,15 @@ public class InputHandler {
             if (sprite.getSprite().getBoundingRectangle().contains(mouse.x, mouse.y)) {
                 sprite.clickedAction();
             }
+        }
+    }
+
+    public static void updateCase(Case myCase, Camera camera, Viewport viewport) {
+        camera.unproject(mouse.set(Gdx.input.getX(), Gdx.input.getY(), 0), viewport.getScreenX(), viewport.getScreenY(), viewport.getScreenWidth(), viewport.getScreenHeight());
+        if (myCase.getBounds().contains(mouse.x, mouse.y)) {
+            PlayScreen.position.set(myCase.getPosition());
+        } else {
+            //coucou
         }
     }
 
