@@ -15,7 +15,7 @@ public class WaterAction implements ActionSprite {
 
     @Override
     public void touchAction(Sprite sprite) {
-        sprite.setTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"));
+        //sprite.setTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"));
     }
 
     @Override

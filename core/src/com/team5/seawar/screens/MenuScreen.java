@@ -2,14 +2,12 @@ package com.team5.seawar.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.game.GameApp;
-import com.team5.seawar.inputHandler.InputHandler;
+import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map1;
 import com.team5.seawar.utils.Action2DSprite;
 import com.team5.seawar.utils.ActionSprite;
@@ -81,10 +79,10 @@ public class MenuScreen extends ScreenAdapter {
     }
 
     public void handleInput(float dt){
-       InputHandler.isTouched(playButton,cam,viewport);
-       InputHandler.isJustClicked(playButton,cam,viewport);
-       InputHandler.isTouched(exitButton,cam,viewport);
-       InputHandler.isJustClicked(exitButton,cam,viewport);
+       Inputs.isTouched(playButton,cam,viewport);
+       Inputs.isJustClicked(playButton,cam,viewport);
+       Inputs.isTouched(exitButton,cam,viewport);
+       Inputs.isJustClicked(exitButton,cam,viewport);
     }
 
     public void render(float dt){
