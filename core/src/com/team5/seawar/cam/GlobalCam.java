@@ -22,7 +22,7 @@ public class GlobalCam extends CamState {
 
 
     public void update(float dt) {
-        if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getSelect())){
+        if (InputHandler.isJustPressed(InputHandler.SELECT)){
             playScreen.setCamState(ZoomCam.getInstance());
         }
         cam.zoom += (zoom - cam.zoom) * 0.02f;

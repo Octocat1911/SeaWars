@@ -42,16 +42,16 @@ public class PlayScreen extends ScreenAdapter{
     }
 
     public void handleInput(){
-        if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getGauche()) && position.x>0){
+        if (InputHandler.isJustPressed(InputHandler.LEFT) && position.x>0){
             position.x--;
         }
-        if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getDroite()) && position.x<map.getColonne()-1){
+        if (InputHandler.isJustPressed(InputHandler.RIGHT) && position.x<map.getColonne()-1){
             position.x++;
         }
-        if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getHaut()) && position.y<map.getLigne()-1){
+        if (InputHandler.isJustPressed(InputHandler.UP) && position.y<map.getLigne()-1){
             position.y++;
         }
-        if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getBas()) && position.y>0){
+        if (InputHandler.isJustPressed(InputHandler.DOWN) && position.y>0){
             position.y--;
         }
         map.handleInput(cam, viewport);
