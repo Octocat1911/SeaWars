@@ -1,11 +1,15 @@
 package com.team5.seawar.ship;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
 public class Ship {
+    private Sprite skin;
     private int lifepoints;
     private Canon mainCanon;
     private Canon secondaryCanon;
     private int currentMovements;
     private int maxMovements;
+    private ShipPosition shipPosition;
 
     public Ship(int lifepoints, Canon mainCanon, Canon secondaryCanon, int currentMovements, int maxMovements){
         this.lifepoints = lifepoints;
@@ -13,6 +17,20 @@ public class Ship {
         this.secondaryCanon = secondaryCanon;
         this.currentMovements = currentMovements;
         this.maxMovements = maxMovements;
+        this.skin = null;
+        this.shipPosition = new ShipPosition(0,0, ShipPosition.Orientation.TOP_RIGHT);
+    }
+
+    public Sprite getSkin() {
+        return skin;
+    }
+
+    public void setLifepoints(int lifepoints) {
+        this.lifepoints = lifepoints;
+    }
+
+    public void setSkin(Sprite skin) {
+        this.skin = skin;
     }
 
     public int getLifepoints() {
