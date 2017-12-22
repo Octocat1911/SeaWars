@@ -10,8 +10,10 @@ public class Player {
     private Sprite avatar;
     private List<Ship> ships;
 
-    public Player(){
-
+    public Player(String nickname,Sprite avatar, List<Ship> ships){
+        this.nickname = nickname;
+        this.avatar = avatar;
+        this.ships = ships;
     }
 
     public Ship getShip(int i){
