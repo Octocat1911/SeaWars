@@ -13,17 +13,17 @@ public abstract class Map {
     protected Case tab[][];
 
 
-    public Map(int colonne, int ligne){
+    public Map(int colonne, int ligne) {
         this.ligne = ligne;
         this.colonne = colonne;
         tab = new Case[colonne][ligne];
     }
 
-    public int getColonne(){
+    public int getColonne() {
         return colonne;
     }
 
-    public int getLigne(){
+    public int getLigne() {
         return ligne;
     }
 
