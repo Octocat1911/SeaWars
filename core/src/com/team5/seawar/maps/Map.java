@@ -3,7 +3,6 @@ package com.team5.seawar.maps;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.team5.seawar.inputHandler.InputHandler;
 import com.team5.seawar.objects.Case;
 
 public abstract class Map {
@@ -34,7 +33,7 @@ public abstract class Map {
     public void draw(SpriteBatch sb){
         for (int i=0; i<colonne; i++){
             for (int j=0; j<ligne; j++) {
-                getCase(i, j).getElement().getAction2DSprite().getSprite().draw(sb);
+                getCase(i, j).getElement().getSprite().draw(sb);
             }
         }
     }

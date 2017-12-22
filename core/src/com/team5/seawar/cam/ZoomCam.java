@@ -1,7 +1,7 @@
 package com.team5.seawar.cam;
 
 
-import com.team5.seawar.inputHandler.InputHandler;
+import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.screens.PlayScreen;
 
 public class ZoomCam extends CamState {
@@ -21,7 +21,7 @@ public class ZoomCam extends CamState {
     }
 
     public void update(float dt) {
-        if (InputHandler.isJustPressed(InputHandler.SELECT)){
+        if (Inputs.isPressed(Inputs.SELECT)){
             playScreen.setCamState(GlobalCam.getInstance());
         }
         cam.zoom += (zoom - cam.zoom) * 0.02f;

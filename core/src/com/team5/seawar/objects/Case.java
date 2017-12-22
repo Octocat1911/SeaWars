@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.team5.seawar.inputHandler.InputHandler;
+import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.screens.PlayScreen;
 
 public class Case {
@@ -40,7 +40,6 @@ public class Case {
     }
 
     public void handleInput(OrthographicCamera cam, Viewport viewport){
-        InputHandler.updateCase(this, cam, viewport);
-        InputHandler.isTouched(getElement().getAction2DSprite(), cam, viewport);
+        Inputs.updateCase(this, cam, viewport);
     }
 }
