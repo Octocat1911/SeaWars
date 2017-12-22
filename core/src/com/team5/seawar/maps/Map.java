@@ -9,22 +9,21 @@ public abstract class Map {
     protected Element tab[][];
 
 
-    public Map(int colonne, int ligne){
+    public Map(int colonne, int ligne) {
         this.ligne = ligne;
         this.colonne = colonne;
         tab = new Element[colonne][ligne];
     }
 
-    public int getColonne(){
+    public int getColonne() {
         return colonne;
     }
 
-    public int getLigne(){
+    public int getLigne() {
         return ligne;
     }
 
-    public Element getElement(int j, int i){
+    public Element getElement(int j, int i) {
         return tab[j][i];
     }
-
 }
