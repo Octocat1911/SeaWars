@@ -81,10 +81,10 @@ public class MenuScreen extends ScreenAdapter {
     }
 
     public void handleInput(float dt){
-       InputHandler.getInstance().isTouched(playButton,cam,viewport);
-       InputHandler.getInstance().isJustClicked(playButton,cam,viewport);
-       InputHandler.getInstance().isTouched(exitButton,cam,viewport);
-       InputHandler.getInstance().isJustClicked(exitButton,cam,viewport);
+       InputHandler.isTouched(playButton,cam,viewport);
+       InputHandler.isJustClicked(playButton,cam,viewport);
+       InputHandler.isTouched(exitButton,cam,viewport);
+       InputHandler.isJustClicked(exitButton,cam,viewport);
     }
 
     public void render(float dt){
