@@ -7,6 +7,7 @@ import com.team5.seawar.screens.PlayScreen;
 public class ZoomCam extends CamState {
 
     private static ZoomCam instance = new ZoomCam();
+    private float speed;
 
     private ZoomCam(){
     }
@@ -25,9 +26,18 @@ public class ZoomCam extends CamState {
             playScreen.setCamState(GlobalCam.getInstance());
         }
         cam.zoom += (zoom - cam.zoom) * 0.02f;
-        cam.position.add((hexWidth/2 + position.x * hexWidth*.75f - cam.position.x)*0.03f,
-                (hexHeight/2 + position.y * hexHeight - cam.position.y)*0.03f,
+        switch (Inputs.mode){
+            case MOUSE_MODE:
+                speed = 0.015f;
+                break;
+            case INPUT_MODE:
+                speed = 0.03f;
+                break;
+        }
+        cam.position.add((hexWidth / 2 + position.x * hexWidth * .75f - cam.position.x) * speed,
+                (hexHeight / 2 + position.y * hexHeight - cam.position.y) * speed,
                 0);
+
         cam.update();
     }
 }
