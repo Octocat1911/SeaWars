@@ -4,14 +4,13 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.cam.CamState;
 import com.team5.seawar.cam.GlobalCam;
 import com.team5.seawar.cam.ZoomCam;
 import com.team5.seawar.game.GameApp;
-import com.team5.seawar.inputHandler.InputHandler;
+import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map;
 import com.team5.seawar.utils.Assets;
 
@@ -21,7 +20,7 @@ public class PlayScreen extends ScreenAdapter{
 
     private CamState camState;
 
-    private Vector2 position;
+    public static Vector2 position;
     private OrthographicCamera cam;
     private Viewport viewport;
 
@@ -42,18 +41,19 @@ public class PlayScreen extends ScreenAdapter{
     }
 
     public void handleInput(){
-        if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getGauche()) && position.x>0){
+        if (Inputs.isPressed(Inputs.LEFT) && position.x>0){
             position.x--;
         }
-        if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getDroite()) && position.x<map.getColonne()-1){
+        if (Inputs.isPressed(Inputs.RIGHT) && position.x<map.getColonne()-1){
             position.x++;
         }
-        if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getHaut()) && position.y<map.getLigne()-1){
+        if (Inputs.isPressed(Inputs.UP) && position.y<map.getLigne()-1){
             position.y++;
         }
-        if (InputHandler.getInstance().isJustPressed(InputHandler.getInstance().getBas()) && position.y>0){
+        if (Inputs.isPressed(Inputs.DOWN) && position.y>0){
             position.y--;
         }
+        map.handleInput(cam, viewport);
     }
 
     public void render(float dt) {
@@ -61,11 +61,7 @@ public class PlayScreen extends ScreenAdapter{
         camState.update(dt);
         gameApp.getBatch().setProjectionMatrix(cam.combined);
         gameApp.getBatch().begin();
-        for (int i=0; i<map.getColonne(); i++){
-            for (int j=0; j<map.getLigne(); j++) {
-                renderTexture(map.getElement(i,j).getTexture(), i, j);
-            }
-        }
+        map.draw(gameApp.getBatch());
         renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), position.x, position.y);
         gameApp.getBatch().end();
     }

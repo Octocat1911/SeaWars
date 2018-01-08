@@ -1,5 +1,6 @@
 package com.team5.seawar.ship;
 
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Ship {
