@@ -2,9 +2,9 @@ package com.team5.seawar.ship;
 
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.team5.seawar.objects.Element;
 
-public class Ship {
-    private Sprite skin;
+public class Ship extends Element{
     private int lifepoints;
     private Canon mainCanon;
     private Canon secondaryCanon;
@@ -12,26 +12,27 @@ public class Ship {
     private int maxMovements;
     private ShipPosition shipPosition;
 
-    public Ship(int lifepoints, Canon mainCanon, Canon secondaryCanon, int currentMovements, int maxMovements){
+    public Ship(int lifepoints, Canon mainCanon, Canon secondaryCanon, int currentMovements, int maxMovements, int colonne, int ligne, ShipPosition.Orientation orientation){
+        super(Type.SHIP, colonne, ligne);
         this.lifepoints = lifepoints;
         this.mainCanon = mainCanon;
         this.secondaryCanon = secondaryCanon;
         this.currentMovements = currentMovements;
         this.maxMovements = maxMovements;
-        this.skin = null;
-        this.shipPosition = new ShipPosition(0,0, ShipPosition.Orientation.TOP_RIGHT);
+        this.shipPosition = new ShipPosition(colonne,ligne,orientation);
+
     }
 
-    public Sprite getSkin() {
-        return skin;
+    public Sprite getSprite() {
+        return sprite;
     }
 
     public void setLifepoints(int lifepoints) {
         this.lifepoints = lifepoints;
     }
 
-    public void setSkin(Sprite skin) {
-        this.skin = skin;
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
     }
 
     public int getLifepoints() {

@@ -1,12 +1,13 @@
 package com.team5.seawar.ship;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 public class Amiral extends Ship {
 
-    public Amiral(){
-        super(100, new Canon(), new Canon(),3,3);
-        Vector2 lprincipal = new Vector2();
+    public Amiral(int colonne, int ligne, ShipPosition.Orientation orientation){
+        super(100, new Canon(), new Canon(),3,3, colonne, ligne, orientation);
+        Array<Vector2> lprincipal = new Array<Vector2>();
         lprincipal.add(new Vector2(0,1));
         lprincipal.add(new Vector2(0,2));
         lprincipal.add(new Vector2(0,3));
@@ -14,7 +15,7 @@ public class Amiral extends Ship {
         Canon principal = new Canon(lprincipal, 50,3);
         this.setMainCanon(principal);
 
-        Vector2 lsecondaire = new Vector2();
+        Array<Vector2> lsecondaire = new Array<Vector2>();
         lsecondaire.add(new Vector2(0,1));
         lsecondaire.add(new Vector2(0,2));
         lsecondaire.add(new Vector2(1,0));

@@ -1,14 +1,15 @@
 package com.team5.seawar.ship;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 public class Canon {
-    private Vector2 range;
+    private Array<Vector2> range;
     private int damage;
     private int cooldown;
 
 
-    public Canon(Vector2 range, int damage, int cooldown){
+    public Canon(Array<Vector2> range, int damage, int cooldown){
         this.range = range;
         this.damage = damage;
         this.cooldown = cooldown;
@@ -34,11 +35,11 @@ public class Canon {
         this.cooldown = cooldown;
     }
 
-    public Vector2 getRange() {
+    public Array<Vector2> getRange() {
         return range;
     }
 
-    public void setRange(Vector2 range) {
+    public void setRange(Array<Vector2> range) {
         this.range = range;
     }
 

@@ -6,9 +6,9 @@ import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.*;
 
 public class Element {
-    public enum Type {WATER, DIRT, LIGHTHOUSE, VOID}
-    private boolean navigable;
-    private Sprite sprite;
+    public enum Type {WATER, DIRT, LIGHTHOUSE, VOID, SHIP}
+    protected boolean navigable;
+    protected Sprite sprite;
 
     private Type type;
 
@@ -25,6 +25,9 @@ public class Element {
             case LIGHTHOUSE:
                 this.navigable = false;
                 sprite = new Sprite(Assets.getInstance().getTexture("Maptextures/hexPhare.png"));
+                break;
+            case SHIP:
+                this.navigable = false;
                 break;
             default: //VOID
                 this.navigable = false;

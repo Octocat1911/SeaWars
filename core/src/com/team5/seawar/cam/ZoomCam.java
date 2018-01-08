@@ -1,6 +1,5 @@
 package com.team5.seawar.cam;
 
-
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.screens.PlayScreen;
 
@@ -28,7 +27,7 @@ public class ZoomCam extends CamState {
         cam.zoom += (zoom - cam.zoom) * 0.02f;
         switch (Inputs.mode){
             case MOUSE_MODE:
-                speed = 0.015f;
+                speed = 0.0135f;
                 break;
             case INPUT_MODE:
                 speed = 0.03f;
