@@ -24,7 +24,7 @@ public class ShipSelect implements State {
     }
 
     public void update(float dt){
-        if (Inputs.isPressed(Inputs.A) && player.contains(playScreen.getCurrentCase().getShip(), true)){
+        if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK)) && player.contains(playScreen.getCurrentCase().getShip(), true)){
             playScreen.changeState(ShipSelected.getInstance(playScreen.getCurrentCase()));
         }
     }

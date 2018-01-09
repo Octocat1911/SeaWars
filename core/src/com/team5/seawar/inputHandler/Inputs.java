@@ -28,44 +28,42 @@ public class Inputs {
     public static int DOWN = 0;
     public static int LEFT = 0;
     public static int RIGHT = 0;
-    public static int LOOP = 0;
+    public static int CLICK = 0;
 
 
     public static Vector3 mouse = new Vector3();
 
-    public static void update(){
-        if (A>0)
+    public static void update() {
+        if (A > 0)
             A--;
-        if (B>0)
+        if (B > 0)
             B--;
-        if (X>0)
+        if (X > 0)
             X--;
-        if (Y>0)
+        if (Y > 0)
             Y--;
-        if (L1>0)
+        if (L1 > 0)
             L1--;
-        if (L2>0)
+        if (L2 > 0)
             L2--;
-        if (R1>0)
+        if (R1 > 0)
             R1--;
-        if (R2>0)
+        if (R2 > 0)
             R2--;
-        if (SELECT>0)
+        if (SELECT > 0)
             SELECT--;
-        if (START>0)
+        if (START > 0)
             START--;
-        if (UP>0)
+        if (UP > 0)
             UP--;
-        if (DOWN>0)
+        if (DOWN > 0)
             DOWN--;
-        if (LEFT>0)
+        if (LEFT > 0)
             LEFT--;
-        if (RIGHT>0)
+        if (RIGHT > 0)
             RIGHT--;
-        LOOP ++;
-        if (LOOP ==5){
-            LOOP = 0;
-        }
+        if (CLICK > 0)
+            CLICK--;
     }
 
     public static void isTouched(Action2DSprite sprite, Camera camera, Viewport viewport) {
@@ -108,10 +106,6 @@ public class Inputs {
 
     public static boolean isPressed(int touche) {
         return touche > 0;
-    }
-
-    public static boolean isJustPressed(int touche){
-        return Gdx.input.isKeyJustPressed(touche);
     }
 
 }

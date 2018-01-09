@@ -114,7 +114,7 @@ public class ShipSelected implements State{
         for (Case c : accessible){
                 playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPortee.png"), c.getPosition().x, c.getPosition().y);
         }
-        if (Inputs.isPressed(Inputs.A)){
+        if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK))){
             if (accessible.contains(playScreen.getCurrentCase(), true)){
                 moveShip(caseSelected, playScreen.getCurrentCase());
                 caseSelected = playScreen.getCurrentCase();

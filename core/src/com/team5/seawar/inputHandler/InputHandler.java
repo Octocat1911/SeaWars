@@ -49,7 +49,6 @@ public class InputHandler extends InputAdapter{
                 break;
             case L1:
                 Inputs.L1 = Inputs.BUFFER;
-                //Inputs.X = Inputs.BUFFER;
                 break;
             case R1:
                 Inputs.R1 = Inputs.BUFFER;
@@ -78,6 +77,7 @@ public class InputHandler extends InputAdapter{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        Inputs.CLICK = Inputs.BUFFER;
         Inputs.mode = Inputs.Mode.MOUSE_MODE;
         return false;
     }
