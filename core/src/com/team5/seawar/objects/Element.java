@@ -7,8 +7,8 @@ import com.team5.seawar.utils.*;
 
 public class Element {
     public enum Type {WATER, DIRT, LIGHTHOUSE, VOID, SHIP}
-    protected boolean navigable;
-    protected Sprite sprite;
+    private boolean navigable;
+    private Sprite sprite;
 
     private Type type;
 

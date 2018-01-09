@@ -2,10 +2,14 @@ package com.team5.seawar.maps;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.objects.Case;
+import com.team5.seawar.ship.Ship;
 
 public abstract class Map {
+    protected Array<Ship> shipJ1;
+    protected Array<Ship> shipJ2;
 
     protected int colonne;
     protected int ligne;
@@ -33,7 +37,7 @@ public abstract class Map {
     public void draw(SpriteBatch sb){
         for (int i=0; i<colonne; i++){
             for (int j=0; j<ligne; j++) {
-                getCase(i, j).getElement().getSprite().draw(sb);
+                getCase(i, j).draw(sb);
             }
         }
     }
@@ -44,5 +48,13 @@ public abstract class Map {
                 getCase(i,j).handleInput(cam, viewport);
             }
         }
+    }
+
+    public Array<Ship> getShipJ1(){
+        return shipJ1;
+    }
+
+    public Array<Ship> getShipJ2(){
+        return shipJ2;
     }
 }

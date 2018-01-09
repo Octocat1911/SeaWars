@@ -12,11 +12,16 @@ import com.team5.seawar.cam.ZoomCam;
 import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map;
+import com.team5.seawar.objects.Case;
+import com.team5.seawar.screens.playstates.ShipSelect;
+import com.team5.seawar.screens.playstates.ShipSelected;
+import com.team5.seawar.screens.playstates.State;
 import com.team5.seawar.utils.Assets;
 
 public class PlayScreen extends ScreenAdapter{
     private GameApp gameApp;
     private Map map;
+    private State state;
 
     private CamState camState;
 
@@ -31,6 +36,12 @@ public class PlayScreen extends ScreenAdapter{
     public PlayScreen(GameApp gameApp, Map map){
         this.gameApp = gameApp;
         this.map = map;
+
+        ShipSelect.init(this);
+        ShipSelected.init(this);
+
+        state = ShipSelect.getInstance();
+
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
         cam = new OrthographicCamera();
         cam.position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
@@ -62,6 +73,7 @@ public class PlayScreen extends ScreenAdapter{
         gameApp.getBatch().setProjectionMatrix(cam.combined);
         gameApp.getBatch().begin();
         map.draw(gameApp.getBatch());
+        state.update(dt);
         renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), position.x, position.y);
         gameApp.getBatch().end();
     }
@@ -72,6 +84,14 @@ public class PlayScreen extends ScreenAdapter{
         } else {
             gameApp.getBatch().draw(texture, colonne * hexWidth *3/4, ligne * hexHeight + hexHeight/2, hexWidth, hexHeight);
         }
+    }
+
+    public Case getCurrentCase() {
+        return map.getCase((int)position.x, (int)position.y);
+    }
+
+    public void changeState(State state){
+        this.state = state;
     }
 
     public void resize(int width, int height) {

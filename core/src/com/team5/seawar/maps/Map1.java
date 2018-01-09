@@ -1,8 +1,12 @@
 package com.team5.seawar.maps;
 
 
+import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.objects.Case;
 import com.team5.seawar.objects.Element;
+import com.team5.seawar.ship.Fregate;
+import com.team5.seawar.ship.Ship;
+import com.team5.seawar.ship.ShipPosition;
 
 public class Map1 extends Map {
 
@@ -23,6 +27,23 @@ public class Map1 extends Map {
         tab[8][3]= new Case(Element.Type.DIRT, 8, 3);
         tab[9][2]= new Case(Element.Type.DIRT, 9, 2);
         tab[9][3]= new Case(Element.Type.DIRT, 9, 3);
+
+        shipJ1 = new Array<Ship>(3);
+        shipJ2 = new Array<Ship>(3);
+        shipJ1.add(new Fregate(0,10, ShipPosition.Orientation.BOTTOM_RIGHT));
+        shipJ1.add(new Fregate(1,10, ShipPosition.Orientation.BOTTOM_RIGHT));
+        shipJ2.add(new Fregate(12,0, ShipPosition.Orientation.TOP_LEFT));
+        shipJ2.add(new Fregate(12,1, ShipPosition.Orientation.TOP_LEFT));
+        shipJ1.add(new Fregate(3, 10, ShipPosition.Orientation.BOTTOM));
+        shipJ2.add(new Fregate(10, 0, ShipPosition.Orientation.TOP));
+
+        for (Ship ship : shipJ1){
+            getCase(ship.getPosition().getColonne(), ship.getPosition().getLigne()).addShip(ship);
+        }
+
+        for (Ship ship : shipJ2){
+            getCase(ship.getPosition().getColonne(), ship.getPosition().getLigne()).addShip(ship);
+        }
 
     }
 

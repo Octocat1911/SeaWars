@@ -28,9 +28,19 @@ public class Assets {
 
         // PlayScreen
         manager.load("Maptextures/hexPointeur.png", Texture.class);
+        manager.load("Maptextures/hexPortee.png", Texture.class);
+
         manager.load("Maptextures/hexEau.png", Texture.class);
         manager.load("Maptextures/hexTerre.png", Texture.class);
         manager.load("Maptextures/hexPhare.png", Texture.class);
+
+        manager.load("Shiptextures/ShipH.png", Texture.class);
+        manager.load("Shiptextures/ShipHD.png", Texture.class);
+        manager.load("Shiptextures/ShipBD.png", Texture.class);
+        manager.load("Shiptextures/ShipB.png", Texture.class);
+        manager.load("Shiptextures/ShipBG.png", Texture.class);
+        manager.load("Shiptextures/ShipHG.png", Texture.class);
+
     }
 
     public Texture getTexture(String fileName){
