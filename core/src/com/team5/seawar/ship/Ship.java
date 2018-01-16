@@ -2,25 +2,31 @@ package com.team5.seawar.ship;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.team5.seawar.objects.Element;
-import com.team5.seawar.objects.Layer;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
 
 public class Ship{
-    private int lifepoints;
+    private int maxLifePoints;
+    private int currentLifePoints;
+
+    private int maxMovements;
+    private int movements;
+
     private Canon mainCanon;
     private Canon secondaryCanon;
-    private int currentMovements;
-    private int maxMovements;
+
     private ShipPosition shipPosition;
+
     private Sprite sprite;
 
-    public Ship(int lifepoints, Canon mainCanon, Canon secondaryCanon, int currentMovements, int maxMovements, int colonne, int ligne, ShipPosition.Orientation orientation){
-        this.lifepoints = lifepoints;
+    private boolean canFire;
+    private boolean hasFinished;
+
+    public Ship(int maxLifePoints, Canon mainCanon, Canon secondaryCanon, int maxMovements, int colonne, int ligne, ShipPosition.Orientation orientation){
+        this.maxLifePoints = maxLifePoints;
+        this.currentLifePoints = maxLifePoints;
         this.mainCanon = mainCanon;
         this.secondaryCanon = secondaryCanon;
-        this.currentMovements = currentMovements;
         this.maxMovements = maxMovements;
         this.shipPosition = new ShipPosition(colonne,ligne,orientation);
         this.sprite = new Sprite(Assets.getInstance().getTexture("Shiptextures/ShipH.png"));
@@ -89,53 +95,73 @@ public class Ship{
                 shipPosition.setOrientation(ShipPosition.Orientation.TOP_LEFT);
         }
         shipPosition.setPosiiton(arrive);
-    }
-
-    public void setLifepoints(int lifepoints) {
-        this.lifepoints = lifepoints;
+        movements--;
+        if (!canMove() && !canFire){
+            hasFinished = true;
+        }
     }
 
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
     }
 
-    public int getLifepoints() {
-        return lifepoints;
-    }
-
-    public Canon getMainCanon() {
-        return mainCanon;
-    }
-
     public void setMainCanon(Canon mainCanon) {
         this.mainCanon = mainCanon;
-    }
-
-    public Canon getSecondaryCanon() {
-        return secondaryCanon;
     }
 
     public void setSecondaryCanon(Canon secondaryCanon) {
         this.secondaryCanon = secondaryCanon;
     }
 
-    public int getCurrentMovements() {
-        return currentMovements;
-    }
-
-    public void setCurrentMovements(int currentMovements) {
-        this.currentMovements = currentMovements;
-    }
-
-    public int getMaxMovements() {
-        return maxMovements;
-    }
-
-    public boolean isNavigable(){
-        return false;
-    }
-
     public ShipPosition getPosition() {
         return shipPosition;
+    }
+
+    public int getMaxLifePoints(){
+        return maxLifePoints;
+    }
+
+    public void takeDamages(int damages){
+        currentLifePoints = currentLifePoints - damages;
+        if (currentLifePoints<0)
+            currentLifePoints = 0;
+    }
+
+    public int getMovements(){
+        return movements;
+    }
+
+    public boolean canMove(){
+        return movements > 0;
+    }
+
+    public void newTurn(){
+        movements = maxMovements;
+        mainCanon.newTurn();
+        secondaryCanon.newTurn();
+        if (mainCanon.canAttack() || secondaryCanon.canAttack()){
+            canFire = true;
+        } else {
+            canFire = false;
+        }
+    }
+
+    public boolean canFire(){
+        return canFire;
+    }
+
+    public void attack(){
+        canFire = false;
+        if (!canMove()){
+            hasFinished = true;
+        }
+    }
+
+    public boolean hasFinished(){
+        return hasFinished;
+    }
+
+    public void finish(){
+        hasFinished = true;
     }
 }

@@ -23,7 +23,7 @@ public class Element {
                 sprite = new Sprite(Assets.getInstance().getTexture("Maptextures/hexTerre.png"));
                 break;
             case LIGHTHOUSE:
-                this.navigable = false;
+                this.navigable = true;
                 sprite = new Sprite(Assets.getInstance().getTexture("Maptextures/hexPhare.png"));
                 break;
             case SHIP:

@@ -9,7 +9,6 @@ import com.team5.seawar.inputHandler.InputHandler;
 import com.team5.seawar.inputHandler.XBoxHandler;
 import com.team5.seawar.screens.MenuScreen;
 import com.team5.seawar.utils.Assets;
-import com.team5.seawar.utils.test;
 
 public class GameApp extends Game {
     public static final int HEIGHT = 720;
@@ -20,8 +19,6 @@ public class GameApp extends Game {
 	
 	@Override
 	public void create () {
-		test.rotationImpaire(3,2);
-		test.rotationPaire(2,2);
 		new XBoxHandler();
 		new InputHandler();
 		Assets.getInstance().load();

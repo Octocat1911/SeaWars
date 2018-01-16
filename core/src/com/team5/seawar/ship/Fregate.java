@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Array;
 public class Fregate extends Ship {
 
     public Fregate(int colonne, int ligne, ShipPosition.Orientation orientation){
-        super(50, new Canon(), new Canon(),7,7, colonne, ligne, orientation);
+        super(50, new Canon(), new Canon(),7, colonne, ligne, orientation);
         Array<Vector2> lprincipal = new Array<Vector2>();
         lprincipal.add(new Vector2(0,1));
         lprincipal.add(new Vector2(0,2));

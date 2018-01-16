@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Array;
 public class Amiral extends Ship {
 
     public Amiral(int colonne, int ligne, ShipPosition.Orientation orientation){
-        super(100, new Canon(), new Canon(),3,3, colonne, ligne, orientation);
+        super(100, new Canon(), new Canon(),3, colonne, ligne, orientation);
         Array<Vector2> lprincipal = new Array<Vector2>();
         lprincipal.add(new Vector2(0,1));
         lprincipal.add(new Vector2(0,2));
@@ -24,7 +24,6 @@ public class Amiral extends Ship {
         lsecondaire.add(new Vector2(-1,1));
         Canon secondaire = new Canon(lsecondaire, 30,1);
         this.setSecondaryCanon(secondaire);
-
     }
 
 }

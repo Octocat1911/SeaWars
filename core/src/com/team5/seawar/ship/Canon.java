@@ -7,16 +7,31 @@ public class Canon {
     private Array<Vector2> range;
     private int damage;
     private int cooldown;
+    private int currentCooldown;
 
 
     public Canon(Array<Vector2> range, int damage, int cooldown){
         this.range = range;
         this.damage = damage;
         this.cooldown = cooldown;
+        this.currentCooldown = 0;
     }
 
     public Canon(){
 
+    }
+
+    public boolean canAttack(){
+        return currentCooldown == 0;
+    }
+
+    public void newTurn(){
+        if (currentCooldown > 0)
+            currentCooldown--;
+    }
+
+    public void attack(){
+        currentCooldown = cooldown;
     }
 
     public int getDamage() {

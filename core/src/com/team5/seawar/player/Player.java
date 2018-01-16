@@ -1,35 +1,19 @@
 package com.team5.seawar.player;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.ship.Ship;
-
-import java.util.List;
 
 public class Player {
     private String nickname;
     private Sprite avatar;
-    private List<Ship> ships;
+    private Array<Ship> ships;
 
-    public Player(String nickname,Sprite avatar, List<Ship> ships){
-        this.nickname = nickname;
-        this.avatar = avatar;
-        this.ships = ships;
+    public Player(int nbShips){
+        ships = new Array<Ship>(3);
     }
 
-    public Ship getShip(int i){
-        return ships.get(i);
+    public Array<Ship> getShips(){
+        return ships;
     }
-
-    public int getShipsSize(){
-        return ships.size();
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public Sprite getAvatar() {
-        return avatar;
-    }
-
 }

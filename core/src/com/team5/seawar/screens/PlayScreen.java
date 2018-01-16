@@ -41,6 +41,7 @@ public class PlayScreen extends ScreenAdapter{
         ShipSelected.init(this);
 
         state = ShipSelect.getInstance();
+        ShipSelect.getInstance().newTurn();
 
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
         cam = new OrthographicCamera();

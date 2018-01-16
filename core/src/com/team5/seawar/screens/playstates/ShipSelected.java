@@ -119,6 +119,9 @@ public class ShipSelected implements State{
                 moveShip(caseSelected, playScreen.getCurrentCase());
                 caseSelected = playScreen.getCurrentCase();
                 majPortee();
+                if (!caseSelected.getShip().canMove()){
+                    playScreen.changeState(ShipSelect.getInstance());
+                }
             } else {
                 playScreen.changeState(ShipSelect.getInstance());
             }
