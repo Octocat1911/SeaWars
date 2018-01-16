@@ -80,4 +80,12 @@ public class CanonCalcul {
         return new Vector3(-pos.y, -pos.z, -pos.x);
     }
 
+    public static Vector2 even2odd(Vector2 vector2){
+        if (vector2.x % 2 ==1){
+            return new Vector2(vector2.x, vector2.y+1);
+        } else {
+            return vector2;
+        }
+    }
+
 }
