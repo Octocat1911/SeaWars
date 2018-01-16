@@ -4,8 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.objects.Case;
+import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
-import com.team5.seawar.ship.Ship;
 import com.team5.seawar.utils.Assets;
 
 public class ShipSelected implements State{
@@ -13,6 +13,7 @@ public class ShipSelected implements State{
     private Case caseSelected;
     private Array<Vector2> portee;
     private Array<Case> accessible;
+    private Player ennemie;
 
     private static ShipSelected instance = new ShipSelected();
 
@@ -21,7 +22,8 @@ public class ShipSelected implements State{
         portee.setSize(3);
     }
 
-    public static ShipSelected getInstance(Case c){
+    public static ShipSelected getInstance(Case c, Player ennemie){
+        instance.ennemie = ennemie;
         instance.caseSelected = c;
         instance.majPortee();
         return instance;
@@ -111,6 +113,11 @@ public class ShipSelected implements State{
     }
 
     public void update(float dt){
+        if (caseSelected.getShip().hasFinished()){
+            playScreen.changeState(ShipSelect.getInstance());
+        } else if (!caseSelected.getShip().canMove()){
+            playScreen.changeState(AttackTurn.getInstance(caseSelected, ennemie));
+        }
         for (Case c : accessible){
                 playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPortee.png"), c.getPosition().x, c.getPosition().y);
         }
@@ -120,11 +127,15 @@ public class ShipSelected implements State{
                 caseSelected = playScreen.getCurrentCase();
                 majPortee();
                 if (!caseSelected.getShip().canMove()){
-                    playScreen.changeState(ShipSelect.getInstance());
+                    playScreen.changeState(AttackTurn.getInstance(caseSelected, ennemie));
                 }
             } else {
                 playScreen.changeState(ShipSelect.getInstance());
             }
+        } else if (Inputs.isPressed(Inputs.X) && caseSelected.getShip().canFire()){
+            playScreen.changeState(AttackTurn.getInstance(caseSelected, ennemie));
+        } else if (Inputs.isPressed(Inputs.START)){
+            caseSelected.getShip().finish();
         }
     }
 

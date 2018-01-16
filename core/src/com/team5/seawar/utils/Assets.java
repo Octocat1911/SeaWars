@@ -41,6 +41,13 @@ public class Assets {
         manager.load("Shiptextures/ShipBG.png", Texture.class);
         manager.load("Shiptextures/ShipHG.png", Texture.class);
 
+        manager.load("Shiptextures/ShipH2.png", Texture.class);
+        manager.load("Shiptextures/ShipHD2.png", Texture.class);
+        manager.load("Shiptextures/ShipBD2.png", Texture.class);
+        manager.load("Shiptextures/ShipB2.png", Texture.class);
+        manager.load("Shiptextures/ShipBG2.png", Texture.class);
+        manager.load("Shiptextures/ShipHG2.png", Texture.class);
+
     }
 
     public Texture getTexture(String fileName){

@@ -9,6 +9,7 @@ import com.team5.seawar.ship.Ship;
 public class ShipSelect implements State {
     private PlayScreen playScreen;
     private Player player;
+    private Player ennemie;
 
     private static ShipSelect instance = new ShipSelect();
 
@@ -25,19 +26,22 @@ public class ShipSelect implements State {
     }
 
     public void update(float dt){
-        if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK)) && player.getShips().contains(playScreen.getCurrentCase().getShip(), true) && playScreen.getCurrentCase().getShip().canMove()){
-            playScreen.changeState(ShipSelected.getInstance(playScreen.getCurrentCase()));
+        if (player.hasFinished()){
+            playScreen.changeState(EndTurn.getInstance(player));
+        }
+        if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK)) && player.getShips().contains(playScreen.getCurrentCase().getShip(), true) && !playScreen.getCurrentCase().getShip().hasFinished()){
+            playScreen.changeState(ShipSelected.getInstance(playScreen.getCurrentCase(),ennemie));
         }
     }
 
     public void newTurn() {
         if (player.equals(playScreen.getMap().getPlayer1())) {
             player = playScreen.getMap().getPlayer2();
+            ennemie = playScreen.getMap().getPlayer1();
         } else {
             player = playScreen.getMap().getPlayer1();
+            ennemie = playScreen.getMap().getPlayer2();
         }
-        for (Ship ship: player.getShips()){
-            ship.newTurn();
-        }
+        player.newTurn();
     }
 }

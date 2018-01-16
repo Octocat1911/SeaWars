@@ -13,9 +13,7 @@ import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map;
 import com.team5.seawar.objects.Case;
-import com.team5.seawar.screens.playstates.ShipSelect;
-import com.team5.seawar.screens.playstates.ShipSelected;
-import com.team5.seawar.screens.playstates.State;
+import com.team5.seawar.screens.playstates.*;
 import com.team5.seawar.utils.Assets;
 
 public class PlayScreen extends ScreenAdapter{
@@ -39,6 +37,8 @@ public class PlayScreen extends ScreenAdapter{
 
         ShipSelect.init(this);
         ShipSelected.init(this);
+        AttackTurn.init(this);
+        EndTurn.init(this);
 
         state = ShipSelect.getInstance();
         ShipSelect.getInstance().newTurn();

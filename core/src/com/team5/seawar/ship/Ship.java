@@ -2,8 +2,10 @@ package com.team5.seawar.ship;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
+import com.team5.seawar.utils.CanonCalcul;
 
 public class Ship{
     private int maxLifePoints;
@@ -41,22 +43,46 @@ public class Ship{
     public Sprite getSprite() {
         switch (shipPosition.getOrientation()){
             case TOP:
-                sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipH.png"));
+                if (!hasFinished) {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipH.png"));
+                } else {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipH2.png"));
+                }
                 break;
             case TOP_RIGHT:
-                sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipHD.png"));
+                if (!hasFinished) {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipHD.png"));
+                } else {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipHD2.png"));
+                }
                 break;
             case BOTTOM_RIGHT:
-                sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipBD.png"));
+                if (!hasFinished) {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipBD.png"));
+                } else {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipBD2.png"));
+                }
                 break;
             case BOTTOM:
-                sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipB.png"));
+                if (!hasFinished) {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipB.png"));
+                } else {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipB2.png"));
+                }
                 break;
             case BOTTOM_LEFT:
-                sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipBG.png"));
+                if (!hasFinished) {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipBG.png"));
+                } else {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipBG2.png"));
+                }
                 break;
             case TOP_LEFT:
-                sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipHG.png"));
+                if (!hasFinished) {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipHG.png"));
+                } else {
+                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipHG2.png"));
+                }
                 break;
         }
         return sprite;
@@ -101,10 +127,6 @@ public class Ship{
         }
     }
 
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
-    }
-
     public void setMainCanon(Canon mainCanon) {
         this.mainCanon = mainCanon;
     }
@@ -121,14 +143,14 @@ public class Ship{
         return maxLifePoints;
     }
 
+    public int getCurrentLifePoints(){
+        return currentLifePoints;
+    }
+
     public void takeDamages(int damages){
         currentLifePoints = currentLifePoints - damages;
         if (currentLifePoints<0)
             currentLifePoints = 0;
-    }
-
-    public int getMovements(){
-        return movements;
     }
 
     public boolean canMove(){
@@ -136,6 +158,7 @@ public class Ship{
     }
 
     public void newTurn(){
+        hasFinished = false;
         movements = maxMovements;
         mainCanon.newTurn();
         secondaryCanon.newTurn();
@@ -163,5 +186,37 @@ public class Ship{
 
     public void finish(){
         hasFinished = true;
+    }
+
+    public Array<Vector2> getRangeMainCanon(){
+        Array<Vector2> range = new Array<Vector2>();
+        for (Vector2 vector2 : mainCanon.getRange()){
+            if (shipPosition.getColonne()%2 == 0){
+                range.add(CanonCalcul.rotation(vector2, shipPosition.getOrientation(), false));
+            } else {
+                range.add(CanonCalcul.rotation(CanonCalcul.even2odd(vector2), shipPosition.getOrientation(), true));
+            }
+        }
+        return range;
+    }
+
+    public Array<Vector2> getRangeSecondaryCanon(){
+        Array<Vector2> range = new Array<Vector2>();
+        for (Vector2 vector2 : secondaryCanon.getRange()){
+            if (shipPosition.getColonne()%2 == 0){
+                range.add(CanonCalcul.rotation(vector2, shipPosition.getOrientation(), false));
+            } else {
+                range.add(CanonCalcul.rotation(CanonCalcul.even2odd(vector2), shipPosition.getOrientation(), true));
+            }
+        }
+        return range;
+    }
+
+    public Canon getMainCanon() {
+        return mainCanon;
+    }
+
+    public Canon getSecondaryCanon() {
+        return secondaryCanon;
     }
 }
