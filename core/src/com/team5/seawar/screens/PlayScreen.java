@@ -70,6 +70,7 @@ public class PlayScreen extends ScreenAdapter{
 
     public void render(float dt) {
         handleInput();
+        map.update(dt);
         camState.update(dt);
         gameApp.getBatch().setProjectionMatrix(cam.combined);
         gameApp.getBatch().begin();

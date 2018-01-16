@@ -24,7 +24,11 @@ public class Ship{
     private boolean canFire;
     private boolean hasFinished;
 
+    private Vector2 destination;
+    private float speedAnimation = 0.05f;
+
     public Ship(int maxLifePoints, Canon mainCanon, Canon secondaryCanon, int maxMovements, int colonne, int ligne, ShipPosition.Orientation orientation){
+        this.destination = new Vector2();
         this.maxLifePoints = maxLifePoints;
         this.currentLifePoints = maxLifePoints;
         this.mainCanon = mainCanon;
@@ -37,6 +41,7 @@ public class Ship{
         } else {
             sprite.setPosition(colonne * PlayScreen.hexWidth *3/4, ligne * PlayScreen.hexHeight + PlayScreen.hexHeight/2);
         }
+        destination.set(sprite.getX(), sprite.getY());
         sprite.setSize(PlayScreen.hexWidth, PlayScreen.hexHeight);
     }
 
@@ -92,7 +97,7 @@ public class Ship{
         float deltaX = arrive.x - shipPosition.getColonne();
         float deltaY = arrive.y - shipPosition.getLigne();
         if (arrive.x%2==0){
-            sprite.setPosition(arrive.x * PlayScreen.hexWidth *3/4, arrive.y * PlayScreen.hexHeight);
+            destination.set(arrive.x * PlayScreen.hexWidth *3/4, arrive.y * PlayScreen.hexHeight);
             if (deltaX == 0 && deltaY == 1)
                 shipPosition.setOrientation(ShipPosition.Orientation.TOP);
             if (deltaX == 1 && deltaY == 1)
@@ -106,7 +111,7 @@ public class Ship{
             if (deltaX == -1 && deltaY == 1)
                 shipPosition.setOrientation(ShipPosition.Orientation.TOP_LEFT);
         } else {
-            sprite.setPosition(arrive.x * PlayScreen.hexWidth *3/4, arrive.y * PlayScreen.hexHeight + PlayScreen.hexHeight/2);
+            destination.set(arrive.x * PlayScreen.hexWidth *3/4, arrive.y * PlayScreen.hexHeight + PlayScreen.hexHeight/2);
             if (deltaX == 0 && deltaY == 1)
                 shipPosition.setOrientation(ShipPosition.Orientation.TOP);
             if (deltaX == 1 && deltaY == 0)
@@ -218,5 +223,9 @@ public class Ship{
 
     public Canon getSecondaryCanon() {
         return secondaryCanon;
+    }
+
+    public void update(float dt){
+        sprite.setPosition(sprite.getX() + (destination.x - sprite.getX()) * speedAnimation, sprite.getY() + (destination.y - sprite.getY()) * speedAnimation);
     }
 }

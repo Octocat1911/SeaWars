@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.objects.Case;
 import com.team5.seawar.player.Player;
+import com.team5.seawar.ship.Ship;
 
 public abstract class Map {
     protected Player player1;
@@ -35,7 +36,12 @@ public abstract class Map {
     public void draw(SpriteBatch sb){
         for (int i=0; i<colonne; i++){
             for (int j=0; j<ligne; j++) {
-                getCase(i, j).draw(sb);
+                getCase(i, j).drawElements(sb);
+            }
+        }
+        for (int i=0; i<colonne; i++){
+            for (int j=0; j<ligne; j++) {
+                getCase(i, j).drawShips(sb);
             }
         }
     }
@@ -45,6 +51,15 @@ public abstract class Map {
             for (int j=0; j<ligne; j++) {
                 getCase(i,j).handleInput(cam, viewport);
             }
+        }
+    }
+
+    public void update(float dt){
+        for (Ship ship: player1.getShips()){
+            ship.update(dt);
+        }
+        for (Ship ship: player2.getShips()){
+            ship.update(dt);
         }
     }
 

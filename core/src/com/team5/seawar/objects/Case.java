@@ -48,12 +48,16 @@ public class Case {
         Inputs.updateCase(this, cam, viewport);
     }
 
-    public void draw(SpriteBatch sb){
+    public void drawElements(SpriteBatch sb){
         element.getSprite().draw(sb);
+    }
+
+    public void drawShips(SpriteBatch sb){
         if (ship != null){
             ship.getSprite().draw(sb);
         }
     }
+
 
     public void addShip(Ship ship){
         if (this.ship == null){
