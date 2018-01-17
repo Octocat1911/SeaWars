@@ -1,10 +1,8 @@
 package com.team5.seawar.screens.playstates;
 
-import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
-import com.team5.seawar.ship.Ship;
 
 public class ShipSelect implements State {
     private PlayScreen playScreen;
@@ -22,7 +20,8 @@ public class ShipSelect implements State {
 
     public static void init(PlayScreen playScreen){
         instance.playScreen = playScreen;
-        instance.player = playScreen.getMap().getPlayer2();
+        instance.player = playScreen.getMap().getPlayer1();
+        instance.ennemie = playScreen.getMap().getPlayer2();
     }
 
     public void update(float dt){
@@ -30,7 +29,15 @@ public class ShipSelect implements State {
             playScreen.changeState(EndTurn.getInstance(player));
         }
         if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK)) && player.getShips().contains(playScreen.getCurrentCase().getShip(), true) && !playScreen.getCurrentCase().getShip().hasFinished()){
-            playScreen.changeState(ShipSelected.getInstance(playScreen.getCurrentCase(),ennemie));
+            playScreen.changeState(MoveShip.getInstance(playScreen.getCurrentCase(),ennemie));
+        } else if (Inputs.isPressed(Inputs.R1)){
+            if (player.getShips().contains(playScreen.getCurrentCase().getShip(), true)){
+                playScreen.getPosition().set(player.nextShip(playScreen.getCurrentCase().getShip()));
+            } else {
+                playScreen.getPosition().set(player.nextShip());
+            }
+        } else if (Inputs.isPressed(Inputs.START)){
+            playScreen.changeState(EndTurn.getInstance(player));
         }
     }
 
@@ -43,5 +50,6 @@ public class ShipSelect implements State {
             ennemie = playScreen.getMap().getPlayer2();
         }
         player.newTurn();
+        playScreen.getPosition().set(player.nextShip());
     }
 }

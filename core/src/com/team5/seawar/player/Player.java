@@ -1,5 +1,6 @@
 package com.team5.seawar.player;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.ship.Ship;
 
@@ -27,5 +28,22 @@ public class Player {
             }
         }
         return true;
+    }
+
+    public Vector2 nextShip(Ship currentShip){
+        int i = ships.indexOf(currentShip, true);
+        int j =  (i + 1)% ships.size;
+        while (ships.get(j).hasFinished()){
+            j = (j+1)%ships.size;
+        }
+        return new Vector2(ships.get(j).getPosition().getColonne(), ships.get(j).getPosition().getLigne());
+    }
+
+    public Vector2 nextShip(){
+        int j = 0;
+        while (ships.get(j).hasFinished()){
+            j = (j+1)%ships.size;
+        }
+        return new Vector2(ships.get(j).getPosition().getColonne(), ships.get(j).getPosition().getLigne());
     }
 }

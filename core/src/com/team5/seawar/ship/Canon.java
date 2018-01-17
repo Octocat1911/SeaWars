@@ -13,7 +13,7 @@ public class Canon {
     public Canon(Array<Vector2> range, int damage, int cooldown){
         this.range = range;
         this.damage = damage;
-        this.cooldown = cooldown;
+        this.cooldown = cooldown +1;
         this.currentCooldown = 0;
     }
 

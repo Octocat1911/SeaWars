@@ -34,16 +34,15 @@ public class PlayScreen extends ScreenAdapter{
     public PlayScreen(GameApp gameApp, Map map){
         this.gameApp = gameApp;
         this.map = map;
+        position = new Vector2(map.getColonne()/2, map.getLigne()/2);
 
         ShipSelect.init(this);
-        ShipSelected.init(this);
+        MoveShip.init(this);
         AttackTurn.init(this);
         EndTurn.init(this);
 
         state = ShipSelect.getInstance();
-        ShipSelect.getInstance().newTurn();
 
-        position = new Vector2(map.getColonne()/2, map.getLigne()/2);
         cam = new OrthographicCamera();
         cam.position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
         viewport = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, cam);

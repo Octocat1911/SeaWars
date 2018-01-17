@@ -2,6 +2,7 @@ package com.team5.seawar.screens.playstates;
 
 import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
+import com.team5.seawar.ship.Ship;
 
 public class EndTurn implements State {
     private PlayScreen playScreen;
@@ -12,7 +13,9 @@ public class EndTurn implements State {
     }
 
     public static EndTurn getInstance(Player player){
-        player.newTurn();
+        for (Ship ship: player.getShips()){
+            ship.setHasFinished(false);
+        }
         return instance;
     }
 

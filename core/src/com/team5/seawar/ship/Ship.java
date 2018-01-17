@@ -34,6 +34,7 @@ public class Ship{
         this.mainCanon = mainCanon;
         this.secondaryCanon = secondaryCanon;
         this.maxMovements = maxMovements;
+        this.movements = maxMovements;
         this.shipPosition = new ShipPosition(colonne,ligne,orientation);
         this.sprite = new Sprite(Assets.getInstance().getTexture("Shiptextures/ShipH.png"));
         if (colonne%2==0){
@@ -43,6 +44,8 @@ public class Ship{
         }
         destination.set(sprite.getX(), sprite.getY());
         sprite.setSize(PlayScreen.hexWidth, PlayScreen.hexHeight);
+        this.hasFinished = false;
+        this.canFire = true;
     }
 
     public Sprite getSprite() {
@@ -178,8 +181,9 @@ public class Ship{
         return canFire;
     }
 
-    public void attack(){
+    public void attack(Canon canon){
         canFire = false;
+        canon.attack();
         if (!canMove()){
             hasFinished = true;
         }
@@ -193,21 +197,9 @@ public class Ship{
         hasFinished = true;
     }
 
-    public Array<Vector2> getRangeMainCanon(){
+    public Array<Vector2> getRangeCanon(Canon canon){
         Array<Vector2> range = new Array<Vector2>();
-        for (Vector2 vector2 : mainCanon.getRange()){
-            if (shipPosition.getColonne()%2 == 0){
-                range.add(CanonCalcul.rotation(vector2, shipPosition.getOrientation(), false));
-            } else {
-                range.add(CanonCalcul.rotation(CanonCalcul.even2odd(vector2), shipPosition.getOrientation(), true));
-            }
-        }
-        return range;
-    }
-
-    public Array<Vector2> getRangeSecondaryCanon(){
-        Array<Vector2> range = new Array<Vector2>();
-        for (Vector2 vector2 : secondaryCanon.getRange()){
+        for (Vector2 vector2 : canon.getRange()){
             if (shipPosition.getColonne()%2 == 0){
                 range.add(CanonCalcul.rotation(vector2, shipPosition.getOrientation(), false));
             } else {
@@ -227,5 +219,9 @@ public class Ship{
 
     public void update(float dt){
         sprite.setPosition(sprite.getX() + (destination.x - sprite.getX()) * speedAnimation, sprite.getY() + (destination.y - sprite.getY()) * speedAnimation);
+    }
+
+    public void setHasFinished(boolean bool){
+        hasFinished = bool;
     }
 }

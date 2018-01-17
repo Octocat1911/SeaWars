@@ -1,5 +1,6 @@
 package com.team5.seawar.screens.playstates;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.inputHandler.Inputs;
@@ -8,21 +9,21 @@ import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
 
-public class ShipSelected implements State{
+public class MoveShip implements State{
     private PlayScreen playScreen;
     private Case caseSelected;
     private Array<Vector2> portee;
     private Array<Case> accessible;
     private Player ennemie;
 
-    private static ShipSelected instance = new ShipSelected();
+    private static MoveShip instance = new MoveShip();
 
-    private ShipSelected(){
+    private MoveShip(){
         portee = new Array<Vector2>(3);
         portee.setSize(3);
     }
 
-    public static ShipSelected getInstance(Case c, Player ennemie){
+    public static MoveShip getInstance(Case c, Player ennemie){
         instance.ennemie = ennemie;
         instance.caseSelected = c;
         instance.majPortee();
@@ -136,6 +137,8 @@ public class ShipSelected implements State{
             playScreen.changeState(AttackTurn.getInstance(caseSelected, ennemie));
         } else if (Inputs.isPressed(Inputs.START)){
             caseSelected.getShip().finish();
+        } else if (Inputs.isPressed(Inputs.B)){
+            playScreen.changeState(ShipSelect.getInstance());
         }
     }
 

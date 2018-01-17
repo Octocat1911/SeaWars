@@ -6,6 +6,7 @@ import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.objects.Case;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
+import com.team5.seawar.ship.Canon;
 import com.team5.seawar.utils.Assets;
 
 public class AttackTurn implements State{
@@ -13,6 +14,7 @@ public class AttackTurn implements State{
     private Case caseSelected;
     private Array<Case> accessible;
     private Player ennemie;
+    private Canon canon;
 
     private static AttackTurn instance = new AttackTurn();
 
@@ -22,6 +24,11 @@ public class AttackTurn implements State{
     public static AttackTurn getInstance(Case c, Player ennemie){
         instance.ennemie = ennemie;
         instance.caseSelected = c;
+        if (instance.caseSelected.getShip().getMainCanon().canAttack()){
+            instance.canon = instance.caseSelected.getShip().getMainCanon();
+        } else {
+            instance.canon = instance.caseSelected.getShip().getSecondaryCanon();
+        }
         instance.majAccessible();
         return instance;
     }
@@ -41,18 +48,34 @@ public class AttackTurn implements State{
         if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK))){
             if (accessible.contains(playScreen.getCurrentCase(), true) && ennemie.getShips().contains(playScreen.getCurrentCase().getShip(), true)) {
                 attackShip(caseSelected, playScreen.getCurrentCase());
-                playScreen.changeState(ShipSelected.getInstance(caseSelected, ennemie));
+                playScreen.changeState(MoveShip.getInstance(caseSelected, ennemie));
             } else {
                 playScreen.changeState(ShipSelect.getInstance());
             }
         } else if (Inputs.isPressed(Inputs.START)){
             caseSelected.getShip().finish();
+        } else if (Inputs.isPressed(Inputs.X) && caseSelected.getShip().canMove()){
+            playScreen.changeState(MoveShip.getInstance(caseSelected, ennemie));
+        } else if (Inputs.isPressed(Inputs.Y)){
+            if (canon.equals(caseSelected.getShip().getMainCanon())){
+                if (caseSelected.getShip().getSecondaryCanon().canAttack()) {
+                    canon = caseSelected.getShip().getSecondaryCanon();
+                    majAccessible();
+                }
+            } else {
+                if (caseSelected.getShip().getMainCanon().canAttack()) {
+                    canon = caseSelected.getShip().getMainCanon();
+                    majAccessible();
+                }
+            }
+        } else if (Inputs.isPressed(Inputs.B)){
+            playScreen.changeState(ShipSelect.getInstance());
         }
     }
 
     public void majAccessible(){
         accessible = new Array<Case>();
-        Array<Vector2> portee = caseSelected.getShip().getRangeMainCanon();
+        Array<Vector2> portee = caseSelected.getShip().getRangeCanon(canon);
         for (Vector2 vector2 : portee){
             float nouveauX = caseSelected.getPosition().x+vector2.x;
             float nouveauY = caseSelected.getPosition().y+(int)vector2.y;
@@ -63,11 +86,11 @@ public class AttackTurn implements State{
     }
 
     public void attackShip(Case attaquant, Case cible){
-        cible.getShip().takeDamages(attaquant.getShip().getMainCanon().getDamage());
+        cible.getShip().takeDamages(canon.getDamage());
         if (cible.getShip().getCurrentLifePoints() == 0){
             ennemie.getShips().removeValue(cible.getShip(), true);
             cible.deleteShip();
         }
-        attaquant.getShip().attack();
+        attaquant.getShip().attack(canon);
     }
 }
