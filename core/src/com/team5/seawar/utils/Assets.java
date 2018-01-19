@@ -29,10 +29,12 @@ public class Assets {
         // PlayScreen
         manager.load("Maptextures/hexPointeur.png", Texture.class);
         manager.load("Maptextures/hexPortee.png", Texture.class);
+        manager.load("Maptextures/cible.png", Texture.class);
 
         manager.load("Maptextures/hexEau.png", Texture.class);
         manager.load("Maptextures/hexTerre.png", Texture.class);
         manager.load("Maptextures/hexPhare.png", Texture.class);
+        manager.load("Maptextures/void.png", Texture.class);
 
         manager.load("Shiptextures/ShipH.png", Texture.class);
         manager.load("Shiptextures/ShipHD.png", Texture.class);

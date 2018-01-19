@@ -14,6 +14,7 @@ public class MoveShip implements State{
     private Case caseSelected;
     private Array<Vector2> portee;
     private Array<Case> accessible;
+    private Player player;
     private Player ennemie;
 
     private static MoveShip instance = new MoveShip();
@@ -23,7 +24,8 @@ public class MoveShip implements State{
         portee.setSize(3);
     }
 
-    public static MoveShip getInstance(Case c, Player ennemie){
+    public static MoveShip getInstance(Case c, Player player, Player ennemie){
+        instance.player = player;
         instance.ennemie = ennemie;
         instance.caseSelected = c;
         instance.majPortee();
@@ -117,10 +119,7 @@ public class MoveShip implements State{
         if (caseSelected.getShip().hasFinished()){
             playScreen.changeState(ShipSelect.getInstance());
         } else if (!caseSelected.getShip().canMove()){
-            playScreen.changeState(AttackTurn.getInstance(caseSelected, ennemie));
-        }
-        for (Case c : accessible){
-                playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPortee.png"), c.getPosition().x, c.getPosition().y);
+            playScreen.changeState(AttackTurn.getInstance(caseSelected, player, ennemie));
         }
         if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK))){
             if (accessible.contains(playScreen.getCurrentCase(), true)){
@@ -128,17 +127,27 @@ public class MoveShip implements State{
                 caseSelected = playScreen.getCurrentCase();
                 majPortee();
                 if (!caseSelected.getShip().canMove()){
-                    playScreen.changeState(AttackTurn.getInstance(caseSelected, ennemie));
+                    playScreen.changeState(AttackTurn.getInstance(caseSelected, player, ennemie));
                 }
             } else {
                 playScreen.changeState(ShipSelect.getInstance());
             }
         } else if (Inputs.isPressed(Inputs.X) && caseSelected.getShip().canFire()){
-            playScreen.changeState(AttackTurn.getInstance(caseSelected, ennemie));
+            playScreen.changeState(AttackTurn.getInstance(caseSelected, player, ennemie));
         } else if (Inputs.isPressed(Inputs.START)){
             caseSelected.getShip().finish();
         } else if (Inputs.isPressed(Inputs.B)){
             playScreen.changeState(ShipSelect.getInstance());
+        } else if (Inputs.isPressed(Inputs.L1) && !caseSelected.getShip().hasFired() && caseSelected.getShip().getMaxMovements()==caseSelected.getShip().getMovements()){
+            caseSelected.getShip().rotateLeft();
+        } else if (Inputs.isPressed(Inputs.R1) && !caseSelected.getShip().hasFired() && caseSelected.getShip().getMaxMovements()==caseSelected.getShip().getMovements()){
+            caseSelected.getShip().rotateRight();
+        }
+    }
+
+    public void draw(){
+        for (Case c : accessible){
+            playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPortee.png"), c.getPosition().x, c.getPosition().y);
         }
     }
 

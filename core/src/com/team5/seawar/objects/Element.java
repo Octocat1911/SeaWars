@@ -13,6 +13,7 @@ public class Element {
     private Type type;
 
     public Element(Type type, int colonne, int ligne){
+        this.type = type;
         switch (type){
             case WATER:
                 this.navigable = true;
@@ -31,7 +32,7 @@ public class Element {
                 break;
             default: //VOID
                 this.navigable = false;
-                sprite = new Sprite(Assets.getInstance().getTexture("Maptextures/JESAISPASENCORE"));
+                sprite = new Sprite(Assets.getInstance().getTexture("Maptextures/void.png"));
                 break;
         }
         if (colonne%2==0){
@@ -50,7 +51,7 @@ public class Element {
         return sprite;
     }
 
-    public Type type(){
+    public Type getType(){
         return type;
     }
 

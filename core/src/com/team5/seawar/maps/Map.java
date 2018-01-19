@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.objects.Case;
+import com.team5.seawar.objects.Element;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.ship.Ship;
 
@@ -14,6 +15,7 @@ public abstract class Map {
     protected int colonne;
     protected int ligne;
     protected Case tab[][];
+    protected int nbLighthouses;
 
     public Map(int colonne, int ligne) {
         this.ligne = ligne;
@@ -69,5 +71,24 @@ public abstract class Map {
 
     public Player getPlayer2(){
         return player2;
+    }
+
+    public int getNbLighthouses(){
+        return nbLighthouses;
+    }
+
+    protected void majNbLighthouses(){
+        int nb = 0;
+        for (int i=0; i<colonne; i++){
+            for (int j=0; j<ligne; j++) {
+                if (getCase(i,j).getElement().getType() == Element.Type.LIGHTHOUSE)
+                    nb++;
+            }
+        }
+        if (nb > 0) {
+            nbLighthouses = nb;
+        } else {
+            nbLighthouses = -1;
+        }
     }
 }

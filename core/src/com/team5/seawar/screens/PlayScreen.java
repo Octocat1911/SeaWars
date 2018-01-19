@@ -40,6 +40,7 @@ public class PlayScreen extends ScreenAdapter{
         MoveShip.init(this);
         AttackTurn.init(this);
         EndTurn.init(this);
+        EndGame.init(this);
 
         state = ShipSelect.getInstance();
 
@@ -71,12 +72,13 @@ public class PlayScreen extends ScreenAdapter{
         handleInput();
         map.update(dt);
         camState.update(dt);
-        gameApp.getBatch().setProjectionMatrix(cam.combined);
-        gameApp.getBatch().begin();
-        map.draw(gameApp.getBatch());
         state.update(dt);
+        gameApp.getBatch().setProjectionMatrix(cam.combined);
+        gameApp.getBatch().begin(); //
+        map.draw(gameApp.getBatch());
+        state.draw();
         renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), position.x, position.y);
-        gameApp.getBatch().end();
+        gameApp.getBatch().end(); //
     }
 
     public void renderTexture(Texture texture, float colonne, float ligne){

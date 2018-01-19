@@ -21,6 +21,7 @@ public class Ship{
 
     private Sprite sprite;
 
+    private boolean hasFired; //utilisé seulement pour rotationer un bateau
     private boolean canFire;
     private boolean hasFinished;
 
@@ -46,6 +47,7 @@ public class Ship{
         sprite.setSize(PlayScreen.hexWidth, PlayScreen.hexHeight);
         this.hasFinished = false;
         this.canFire = true;
+        this.hasFired = false;
     }
 
     public Sprite getSprite() {
@@ -155,6 +157,14 @@ public class Ship{
         return currentLifePoints;
     }
 
+    public int getMaxMovements(){
+        return maxMovements;
+    }
+
+    public int getMovements(){
+        return movements;
+    }
+
     public void takeDamages(int damages){
         currentLifePoints = currentLifePoints - damages;
         if (currentLifePoints<0)
@@ -175,6 +185,7 @@ public class Ship{
         } else {
             canFire = false;
         }
+        hasFired = false;
     }
 
     public boolean canFire(){
@@ -183,6 +194,7 @@ public class Ship{
 
     public void attack(Canon canon){
         canFire = false;
+        hasFired = true;
         canon.attack();
         if (!canMove()){
             hasFinished = true;
@@ -223,5 +235,57 @@ public class Ship{
 
     public void setHasFinished(boolean bool){
         hasFinished = bool;
+    }
+
+    public boolean hasFired(){
+        return hasFired;
+    }
+
+    public void rotateRight(){
+        switch (shipPosition.getOrientation()){
+            case TOP:
+                shipPosition.setOrientation(ShipPosition.Orientation.TOP_RIGHT);
+                break;
+            case TOP_RIGHT:
+                shipPosition.setOrientation(ShipPosition.Orientation.BOTTOM_RIGHT);
+                break;
+            case BOTTOM_RIGHT:
+                shipPosition.setOrientation(ShipPosition.Orientation.BOTTOM);
+                break;
+            case BOTTOM:
+                shipPosition.setOrientation(ShipPosition.Orientation.BOTTOM_LEFT);
+                break;
+            case BOTTOM_LEFT:
+                shipPosition.setOrientation(ShipPosition.Orientation.TOP_LEFT);
+                break;
+            case TOP_LEFT:
+                shipPosition.setOrientation(ShipPosition.Orientation.TOP);
+                break;
+        }
+        hasFinished = true;
+    }
+
+    public void rotateLeft(){
+        switch (shipPosition.getOrientation()){
+            case TOP:
+                shipPosition.setOrientation(ShipPosition.Orientation.TOP_LEFT);
+                break;
+            case TOP_RIGHT:
+                shipPosition.setOrientation(ShipPosition.Orientation.TOP);
+                break;
+            case BOTTOM_RIGHT:
+                shipPosition.setOrientation(ShipPosition.Orientation.TOP_RIGHT);
+                break;
+            case BOTTOM:
+                shipPosition.setOrientation(ShipPosition.Orientation.BOTTOM_RIGHT);
+                break;
+            case BOTTOM_LEFT:
+                shipPosition.setOrientation(ShipPosition.Orientation.BOTTOM);
+                break;
+            case TOP_LEFT:
+                shipPosition.setOrientation(ShipPosition.Orientation.BOTTOM_LEFT);
+                break;
+        }
+        hasFinished = true;
     }
 }

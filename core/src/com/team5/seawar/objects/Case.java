@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.inputHandler.Inputs;
+import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.ship.Ship;
 
@@ -14,6 +15,7 @@ public class Case {
     private Circle bounds;
     private Element element;
     private Ship ship;
+    private Player proprietaire;
 
     public Case(Element.Type type, int colonne, int ligne){
         element = new Element(type, colonne, ligne);
@@ -25,7 +27,11 @@ public class Case {
         } else {
             bounds.set(colonne * PlayScreen.hexWidth *3/4 + PlayScreen.hexWidth/2, ligne * PlayScreen.hexHeight + PlayScreen.hexHeight, PlayScreen.hexWidth-55);
         }
+        proprietaire = null;
+    }
 
+    public Element getElement() {
+        return element;
     }
 
     public Vector2 getPosition(){
@@ -58,7 +64,6 @@ public class Case {
         }
     }
 
-
     public void addShip(Ship ship){
         if (this.ship == null){
             this.ship = ship;
@@ -71,5 +76,13 @@ public class Case {
 
     public Ship getShip() {
         return ship;
+    }
+
+    public void setProprietaire(Player proprietaire) {
+        this.proprietaire = proprietaire;
+    }
+
+    public Player getProprietaire() {
+        return proprietaire;
     }
 }

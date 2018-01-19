@@ -29,7 +29,7 @@ public class ShipSelect implements State {
             playScreen.changeState(EndTurn.getInstance(player));
         }
         if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK)) && player.getShips().contains(playScreen.getCurrentCase().getShip(), true) && !playScreen.getCurrentCase().getShip().hasFinished()){
-            playScreen.changeState(MoveShip.getInstance(playScreen.getCurrentCase(),ennemie));
+            playScreen.changeState(MoveShip.getInstance(playScreen.getCurrentCase(),player, ennemie));
         } else if (Inputs.isPressed(Inputs.R1)){
             if (player.getShips().contains(playScreen.getCurrentCase().getShip(), true)){
                 playScreen.getPosition().set(player.nextShip(playScreen.getCurrentCase().getShip()));
@@ -40,6 +40,10 @@ public class ShipSelect implements State {
             playScreen.changeState(EndTurn.getInstance(player));
         }
     }
+
+    public void draw(){
+    }
+
 
     public void newTurn() {
         if (player.equals(playScreen.getMap().getPlayer1())) {

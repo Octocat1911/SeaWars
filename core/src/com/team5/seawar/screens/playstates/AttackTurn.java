@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.objects.Case;
+import com.team5.seawar.objects.Element;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.ship.Canon;
@@ -13,6 +14,7 @@ public class AttackTurn implements State{
     private PlayScreen playScreen;
     private Case caseSelected;
     private Array<Case> accessible;
+    private Player player;
     private Player ennemie;
     private Canon canon;
 
@@ -21,7 +23,8 @@ public class AttackTurn implements State{
     private AttackTurn(){
     }
 
-    public static AttackTurn getInstance(Case c, Player ennemie){
+    public static AttackTurn getInstance(Case c, Player player, Player ennemie){
+        instance.player = player;
         instance.ennemie = ennemie;
         instance.caseSelected = c;
         if (instance.caseSelected.getShip().getMainCanon().canAttack()){
@@ -42,20 +45,17 @@ public class AttackTurn implements State{
         if (caseSelected.getShip().hasFinished()){
             playScreen.changeState(ShipSelect.getInstance());
         }
-        for (Case c : accessible){
-            playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPortee.png"), c.getPosition().x, c.getPosition().y);
-        }
         if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK))){
             if (accessible.contains(playScreen.getCurrentCase(), true) && ennemie.getShips().contains(playScreen.getCurrentCase().getShip(), true)) {
                 attackShip(caseSelected, playScreen.getCurrentCase());
-                playScreen.changeState(MoveShip.getInstance(caseSelected, ennemie));
+                playScreen.changeState(MoveShip.getInstance(caseSelected, player, ennemie));
             } else {
                 playScreen.changeState(ShipSelect.getInstance());
             }
         } else if (Inputs.isPressed(Inputs.START)){
             caseSelected.getShip().finish();
         } else if (Inputs.isPressed(Inputs.X) && caseSelected.getShip().canMove()){
-            playScreen.changeState(MoveShip.getInstance(caseSelected, ennemie));
+            playScreen.changeState(MoveShip.getInstance(caseSelected, player, ennemie));
         } else if (Inputs.isPressed(Inputs.Y)){
             if (canon.equals(caseSelected.getShip().getMainCanon())){
                 if (caseSelected.getShip().getSecondaryCanon().canAttack()) {
@@ -70,6 +70,19 @@ public class AttackTurn implements State{
             }
         } else if (Inputs.isPressed(Inputs.B)){
             playScreen.changeState(ShipSelect.getInstance());
+        } else if (Inputs.isPressed(Inputs.L1) && !caseSelected.getShip().hasFired() && caseSelected.getShip().getMaxMovements()==caseSelected.getShip().getMovements()){
+            caseSelected.getShip().rotateLeft();
+        } else if (Inputs.isPressed(Inputs.R1) && !caseSelected.getShip().hasFired() && caseSelected.getShip().getMaxMovements()==caseSelected.getShip().getMovements()){
+            caseSelected.getShip().rotateRight();
+        }
+        if (ennemie.getShips().size == 0){
+            playScreen.changeState(EndGame.getInstance(player, EndGame.VICTOIRE_DANS_LES_LARMES_ET_LE_SANG));
+        }
+    }
+
+    public void draw(){
+        for (Case c : accessible){
+            playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/cible.png"), c.getPosition().x, c.getPosition().y);
         }
     }
 
@@ -79,7 +92,7 @@ public class AttackTurn implements State{
         for (Vector2 vector2 : portee){
             float nouveauX = caseSelected.getPosition().x+vector2.x;
             float nouveauY = caseSelected.getPosition().y+(int)vector2.y;
-            if (nouveauX >= 0 && nouveauX < playScreen.getMap().getColonne() && nouveauY >= 0 && nouveauY < playScreen.getMap().getLigne()){
+            if (nouveauX >= 0 && nouveauX < playScreen.getMap().getColonne() && nouveauY >= 0 && nouveauY < playScreen.getMap().getLigne() && playScreen.getMap().getCase((int)nouveauX, (int)nouveauY).getElement().getType() != Element.Type.VOID){
                 accessible.add(playScreen.getMap().getCase((int)nouveauX, (int)nouveauY));
             }
         }
