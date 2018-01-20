@@ -104,6 +104,7 @@ public class AttackTurn implements State{
     public void attackShip(Case attaquant, Case cible){
         cible.getShip().takeDamages(canon.getDamage());
         if (cible.getShip().getCurrentLifePoints() == 0){
+            playScreen.getExplosion().startPosition(cible.getPosition().x, cible.getPosition().y);
             ennemie.getShips().removeValue(cible.getShip(), true);
             cible.deleteShip();
         }

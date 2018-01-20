@@ -29,6 +29,7 @@ public class Assets {
         // PlayScreen
         manager.load("Maptextures/hexPointeur.png", Texture.class);
         manager.load("Maptextures/hexPortee.png", Texture.class);
+        manager.load("Maptextures/hexPorteeMax.png", Texture.class);
         manager.load("Maptextures/cible.png", Texture.class);
         manager.load("Maptextures/hexSelected.png", Texture.class);
 

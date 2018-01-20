@@ -79,22 +79,6 @@ public class XBoxHandler extends ControllerAdapter {
 
     @Override
     public boolean axisMoved(Controller controller, int axisCode, float value) {
-        if (Math.abs(value) > .3) {
-            Inputs.mode = Inputs.Mode.INPUT_MODE;
-            if (axisCode == AXIS_LEFT_Y) {
-                if (value == -1) {
-                    Inputs.UP = Inputs.BUFFER;
-                } else if (value == 1) {
-                    Inputs.DOWN = Inputs.BUFFER;
-                }
-            }
-            if (axisCode == AXIS_LEFT_X)
-                if (value == -1) {
-                    Inputs.LEFT = Inputs.BUFFER;
-                } else if (value == 1) {
-                    Inputs.RIGHT = Inputs.BUFFER;
-                }
-        }
         return false;
     }
 

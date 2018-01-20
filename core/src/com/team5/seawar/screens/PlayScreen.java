@@ -4,6 +4,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -15,6 +16,7 @@ import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map;
 import com.team5.seawar.objects.Case;
 import com.team5.seawar.screens.playstates.*;
+import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
 
 public class PlayScreen extends ScreenAdapter{
@@ -31,6 +33,8 @@ public class PlayScreen extends ScreenAdapter{
     public static final float SCALE = 12;
     public static final float hexWidth = Assets.getInstance().getTexture("Maptextures/hexEau.png").getWidth()/SCALE;
     public static final float hexHeight = Assets.getInstance().getTexture("Maptextures/hexEau.png").getHeight()/SCALE;
+
+    private Animation explosion;
 
     public PlayScreen(GameApp gameApp, Map map){
         this.gameApp = gameApp;
@@ -51,6 +55,8 @@ public class PlayScreen extends ScreenAdapter{
         ZoomCam.getInstance().init(this);
         GlobalCam.getInstance().init(this);
         camState = ZoomCam.getInstance();
+
+        explosion  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosion.png")), 43, 1.5f, hexWidth, hexHeight, 10, 5);
     }
 
     public void handleInput(){
@@ -69,16 +75,22 @@ public class PlayScreen extends ScreenAdapter{
         map.handleInput(cam, viewport);
     }
 
-    public void render(float dt) {
+    public void update(float dt){
         handleInput();
         map.update(dt);
         camState.update(dt);
         state.update(dt);
+        explosion.update(dt);
+    }
+
+    public void render(float dt) {
+        update(dt);
         gameApp.getBatch().setProjectionMatrix(cam.combined);
         gameApp.getBatch().begin(); //
         map.draw(gameApp.getBatch());
         state.draw();
         renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), position.x, position.y);
+        explosion.draw(gameApp.getBatch());
         gameApp.getBatch().end(); //
     }
 
@@ -124,6 +136,10 @@ public class PlayScreen extends ScreenAdapter{
 
     public SpriteBatch getBatch(){
         return gameApp.getBatch();
+    }
+
+    public Animation getExplosion() {
+        return explosion;
     }
 }
 

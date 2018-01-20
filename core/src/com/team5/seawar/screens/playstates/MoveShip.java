@@ -22,8 +22,6 @@ public class MoveShip implements State{
     private Player player;
     private Player ennemie;
 
-    private Animation explosion;
-
     private static MoveShip instance = new MoveShip();
 
     private MoveShip(){
@@ -37,13 +35,11 @@ public class MoveShip implements State{
         instance.caseSelected = c;
         instance.majPortee();
         instance.majPorteeMax();
-        instance.explosion.init();
         return instance;
     }
 
     public static void init(PlayScreen playScreen){
         instance.playScreen = playScreen;
-        instance.explosion  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosion.png")), 43, 1f, PlayScreen.hexWidth, PlayScreen.hexHeight);
     }
 
     public void majPortee(){
@@ -146,7 +142,6 @@ public class MoveShip implements State{
                 caseSelected = playScreen.getCurrentCase();
                 majPortee();
                 majPorteeMax();
-                explosion.start(0,0);
                 if (!caseSelected.getShip().canMove()){
                     playScreen.changeState(AttackTurn.getInstance(caseSelected, player, ennemie));
                 }
@@ -164,7 +159,6 @@ public class MoveShip implements State{
         } else if (Inputs.isPressed(Inputs.R1) && !caseSelected.getShip().hasFired() && caseSelected.getShip().getMaxMovements()==caseSelected.getShip().getMovements()){
             caseSelected.getShip().rotateRight();
         }
-        explosion.update(dt);
     }
 
     public void draw(){
@@ -172,10 +166,9 @@ public class MoveShip implements State{
             playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPortee.png"), c.getPosition().x, c.getPosition().y);
         }
         for (Case c : accessibleMax){
-            playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPortee.png"), c.getPosition().x, c.getPosition().y);
+            playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPorteeMax.png"), c.getPosition().x, c.getPosition().y);
         }
         playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexSelected.png"), caseSelected.getPosition().x, caseSelected.getPosition().y);
-        explosion.draw(playScreen.getBatch());
     }
 
     public void moveShip(Case depart, Case arrive){
