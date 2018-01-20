@@ -24,7 +24,11 @@ public class Assets {
         manager.load("Menutextures/background.png", Texture.class);
         manager.load("Menutextures/play.png", Texture.class);
         manager.load("Menutextures/exit.png", Texture.class);
-        manager.load("Menutextures/play2.png",Texture.class);
+        manager.load("Menutextures/playpush.png",Texture.class);
+        manager.load("Menutextures/exitpush.png",Texture.class);
+        manager.load("Menutextures/credit.png",Texture.class);
+        manager.load("Menutextures/creditpush.png",Texture.class);
+
 
         // PlayScreen
         manager.load("Maptextures/hexPointeur.png", Texture.class);

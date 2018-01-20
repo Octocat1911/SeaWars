@@ -22,6 +22,7 @@ public class MenuScreen extends ScreenAdapter {
     private Viewport viewport;
     private Sprite background;
     private Action2DSprite playButton;
+    private Action2DSprite creditButton;
     private Action2DSprite exitButton;
 
     private MenuScreen(final GameApp gameApp){
@@ -32,7 +33,7 @@ public class MenuScreen extends ScreenAdapter {
         this.playButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("Menutextures/play.png")), new ActionSprite() {
             @Override
             public void touchAction(Sprite sprite) {
-                sprite.setTexture(Assets.getInstance().getTexture("Menutextures/play2.png"));
+                sprite.setTexture(Assets.getInstance().getTexture("Menutextures/playpush.png"));
             }
 
             @Override
@@ -45,10 +46,26 @@ public class MenuScreen extends ScreenAdapter {
                 sprite.setTexture(Assets.getInstance().getTexture("Menutextures/play.png"));
             }
         });
+        this.creditButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("Menutextures/credit.png")), new ActionSprite() {
+            @Override
+            public void touchAction(Sprite sprite) {
+                sprite.setTexture(Assets.getInstance().getTexture("Menutextures/creditpush.png"));
+            }
+
+            @Override
+            public void clickedAction(Sprite sprite) {
+                gameApp.setScreen(StartScreen.getInstance());
+            }
+
+            @Override
+            public void defaultAction(Sprite sprite) {
+                sprite.setTexture(Assets.getInstance().getTexture("Menutextures/credit.png"));
+            }
+        });
         this.exitButton = new Action2DSprite(new Sprite(Assets.getInstance().getTexture("Menutextures/exit.png")), new ActionSprite() {
             @Override
             public void touchAction(Sprite sprite) {
-
+                sprite.setTexture(Assets.getInstance().getTexture("Menutextures/exitpush.png"));
             }
 
             @Override
@@ -58,14 +75,16 @@ public class MenuScreen extends ScreenAdapter {
 
             @Override
             public void defaultAction(Sprite sprite) {
-
+                sprite.setTexture(Assets.getInstance().getTexture("Menutextures/exit.png"));
             }
         });
         this.viewport = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, cam);
-        this.playButton.getSprite().setPosition(GameApp.WIDTH/3 - playButton.getSprite().getWidth()/2, 2*GameApp.HEIGHT/3 - playButton.getSprite().getHeight()/10);
-        this.playButton.getSprite().setSize(playButton.getSprite().getWidth()/5,playButton.getSprite().getHeight()/5);
-        this.exitButton.getSprite().setPosition(GameApp.WIDTH/3 - exitButton.getSprite().getWidth()/2, 2*GameApp.HEIGHT/3 - exitButton.getSprite().getHeight()/3);
-        this.exitButton.getSprite().setSize(exitButton.getSprite().getWidth()/5, exitButton.getSprite().getHeight()/5);
+        this.playButton.getSprite().setPosition(GameApp.WIDTH/3 - playButton.getSprite().getWidth()/5, 2*GameApp.HEIGHT/3 - playButton.getSprite().getHeight()/20);
+        this.playButton.getSprite().setSize(playButton.getSprite().getWidth()/10,playButton.getSprite().getHeight()/10);
+        this.creditButton.getSprite().setPosition(GameApp.WIDTH/3 - creditButton.getSprite().getWidth()/5, 2*GameApp.HEIGHT/3 - creditButton.getSprite().getHeight()/5);
+        this.creditButton.getSprite().setSize(creditButton.getSprite().getWidth()/10, creditButton.getSprite().getHeight()/10);
+        this.exitButton.getSprite().setPosition(GameApp.WIDTH/3 - exitButton.getSprite().getWidth()/4, 2*GameApp.HEIGHT/3 - exitButton.getSprite().getHeight()/3.4f);
+        this.exitButton.getSprite().setSize(exitButton.getSprite().getWidth()/10,exitButton.getSprite().getHeight()/10);
     }
 
     public static void init(GameApp gameApp){
@@ -81,6 +100,8 @@ public class MenuScreen extends ScreenAdapter {
     public void handleInput(float dt){
        Inputs.isTouched(playButton,cam,viewport);
        Inputs.isJustClicked(playButton,cam,viewport);
+       Inputs.isTouched(creditButton,cam,viewport);
+       Inputs.isJustClicked(creditButton,cam,viewport);
        Inputs.isTouched(exitButton,cam,viewport);
        Inputs.isJustClicked(exitButton,cam,viewport);
     }
@@ -91,6 +112,7 @@ public class MenuScreen extends ScreenAdapter {
         gameApp.getBatch().begin();
         gameApp.getBatch().draw(background,0,0);
         playButton.getSprite().draw(gameApp.getBatch());
+        creditButton.getSprite().draw(gameApp.getBatch());
         exitButton.getSprite().draw(gameApp.getBatch());
         gameApp.getBatch().end();
     }

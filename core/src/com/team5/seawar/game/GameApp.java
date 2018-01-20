@@ -28,7 +28,7 @@ public class GameApp extends Game {
 		MenuScreen.init(this);
 		batch = new SpriteBatch();
         Gdx.gl.glClearColor(0, 0, 0, 1);
-        setScreen(StartScreen.getInstance());
+        setScreen(MenuScreen.getInstance());
 	}
 
 	@Override
