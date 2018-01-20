@@ -64,5 +64,4 @@ public class StartScreen extends ScreenAdapter {
         viewport.update(width, height);
     }
 
-
 }
