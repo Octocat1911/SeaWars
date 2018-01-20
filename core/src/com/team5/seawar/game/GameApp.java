@@ -8,7 +8,6 @@ import com.team5.seawar.inputHandler.InputHandler;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.inputHandler.XBoxHandler;
 import com.team5.seawar.screens.MenuScreen;
-import com.team5.seawar.screens.StartScreen;
 import com.team5.seawar.utils.Assets;
 
 public class GameApp extends Game {
