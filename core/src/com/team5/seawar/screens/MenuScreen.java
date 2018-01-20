@@ -54,7 +54,7 @@ public class MenuScreen extends ScreenAdapter {
 
             @Override
             public void clickedAction(Sprite sprite) {
-                gameApp.setScreen(StartScreen.getInstance());
+                gameApp.setScreen(new StartScreen(gameApp));
             }
 
             @Override

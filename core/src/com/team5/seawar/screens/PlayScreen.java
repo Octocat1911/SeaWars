@@ -20,23 +20,20 @@ import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
 
 public class PlayScreen extends ScreenAdapter{
+
     private GameApp gameApp;
     private Map map;
     private State state;
-
     private CamState camState;
-
     public static Vector2 position;
     private OrthographicCamera cam;
     private Viewport viewport;
-
     public static final float SCALE = 12;
     public static final float hexWidth = Assets.getInstance().getTexture("Maptextures/hexEau.png").getWidth()/SCALE;
     public static final float hexHeight = Assets.getInstance().getTexture("Maptextures/hexEau.png").getHeight()/SCALE;
-
     private Animation explosion;
 
-    public PlayScreen(GameApp gameApp, Map map){
+    public PlayScreen(final GameApp gameApp, Map map){
         this.gameApp = gameApp;
         this.map = map;
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
