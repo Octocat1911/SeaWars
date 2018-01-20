@@ -215,16 +215,19 @@ public class CanonCalcul {
         Array<Vector2> i2 = new Array<Vector2>();//Origine de i
         Array<Vector2> i3 = new Array<Vector2>();//Origine
         Array<Vector2> i4 = new Array<Vector2>();//Obtenu
+        Array<Vector2> troisPremiers;
         Array<Vector2>tmp;
 
         l.add(new Vector2(ship.getShipPosition().getColonne(),ship.getShipPosition().getLigne()));
-        tmp = reachableATM(l.get(0),ship.getPosition().getOrientation());
+        troisPremiers = reachableATM(l.get(0),ship.getPosition().getOrientation());
 
-        for(int j=0;j<tmp.size;j++){
-            Vector2 a = new Vector2(tmp.get(j).add(l.get(0)));
-            l.add(a);
-            i.add(a);
-            i2.add(l.get(0));
+        for(int j=0;j<troisPremiers.size;j++){
+            Vector2 c = new Vector2(troisPremiers.get(j).add(l.get(0)));
+            if(c.x >= 0 && c.x < map.getColonne() && c.y >= 0 && c.y < map.getLigne() && map.getCase((int)c.x, (int)c.y).isNavigable()) {
+                l.add(c);
+                i.add(c);
+                i2.add(l.get(0));
+            }
         }
 
         for(int j=1;j<nbmove;j++){
@@ -255,7 +258,10 @@ public class CanonCalcul {
         }
 
 
-        res.removeRange(0,3);
+        res.removeIndex(0);
+        for (Vector2 k:troisPremiers){
+            res.removeValue(k,false);
+        }
 
         return res;
     }

@@ -34,15 +34,15 @@ public class Map1 extends Map {
         player1 = new Player();
         player2 = new Player();
 
-        //player1.getShips().add(new Fregate(0,10, ShipPosition.Orientation.BOTTOM_RIGHT));
-        //player1.getShips().add(new Fregate(1,10, ShipPosition.Orientation.BOTTOM_RIGHT));
-        //player1.getShips().add(new Fregate(3, 10, ShipPosition.Orientation.BOTTOM));
+        player1.getShips().add(new Fregate(0,10, ShipPosition.Orientation.BOTTOM_RIGHT));
+        player1.getShips().add(new Fregate(1,10, ShipPosition.Orientation.BOTTOM_RIGHT));
+        player1.getShips().add(new Fregate(3, 10, ShipPosition.Orientation.BOTTOM));
 
         player2.getShips().add(new Fregate(12,0, ShipPosition.Orientation.TOP_LEFT));
-        //player2.getShips().add(new Fregate(12,1, ShipPosition.Orientation.TOP_LEFT));
-        //player2.getShips().add(new Fregate(10, 0, ShipPosition.Orientation.TOP));
+        player2.getShips().add(new Fregate(12,1, ShipPosition.Orientation.TOP_LEFT));
+        player2.getShips().add(new Fregate(10, 0, ShipPosition.Orientation.TOP));
 
-        player1.getShips().add(new Amiral(3, 10, ShipPosition.Orientation.BOTTOM));
+        //player1.getShips().add(new Amiral(3, 10, ShipPosition.Orientation.BOTTOM));
         //player2.getShips().add(new Amiral(10, 0, ShipPosition.Orientation.TOP));
 
         for (Ship ship : player1.getShips()){
