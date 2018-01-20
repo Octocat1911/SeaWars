@@ -30,10 +30,13 @@ public class Assets {
         manager.load("Maptextures/hexPointeur.png", Texture.class);
         manager.load("Maptextures/hexPortee.png", Texture.class);
         manager.load("Maptextures/cible.png", Texture.class);
+        manager.load("Maptextures/hexSelected.png", Texture.class);
 
         manager.load("Maptextures/hexEau.png", Texture.class);
         manager.load("Maptextures/hexTerre.png", Texture.class);
         manager.load("Maptextures/hexPhare.png", Texture.class);
+        manager.load("Maptextures/hexPhareJ1.png", Texture.class);
+        manager.load("Maptextures/hexPhareJ2.png", Texture.class);
         manager.load("Maptextures/void.png", Texture.class);
 
         manager.load("Shiptextures/ShipH.png", Texture.class);
@@ -49,6 +52,9 @@ public class Assets {
         manager.load("Shiptextures/ShipB2.png", Texture.class);
         manager.load("Shiptextures/ShipBG2.png", Texture.class);
         manager.load("Shiptextures/ShipHG2.png", Texture.class);
+
+        //Effects
+        manager.load("Effects/explosion.png", Texture.class);
 
     }
 

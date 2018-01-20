@@ -1,5 +1,6 @@
 package com.team5.seawar.screens.playstates;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.inputHandler.Inputs;
@@ -8,6 +9,7 @@ import com.team5.seawar.objects.Element;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.ship.Canon;
+import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
 
 public class AttackTurn implements State{
@@ -84,6 +86,7 @@ public class AttackTurn implements State{
         for (Case c : accessible){
             playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/cible.png"), c.getPosition().x, c.getPosition().y);
         }
+        playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexSelected.png"), caseSelected.getPosition().x, caseSelected.getPosition().y);
     }
 
     public void majAccessible(){

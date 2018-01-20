@@ -3,6 +3,7 @@ package com.team5.seawar.screens;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -119,6 +120,10 @@ public class PlayScreen extends ScreenAdapter{
 
     public void dispose() {
 
+    }
+
+    public SpriteBatch getBatch(){
+        return gameApp.getBatch();
     }
 }
 

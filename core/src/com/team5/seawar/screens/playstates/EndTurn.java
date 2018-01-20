@@ -28,13 +28,23 @@ public class EndTurn implements State {
         for (Ship ship: player.getShips()){
             ship.setHasFinished(false);
             if (playScreen.getMap().getCase(ship.getPosition().getColonne(),ship.getPosition().getLigne()).getElement().getType() == Element.Type.LIGHTHOUSE){
-                playScreen.getMap().getCase(ship.getPosition().getColonne(),ship.getPosition().getLigne()).setProprietaire(player);
+                if (player == playScreen.getMap().getPlayer1()){
+                    playScreen.getMap().getCase(ship.getPosition().getColonne(),ship.getPosition().getLigne()).setProprietaire(1);
+                } else {
+                    playScreen.getMap().getCase(ship.getPosition().getColonne(),ship.getPosition().getLigne()).setProprietaire(2);
+                }
             }
         }
         int nbLighthouse = 0;
+        int idPlayer;
+        if (player == playScreen.getMap().getPlayer1()){
+            idPlayer = 1;
+        } else {
+            idPlayer = 2;
+        }
         for (int i=0; i<playScreen.getMap().getColonne(); i++){
             for (int j=0; j<playScreen.getMap().getLigne(); j++) {
-                if (playScreen.getMap().getCase(i, j).getProprietaire() == player){
+                if (playScreen.getMap().getCase(i, j).getProprietaire() == idPlayer){
                     nbLighthouse++;
                 }
             }

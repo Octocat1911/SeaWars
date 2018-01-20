@@ -1,21 +1,28 @@
 package com.team5.seawar.screens.playstates;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.objects.Case;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
+import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
+import com.team5.seawar.utils.CanonCalcul;
 
 public class MoveShip implements State{
     private PlayScreen playScreen;
     private Case caseSelected;
     private Array<Vector2> portee;
+    private Array<Vector2> porteeMax;
     private Array<Case> accessible;
+    private Array<Case> accessibleMax;
     private Player player;
     private Player ennemie;
+
+    private Animation explosion;
 
     private static MoveShip instance = new MoveShip();
 
@@ -29,11 +36,14 @@ public class MoveShip implements State{
         instance.ennemie = ennemie;
         instance.caseSelected = c;
         instance.majPortee();
+        instance.majPorteeMax();
+        instance.explosion.init();
         return instance;
     }
 
     public static void init(PlayScreen playScreen){
         instance.playScreen = playScreen;
+        instance.explosion  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosion.png")), 43, 1f, PlayScreen.hexWidth, PlayScreen.hexHeight);
     }
 
     public void majPortee(){
@@ -112,7 +122,16 @@ public class MoveShip implements State{
                 accessible.add(playScreen.getMap().getCase((int)nouveauX, (int)nouveauY));
             }
         }
+    }
 
+    public void majPorteeMax(){
+        instance.porteeMax = CanonCalcul.reachablePosition(caseSelected.getShip(), playScreen.getMap());
+        accessibleMax = new Array<Case>();
+        for (Vector2 vector2 : porteeMax){
+            //if (vector2.x >= 0 && vector2.x < playScreen.getMap().getColonne() && vector2.y >= 0 && vector2.y < playScreen.getMap().getLigne() && playScreen.getMap().getCase((int)vector2.x, (int)vector2.y).isNavigable()){
+                accessibleMax.add(playScreen.getMap().getCase((int)vector2.x, (int)vector2.y));
+            //}
+        }
     }
 
     public void update(float dt){
@@ -126,6 +145,8 @@ public class MoveShip implements State{
                 moveShip(caseSelected, playScreen.getCurrentCase());
                 caseSelected = playScreen.getCurrentCase();
                 majPortee();
+                majPorteeMax();
+                explosion.start(0,0);
                 if (!caseSelected.getShip().canMove()){
                     playScreen.changeState(AttackTurn.getInstance(caseSelected, player, ennemie));
                 }
@@ -143,12 +164,18 @@ public class MoveShip implements State{
         } else if (Inputs.isPressed(Inputs.R1) && !caseSelected.getShip().hasFired() && caseSelected.getShip().getMaxMovements()==caseSelected.getShip().getMovements()){
             caseSelected.getShip().rotateRight();
         }
+        explosion.update(dt);
     }
 
     public void draw(){
         for (Case c : accessible){
             playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPortee.png"), c.getPosition().x, c.getPosition().y);
         }
+        for (Case c : accessibleMax){
+            playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPortee.png"), c.getPosition().x, c.getPosition().y);
+        }
+        playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexSelected.png"), caseSelected.getPosition().x, caseSelected.getPosition().y);
+        explosion.draw(playScreen.getBatch());
     }
 
     public void moveShip(Case depart, Case arrive){

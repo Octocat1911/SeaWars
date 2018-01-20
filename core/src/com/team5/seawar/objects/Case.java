@@ -9,13 +9,14 @@ import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.ship.Ship;
+import com.team5.seawar.utils.Assets;
 
 public class Case {
     private Vector2 position;
     private Circle bounds;
     private Element element;
     private Ship ship;
-    private Player proprietaire;
+    private int proprietaire;
 
     public Case(Element.Type type, int colonne, int ligne){
         element = new Element(type, colonne, ligne);
@@ -27,7 +28,7 @@ public class Case {
         } else {
             bounds.set(colonne * PlayScreen.hexWidth *3/4 + PlayScreen.hexWidth/2, ligne * PlayScreen.hexHeight + PlayScreen.hexHeight, PlayScreen.hexWidth-55);
         }
-        proprietaire = null;
+        proprietaire = 0;
     }
 
     public Element getElement() {
@@ -78,11 +79,16 @@ public class Case {
         return ship;
     }
 
-    public void setProprietaire(Player proprietaire) {
+    public void setProprietaire(int proprietaire) {
         this.proprietaire = proprietaire;
+        if (proprietaire == 1){
+            element.getSprite().setTexture(Assets.getInstance().getTexture("Maptextures/hexPhareJ1.png"));
+        } else {
+            element.getSprite().setTexture(Assets.getInstance().getTexture("Maptextures/hexPhareJ2.png"));
+        }
     }
 
-    public Player getProprietaire() {
+    public int getProprietaire() {
         return proprietaire;
     }
 }

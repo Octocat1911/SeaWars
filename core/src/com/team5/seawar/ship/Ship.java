@@ -165,6 +165,10 @@ public class Ship{
         return movements;
     }
 
+    public ShipPosition getShipPosition() {
+        return shipPosition;
+    }
+
     public void takeDamages(int damages){
         currentLifePoints = currentLifePoints - damages;
         if (currentLifePoints<0)
