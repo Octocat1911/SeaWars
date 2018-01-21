@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.cam.CamState;
+import com.team5.seawar.cam.GlobalCam;
 import com.team5.seawar.cam.ZoomCam;
 import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
@@ -38,7 +39,7 @@ public class MapEditorScreen extends PlayScreen {
         this.map.init();
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
         cam.position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
-        camState = ZoomCam.getInstance();
+        camState = GlobalCam.getInstance();
     }
 
 
