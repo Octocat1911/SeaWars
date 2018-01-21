@@ -39,7 +39,6 @@ public class MapEditorScreen extends PlayScreen {
         this.state = SizeEditionState.getInstance();
         getCam().position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
         setCamState(GlobalCam.getInstance());
-        GlobalCam.getInstance().setCanGoToZoomCam(false);
     }
 
 
