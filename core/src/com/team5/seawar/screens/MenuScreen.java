@@ -2,6 +2,7 @@ package com.team5.seawar.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -24,6 +25,7 @@ public class MenuScreen extends ScreenAdapter {
     private Action2DSprite playButton;
     private Action2DSprite creditButton;
     private Action2DSprite exitButton;
+    private Music menu_music;
 
     private MenuScreen(final GameApp gameApp){
         this.gameApp = gameApp;
@@ -38,6 +40,7 @@ public class MenuScreen extends ScreenAdapter {
 
             @Override
             public void clickedAction(Sprite sprite) {
+                menu_music.stop();
                 gameApp.setScreen(new PlayScreen(gameApp, new Map1()));
             }
 
@@ -54,6 +57,7 @@ public class MenuScreen extends ScreenAdapter {
 
             @Override
             public void clickedAction(Sprite sprite) {
+                menu_music.stop();
                 gameApp.setScreen(new StartScreen(gameApp));
             }
 
@@ -85,6 +89,11 @@ public class MenuScreen extends ScreenAdapter {
         this.creditButton.getSprite().setSize(creditButton.getSprite().getWidth()/10, creditButton.getSprite().getHeight()/10);
         this.exitButton.getSprite().setPosition(GameApp.WIDTH/3 - exitButton.getSprite().getWidth()/4, 2*GameApp.HEIGHT/3 - exitButton.getSprite().getHeight()/3.4f);
         this.exitButton.getSprite().setSize(exitButton.getSprite().getWidth()/10,exitButton.getSprite().getHeight()/10);
+
+        menu_music = Assets.getInstance().getMusic("Sounds/menu_music.mp3");
+        menu_music.setLooping(true);
+        menu_music.setVolume(.3f);
+        menu_music.play();
     }
 
     public static void init(GameApp gameApp){

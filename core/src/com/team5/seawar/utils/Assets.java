@@ -1,9 +1,9 @@
 package com.team5.seawar.utils;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-
-import java.awt.*;
 
 public class Assets {
     private AssetManager manager = new AssetManager();
@@ -85,12 +85,32 @@ public class Assets {
         manager.load("Shiptextures/AmiralHG_end.png", Texture.class);
 
         //Effects
-        manager.load("Effects/explosion.png", Texture.class);
+        manager.load("Effects/explosionDegat.png", Texture.class);
+        manager.load("Effects/explosionMort.png", Texture.class);
+
+        //UI
+        manager.load("UI/Joueur1.png", Texture.class);
+        manager.load("UI/Joueur2.png", Texture.class);
+        manager.load("UI/Tour1.png", Texture.class);
+        manager.load("UI/Tour2.png", Texture.class);
+
+        //Sounds
+        manager.load("Sounds/menu_music.mp3", Music.class);
+        manager.load("Sounds/playscreen_music.mp3", Music.class);
+        manager.load("Sounds/choice.ogg", Sound.class);
 
     }
 
     public Texture getTexture(String fileName){
         return manager.get(fileName, Texture.class);
+    }
+
+    public Music getMusic(String fileName){
+        return manager.get(fileName, Music.class);
+    }
+
+    public Sound getSound(String fileName){
+        return manager.get(fileName, Sound.class);
     }
 
     public void finishLoading(){

@@ -3,6 +3,7 @@ package com.team5.seawar.screens.playstates;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
+import com.team5.seawar.utils.Assets;
 
 public class ShipSelect implements State {
     private PlayScreen playScreen;
@@ -22,6 +23,8 @@ public class ShipSelect implements State {
         instance.playScreen = playScreen;
         instance.player = playScreen.getMap().getPlayer1();
         instance.ennemie = playScreen.getMap().getPlayer2();
+        instance.playScreen.getBannièreNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
+        instance.playScreen.getBannièreNouveauTour().start();
     }
 
     public void update(float dt){
@@ -49,11 +52,14 @@ public class ShipSelect implements State {
         if (player.equals(playScreen.getMap().getPlayer1())) {
             player = playScreen.getMap().getPlayer2();
             ennemie = playScreen.getMap().getPlayer1();
+            playScreen.getBannièreNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur2.png"), Assets.getInstance().getTexture("UI/Tour2.png"));
         } else {
             player = playScreen.getMap().getPlayer1();
             ennemie = playScreen.getMap().getPlayer2();
+            playScreen.getBannièreNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
         }
         player.newTurn();
         playScreen.getPosition().set(player.nextShip());
+        playScreen.getBannièreNouveauTour().start();
     }
 }

@@ -1,6 +1,7 @@
 package com.team5.seawar.screens;
 
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,26 +19,33 @@ import com.team5.seawar.objects.Case;
 import com.team5.seawar.screens.playstates.*;
 import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
+import com.team5.seawar.utils.BannièreNouveauTour;
 
 public class PlayScreen extends ScreenAdapter{
 
-    protected GameApp gameApp;
-    protected Map map;
+    private GameApp gameApp;
+    private Map map;
     private State state;
-    protected CamState camState;
+    private CamState camState;
     public static Vector2 position;
-    protected OrthographicCamera cam;
-    protected Viewport viewport;
+    private OrthographicCamera cam;
+    private OrthographicCamera camUI;
+    private Viewport viewport;
+    private Viewport viewportUI;
     public static final float SCALE = 12;
     public static final float hexWidth = Assets.getInstance().getTexture("Maptextures/hexEau.png").getWidth()/SCALE;
     public static final float hexHeight = Assets.getInstance().getTexture("Maptextures/hexEau.png").getHeight()/SCALE;
-    private Animation explosion;
+    private Animation explosionDegat;
+    private Animation explosionMort;
+    private BannièreNouveauTour bannièreNouveauTour;
+    private Music music;
 
     public PlayScreen(final GameApp gameApp, Map map){
         this.gameApp = gameApp;
         this.map = map;
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
 
+        bannièreNouveauTour = new BannièreNouveauTour();
         ShipSelect.init(this);
         MoveShip.init(this);
         AttackTurn.init(this);
@@ -49,11 +57,23 @@ public class PlayScreen extends ScreenAdapter{
         cam = new OrthographicCamera();
         cam.position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
         viewport = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, cam);
+
+        camUI = new OrthographicCamera();
+        camUI.position.set(GameApp.WIDTH/2f, GameApp.HEIGHT/2f, 0);
+        viewportUI = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, camUI);
+
         ZoomCam.getInstance().init(this);
         GlobalCam.getInstance().init(this);
         camState = ZoomCam.getInstance();
 
-        explosion  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosion.png")), 43, 1.5f, hexWidth, hexHeight, 10, 5);
+        explosionDegat  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosionDegat.png")), 43, .4f, hexWidth, hexHeight, 10, 5);
+        explosionMort  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosionMort.png")), 50, .9f, hexWidth, hexHeight, -8, 5);
+
+        music = Assets.getInstance().getMusic("Sounds/playscreen_music.mp3");
+        music.setLooping(true);
+        music.setVolume(.3f);
+        music.play();
+
     }
 
     public void handleInput(){
@@ -77,17 +97,25 @@ public class PlayScreen extends ScreenAdapter{
         map.update(dt);
         camState.update(dt);
         state.update(dt);
-        explosion.update(dt);
+        explosionDegat.update(dt);
+        explosionMort.update(dt);
+        bannièreNouveauTour.update(dt);
     }
 
     public void render(float dt) {
         update(dt);
+        //MAP
         gameApp.getBatch().setProjectionMatrix(cam.combined);
         gameApp.getBatch().begin(); //
         map.draw(gameApp.getBatch());
         state.draw();
         renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), position.x, position.y);
-        explosion.draw(gameApp.getBatch());
+        explosionDegat.draw(gameApp.getBatch());
+        explosionMort.draw(gameApp.getBatch());
+
+        //UI
+        gameApp.getBatch().setProjectionMatrix(camUI.combined);
+        bannièreNouveauTour.draw(gameApp.getBatch());
         gameApp.getBatch().end(); //
     }
 
@@ -109,6 +137,7 @@ public class PlayScreen extends ScreenAdapter{
 
     public void resize(int width, int height) {
         viewport.update(width, height);
+        viewportUI.update(width, height);
     }
 
     public Map getMap() {
@@ -139,12 +168,19 @@ public class PlayScreen extends ScreenAdapter{
         return gameApp.getBatch();
     }
 
-    public Animation getExplosion() {
-        return explosion;
+    public Animation getExplosionDegat() {
+        return explosionDegat;
+    }
+
+    public Animation getExplosionMort() {
+        return explosionMort;
+    }
+
+    public BannièreNouveauTour getBannièreNouveauTour() {
+        return bannièreNouveauTour;
     }
 
     public CamState getCamState() {
         return camState;
     }
 }
-
