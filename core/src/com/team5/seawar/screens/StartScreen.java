@@ -11,8 +11,11 @@ import com.badlogic.gdx.video.*;
 import com.badlogic.gdx.video.VideoPlayerCreator;
 import com.sun.media.jfxmedia.control.VideoRenderControl;
 import com.team5.seawar.game.GameApp;
+import com.team5.seawar.inputHandler.InputHandler;
+import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.utils.Action2DSprite;
 import javafx.scene.media.VideoTrack;
+import jdk.internal.util.xml.impl.Input;
 
 import java.io.FileNotFoundException;
 
@@ -45,6 +48,7 @@ public class StartScreen extends ScreenAdapter {
     }
 
     public void render(float dt){
+        handleInput(dt);
         gameApp.getBatch().setProjectionMatrix(cam.combined);
         gameApp.getBatch().begin();
         if(videoPlayer.isPlaying()){
@@ -54,6 +58,13 @@ public class StartScreen extends ScreenAdapter {
             videoPlayer.stop();
         }
         gameApp.getBatch().end();
+    }
+
+    public void handleInput(float dt){
+        if(Inputs.isPressed(Inputs.SELECT) || Inputs.isPressed(Inputs.CLICK )|| Inputs.isPressed(Inputs.START)){
+            videoPlayer.stop();
+            gameApp.setScreen(MenuScreen.getInstance());
+        }
     }
 
     public void resize(int width, int height) {
