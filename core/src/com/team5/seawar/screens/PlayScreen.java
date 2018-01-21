@@ -74,7 +74,6 @@ public class PlayScreen extends ScreenAdapter{
 
         Random random = new Random();
         int randomNumber = random.nextInt(3);
-        System.out.println(randomNumber);
         if(randomNumber == 0){
             music = Assets.getInstance().getMusic("Sounds/playscreen_music.mp3");
             music.setVolume(.3f);
@@ -91,7 +90,6 @@ public class PlayScreen extends ScreenAdapter{
             public void onCompletion(Music music1) {
                 Random random = new Random();
                 int randomNumber = random.nextInt(3);
-                System.out.println(randomNumber);
                 if(randomNumber== 0){
                     music = Assets.getInstance().getMusic("Sounds/playscreen_music.mp3");
                     music.setVolume(.3f);
