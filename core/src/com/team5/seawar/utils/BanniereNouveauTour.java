@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.team5.seawar.game.GameApp;
 
-public class BannièreNouveauTour {
+public class BanniereNouveauTour {
 
     private Texture joueur;
     private Texture aToiDeJouer;
@@ -17,7 +17,7 @@ public class BannièreNouveauTour {
 
     private boolean drawing = false;
 
-    public BannièreNouveauTour(){
+    public BanniereNouveauTour(){
     }
 
     public void setTextures(Texture joueur, Texture aToiDeJouer){
@@ -27,10 +27,10 @@ public class BannièreNouveauTour {
 
     public void update(float dt){
         if (drawing){
-            if (Math.abs(positionJoueur + GameApp.WIDTH/2 - GameApp.WIDTH/2) > 150){
+            if (Math.abs(positionJoueur + GameApp.WIDTH/2 - GameApp.WIDTH/2) > 100){
                 speed = maxSpeed;
             } else {
-                speed = 300;
+                speed = 200;
             }
             positionJoueur += speed * dt;
             positionAToiDeJouer -= speed *dt;

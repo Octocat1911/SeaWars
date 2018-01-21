@@ -23,8 +23,8 @@ public class ShipSelect implements State {
         instance.playScreen = playScreen;
         instance.player = playScreen.getMap().getPlayer1();
         instance.ennemie = playScreen.getMap().getPlayer2();
-        instance.playScreen.getBannièreNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
-        instance.playScreen.getBannièreNouveauTour().start();
+        instance.playScreen.getBanniereNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
+        instance.playScreen.getBanniereNouveauTour().start();
     }
 
     public void update(float dt){
@@ -52,15 +52,15 @@ public class ShipSelect implements State {
         if (player.equals(playScreen.getMap().getPlayer1())) {
             player = playScreen.getMap().getPlayer2();
             ennemie = playScreen.getMap().getPlayer1();
-            playScreen.getBannièreNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur2.png"), Assets.getInstance().getTexture("UI/Tour2.png"));
+            playScreen.getBanniereNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur2.png"), Assets.getInstance().getTexture("UI/Tour2.png"));
         } else {
             player = playScreen.getMap().getPlayer1();
             ennemie = playScreen.getMap().getPlayer2();
-            playScreen.getBannièreNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
+            playScreen.getBanniereNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
         }
         player.newTurn();
         playScreen.getPosition().set(player.nextShip());
-        playScreen.getBannièreNouveauTour().start();
+        playScreen.getBanniereNouveauTour().start();
         Assets.getInstance().getSound("Sounds/new_player.ogg").play(.5f);
     }
 }

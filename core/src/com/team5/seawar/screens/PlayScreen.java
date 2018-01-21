@@ -19,7 +19,7 @@ import com.team5.seawar.objects.Case;
 import com.team5.seawar.screens.playstates.*;
 import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
-import com.team5.seawar.utils.BannièreNouveauTour;
+import com.team5.seawar.utils.BanniereNouveauTour;
 
 import java.util.Random;
 
@@ -39,7 +39,7 @@ public class PlayScreen extends ScreenAdapter{
     public static final float hexHeight = Assets.getInstance().getTexture("Maptextures/hexEau.png").getHeight()/SCALE;
     private Animation explosionDegat;
     private Animation explosionMort;
-    private BannièreNouveauTour bannièreNouveauTour;
+    private BanniereNouveauTour banniereNouveauTour;
     protected Music music;
     private boolean debutJeu = true;
 
@@ -48,7 +48,7 @@ public class PlayScreen extends ScreenAdapter{
         this.map = map;
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
 
-        bannièreNouveauTour = new BannièreNouveauTour();
+        banniereNouveauTour = new BanniereNouveauTour();
         ShipSelect.init(this);
         MoveShip.init(this);
         AttackTurn.init(this);
@@ -135,7 +135,7 @@ public class PlayScreen extends ScreenAdapter{
         state.update(dt);
         explosionDegat.update(dt);
         explosionMort.update(dt);
-        bannièreNouveauTour.update(dt);
+        banniereNouveauTour.update(dt);
     }
 
     public void render(float dt) {
@@ -151,7 +151,7 @@ public class PlayScreen extends ScreenAdapter{
 
         //UI
         gameApp.getBatch().setProjectionMatrix(camUI.combined);
-        bannièreNouveauTour.draw(gameApp.getBatch());
+        banniereNouveauTour.draw(gameApp.getBatch());
         gameApp.getBatch().end(); //
     }
 
@@ -212,8 +212,8 @@ public class PlayScreen extends ScreenAdapter{
         return explosionMort;
     }
 
-    public BannièreNouveauTour getBannièreNouveauTour() {
-        return bannièreNouveauTour;
+    public BanniereNouveauTour getBanniereNouveauTour() {
+        return banniereNouveauTour;
     }
 
     public CamState getCamState() {
