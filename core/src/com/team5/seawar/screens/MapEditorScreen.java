@@ -30,7 +30,6 @@ public class MapEditorScreen extends PlayScreen {
         this.map = map;
         this.gameApp = gameApp;
         this.map.init();
-        PlayScreen.position.set(map.getColonne()/2, map.getLigne()/2);
         getCam().position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
         setCamState(GlobalCam.getInstance());
         GlobalCam.getInstance().setCanGoToZoomCam(false);
@@ -77,6 +76,7 @@ public class MapEditorScreen extends PlayScreen {
         gameApp.getBatch().setProjectionMatrix(getCam().combined);
         gameApp.getBatch().begin();
         map.draw(gameApp.getBatch());
+        renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), position.x, position.y);
         gameApp.getBatch().end();
     }
 
