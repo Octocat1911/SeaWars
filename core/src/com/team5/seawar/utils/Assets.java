@@ -46,19 +46,43 @@ public class Assets {
         manager.load("Maptextures/hexPhareJ2.png", Texture.class);
         manager.load("Maptextures/void.png", Texture.class);
 
-        manager.load("Shiptextures/ShipH.png", Texture.class);
-        manager.load("Shiptextures/ShipHD.png", Texture.class);
-        manager.load("Shiptextures/ShipBD.png", Texture.class);
-        manager.load("Shiptextures/ShipB.png", Texture.class);
-        manager.load("Shiptextures/ShipBG.png", Texture.class);
-        manager.load("Shiptextures/ShipHG.png", Texture.class);
+        manager.load("Shiptextures/FregateH_J1.png", Texture.class);
+        manager.load("Shiptextures/FregateHD_J1.png", Texture.class);
+        manager.load("Shiptextures/FregateBD_J1.png", Texture.class);
+        manager.load("Shiptextures/FregateB_J1.png", Texture.class);
+        manager.load("Shiptextures/FregateBG_J1.png", Texture.class);
+        manager.load("Shiptextures/FregateHG_J1.png", Texture.class);
+        manager.load("Shiptextures/FregateH_J2.png", Texture.class);
+        manager.load("Shiptextures/FregateHD_J2.png", Texture.class);
+        manager.load("Shiptextures/FregateBD_J2.png", Texture.class);
+        manager.load("Shiptextures/FregateB_J2.png", Texture.class);
+        manager.load("Shiptextures/FregateBG_J2.png", Texture.class);
+        manager.load("Shiptextures/FregateHG_J2.png", Texture.class);
+        manager.load("Shiptextures/FregateH_end.png", Texture.class);
+        manager.load("Shiptextures/FregateHD_end.png", Texture.class);
+        manager.load("Shiptextures/FregateBD_end.png", Texture.class);
+        manager.load("Shiptextures/FregateB_end.png", Texture.class);
+        manager.load("Shiptextures/FregateBG_end.png", Texture.class);
+        manager.load("Shiptextures/FregateHG_end.png", Texture.class);
 
-        manager.load("Shiptextures/ShipH2.png", Texture.class);
-        manager.load("Shiptextures/ShipHD2.png", Texture.class);
-        manager.load("Shiptextures/ShipBD2.png", Texture.class);
-        manager.load("Shiptextures/ShipB2.png", Texture.class);
-        manager.load("Shiptextures/ShipBG2.png", Texture.class);
-        manager.load("Shiptextures/ShipHG2.png", Texture.class);
+        manager.load("Shiptextures/AmiralH_J1.png", Texture.class);
+        manager.load("Shiptextures/AmiralHD_J1.png", Texture.class);
+        manager.load("Shiptextures/AmiralBD_J1.png", Texture.class);
+        manager.load("Shiptextures/AmiralB_J1.png", Texture.class);
+        manager.load("Shiptextures/AmiralBG_J1.png", Texture.class);
+        manager.load("Shiptextures/AmiralHG_J1.png", Texture.class);
+        manager.load("Shiptextures/AmiralH_J2.png", Texture.class);
+        manager.load("Shiptextures/AmiralHD_J2.png", Texture.class);
+        manager.load("Shiptextures/AmiralBD_J2.png", Texture.class);
+        manager.load("Shiptextures/AmiralB_J2.png", Texture.class);
+        manager.load("Shiptextures/AmiralBG_J2.png", Texture.class);
+        manager.load("Shiptextures/AmiralHG_J2.png", Texture.class);
+        manager.load("Shiptextures/AmiralH_end.png", Texture.class);
+        manager.load("Shiptextures/AmiralHD_end.png", Texture.class);
+        manager.load("Shiptextures/AmiralBD_end.png", Texture.class);
+        manager.load("Shiptextures/AmiralB_end.png", Texture.class);
+        manager.load("Shiptextures/AmiralBG_end.png", Texture.class);
+        manager.load("Shiptextures/AmiralHG_end.png", Texture.class);
 
         //Effects
         manager.load("Effects/explosion.png", Texture.class);

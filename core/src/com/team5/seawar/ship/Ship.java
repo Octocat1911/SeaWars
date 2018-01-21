@@ -7,7 +7,7 @@ import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
 import com.team5.seawar.utils.CanonCalcul;
 
-public class Ship{
+public abstract class Ship{
     private int maxLifePoints;
     private int currentLifePoints;
 
@@ -19,7 +19,7 @@ public class Ship{
 
     private ShipPosition shipPosition;
 
-    private Sprite sprite;
+    protected Sprite sprite;
 
     private boolean hasFired; //utilisé seulement pour rotationer un bateau
     private boolean canFire;
@@ -27,6 +27,8 @@ public class Ship{
 
     private Vector2 destination;
     private float speedAnimation = 0.05f;
+
+    protected int joueur;
 
     public Ship(int maxLifePoints, Canon mainCanon, Canon secondaryCanon, int maxMovements, int colonne, int ligne, ShipPosition.Orientation orientation){
         this.destination = new Vector2();
@@ -37,7 +39,7 @@ public class Ship{
         this.maxMovements = maxMovements;
         this.movements = maxMovements;
         this.shipPosition = new ShipPosition(colonne,ligne,orientation);
-        this.sprite = new Sprite(Assets.getInstance().getTexture("Shiptextures/ShipH.png"));
+        this.sprite = new Sprite(Assets.getInstance().getTexture("Maptextures/void.png"));
         if (colonne%2==0){
             sprite.setPosition(colonne * PlayScreen.hexWidth *3/4, ligne * PlayScreen.hexHeight);
         } else {
@@ -50,53 +52,7 @@ public class Ship{
         this.hasFired = false;
     }
 
-    public Sprite getSprite() {
-        switch (shipPosition.getOrientation()){
-            case TOP:
-                if (!hasFinished) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipH.png"));
-                } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipH2.png"));
-                }
-                break;
-            case TOP_RIGHT:
-                if (!hasFinished) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipHD.png"));
-                } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipHD2.png"));
-                }
-                break;
-            case BOTTOM_RIGHT:
-                if (!hasFinished) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipBD.png"));
-                } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipBD2.png"));
-                }
-                break;
-            case BOTTOM:
-                if (!hasFinished) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipB.png"));
-                } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipB2.png"));
-                }
-                break;
-            case BOTTOM_LEFT:
-                if (!hasFinished) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipBG.png"));
-                } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipBG2.png"));
-                }
-                break;
-            case TOP_LEFT:
-                if (!hasFinished) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipHG.png"));
-                } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/ShipHG2.png"));
-                }
-                break;
-        }
-        return sprite;
-    }
+    public abstract Sprite getSprite();
 
     public void move(Vector2 arrive){
         float deltaX = arrive.x - shipPosition.getColonne();
@@ -291,5 +247,9 @@ public class Ship{
                 break;
         }
         hasFinished = true;
+    }
+
+    public void setJoueur(int joueur){
+        this.joueur = joueur;
     }
 }
