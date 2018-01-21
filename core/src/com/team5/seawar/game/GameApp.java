@@ -28,8 +28,8 @@ public class GameApp extends Game {
 		MenuScreen.init(this);
 		batch = new SpriteBatch();
         Gdx.gl.glClearColor(0, 0, 0, 1);
-       	setScreen(new MapEditorScreen(this,new Map(7,6)));
-		//setScreen(MenuScreen.getInstance());
+       	//setScreen(new MapEditorScreen(this,new Map(7,6)));
+		setScreen(MenuScreen.getInstance());
 	}
 
 	@Override
