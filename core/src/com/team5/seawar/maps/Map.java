@@ -1,5 +1,6 @@
 package com.team5.seawar.maps;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -18,8 +19,15 @@ public class Map {
     protected int nbLighthouses;
 
     public Map(int colonne, int ligne) {
-        this.ligne = ligne;
-        this.colonne = colonne;
+        if(!(colonne<7) && !(ligne<6) && colonne<= 41 && ligne<= 40){
+            this.ligne = ligne;
+            this.colonne = colonne;
+        }
+        else{
+            System.err.println("Map size Error !");
+            Gdx.app.exit();
+        }
+
         tab = new Case[colonne][ligne];
     }
 
@@ -36,13 +44,13 @@ public class Map {
     }
 
     public void setColonne(int colonne) {
-        if(!(colonne<1)){
+        if(!(colonne<7) && colonne <=41){
             this.colonne = colonne;
         }
     }
 
     public void setLigne(int ligne) {
-        if(!(ligne<1)){
+        if(!(ligne<6) && ligne <=40){
             this.ligne = ligne;
         }
     }

@@ -55,7 +55,7 @@ public class MapEditorScreen extends PlayScreen {
         if(Inputs.isPressed(Inputs.DOWN)){
             this.map.setLigne(this.map.getLigne() - 1);
             this.map.init();
-            if(!(this.map.getLigne()<1)){
+            if(!(this.map.getLigne()<6)){
                 PlayScreen.position.y--;
             }
 
@@ -63,7 +63,7 @@ public class MapEditorScreen extends PlayScreen {
         if(Inputs.isPressed(Inputs.LEFT)){
             this.map.setColonne(this.map.getColonne() - 1);
             this.map.init();
-            if(!(this.map.getColonne()<1)){
+            if(!(this.map.getColonne()<6)){
                 PlayScreen.position.x--;
             }
 
@@ -76,7 +76,6 @@ public class MapEditorScreen extends PlayScreen {
         gameApp.getBatch().setProjectionMatrix(getCam().combined);
         gameApp.getBatch().begin();
         map.draw(gameApp.getBatch());
-        renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), position.x, position.y);
         gameApp.getBatch().end();
     }
 
