@@ -33,32 +33,25 @@ public class SizeEditionState implements State {
         if(Inputs.isPressed(Inputs.UP)){
             this.mapEditorScreen.getMap().setLigne(this.mapEditorScreen.getMap().getLigne() + 1);
             this.mapEditorScreen.getMap().init();
-            PlayScreen.position.y++;
         }
         if(Inputs.isPressed(Inputs.RIGHT)){
             this.mapEditorScreen.getMap().setColonne(this.mapEditorScreen.getMap().getColonne() + 1);
             this.mapEditorScreen.getMap().init();
-            PlayScreen.position.x++;
         }
         if(Inputs.isPressed(Inputs.DOWN)){
             this.mapEditorScreen.getMap().setLigne(this.mapEditorScreen.getMap().getLigne() - 1);
             this.mapEditorScreen.getMap().init();
-            if(!(this.mapEditorScreen.getMap().getLigne()<6)){
-                PlayScreen.position.y--;
-            }
-
         }
         if(Inputs.isPressed(Inputs.LEFT)){
             this.mapEditorScreen.getMap().setColonne(this.mapEditorScreen.getMap().getColonne() - 1);
             this.mapEditorScreen.getMap().init();
-            if(!(this.mapEditorScreen.getMap().getColonne()<6)){
-                PlayScreen.position.x--;
-            }
         }
         if(Inputs.isPressed(Inputs.START)){
             GlobalCam.getInstance().setCanGoToZoomCam(true);
             mapEditorScreen.setCamState(ZoomCam.getInstance());
             MapEditionState.setLightHouseNb(mapEditorScreen);
+            PlayScreen.position.x = mapEditorScreen.getMap().getColonne() - 1;
+            PlayScreen.position.y = mapEditorScreen.getMap().getLigne() - 1;
             mapEditorScreen.changeState(MapEditionState.getInstance());
         }
         mapEditorScreen.getMap().handleInput(mapEditorScreen.getCam(),mapEditorScreen.getViewport());
