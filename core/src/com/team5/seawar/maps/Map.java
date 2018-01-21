@@ -36,13 +36,13 @@ public class Map {
     }
 
     public void setColonne(int colonne) {
-        if(!(colonne<0)){
+        if(!(colonne<1)){
             this.colonne = colonne;
         }
     }
 
     public void setLigne(int ligne) {
-        if(!(ligne<0)){
+        if(!(ligne<1)){
             this.ligne = ligne;
         }
     }

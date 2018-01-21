@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.team5.seawar.inputHandler.InputHandler;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.inputHandler.XBoxHandler;
+import com.team5.seawar.maps.Map;
 import com.team5.seawar.screens.MapEditorScreen;
 import com.team5.seawar.screens.MenuScreen;
 import com.team5.seawar.utils.Assets;
@@ -27,7 +28,7 @@ public class GameApp extends Game {
 		MenuScreen.init(this);
 		batch = new SpriteBatch();
         Gdx.gl.glClearColor(0, 0, 0, 1);
-        setScreen(new MapEditorScreen(this));
+        setScreen(new MapEditorScreen(this,new Map(1,1)));
 	}
 
 	@Override

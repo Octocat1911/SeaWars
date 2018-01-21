@@ -87,10 +87,6 @@ public class Assets {
         //Effects
         manager.load("Effects/explosion.png", Texture.class);
 
-        //MapEditorScreen
-        manager.load("Maptextures/add.png", Texture.class);
-        manager.load("Maptextures/delete.png",Texture.class);
-
     }
 
     public Texture getTexture(String fileName){
