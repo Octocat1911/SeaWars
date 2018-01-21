@@ -79,8 +79,4 @@ public class MapEditorScreen extends PlayScreen {
         gameApp.getBatch().end();
     }
 
-    public void resize(int width, int height) {
-        getViewport().update(width, height);
-    }
-
 }
