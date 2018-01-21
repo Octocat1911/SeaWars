@@ -11,7 +11,7 @@ import com.team5.seawar.utils.Assets;
 public class MapEditionState implements State {
 
     private MapEditorScreen mapEditorScreen;
-    private int lightHouseNb = 3;
+    private static int lightHouseNb = 3;
 
     private static MapEditionState instance;
 
@@ -30,10 +30,24 @@ public class MapEditionState implements State {
         return instance;
     }
 
+    public static void setLightHouseNb(MapEditorScreen mapEditorScreen){
+        int mapSize = mapEditorScreen.getMap().getColonne() * mapEditorScreen.getMap().getLigne();
+        if(mapSize < 50){
+            lightHouseNb = 3;
+        }else if(mapSize > 50 && mapSize < 500){
+            lightHouseNb = 6;
+        }else if(mapSize > 500 && mapSize < 900){
+            lightHouseNb = 9;
+        }else if(mapSize> 900){
+            lightHouseNb = 12;
+        }
+    }
+
     public void handleInput(float dt){
         if(Inputs.isPressed(Inputs.START)){
             GlobalCam.getInstance().setCanGoToZoomCam(false);
             mapEditorScreen.setCamState(GlobalCam.getInstance());
+            mapEditorScreen.getMap().init();
             mapEditorScreen.changeState(SizeEditionState.getInstance());
         } if (Inputs.isPressed(Inputs.LEFT) && mapEditorScreen.position.x>0){
             mapEditorScreen.position.x--;

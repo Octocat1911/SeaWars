@@ -58,6 +58,7 @@ public class SizeEditionState implements State {
         if(Inputs.isPressed(Inputs.START)){
             GlobalCam.getInstance().setCanGoToZoomCam(true);
             mapEditorScreen.setCamState(ZoomCam.getInstance());
+            MapEditionState.setLightHouseNb(mapEditorScreen);
             mapEditorScreen.changeState(MapEditionState.getInstance());
         }
         mapEditorScreen.getMap().handleInput(mapEditorScreen.getCam(),mapEditorScreen.getViewport());

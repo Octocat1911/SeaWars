@@ -38,7 +38,7 @@ public class PlayScreen extends ScreenAdapter{
     private Animation explosionDegat;
     private Animation explosionMort;
     private BannièreNouveauTour bannièreNouveauTour;
-    private Music music;
+    protected Music music;
     private boolean debutJeu = true;
 
     public PlayScreen(final GameApp gameApp, Map map){
