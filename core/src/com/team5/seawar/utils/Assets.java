@@ -93,6 +93,8 @@ public class Assets {
         manager.load("UI/Joueur2.png", Texture.class);
         manager.load("UI/Tour1.png", Texture.class);
         manager.load("UI/Tour2.png", Texture.class);
+        manager.load("UI/VictoireJ1.png", Texture.class);
+        manager.load("UI/VictoireJ2.png", Texture.class);
 
         //Sounds
         manager.load("Sounds/menu_music.mp3", Music.class);
@@ -103,6 +105,8 @@ public class Assets {
         manager.load("Sounds/deplacement_bateau.ogg", Sound.class);
         manager.load("Sounds/tir_degat.ogg", Sound.class);
         manager.load("Sounds/tir_mort.ogg", Sound.class);
+        manager.load("Sounds/zoom.ogg", Sound.class);
+        manager.load("Sounds/dezoom.ogg", Sound.class);
 
     }
 

@@ -37,7 +37,7 @@ public class Player {
         while (ships.get(j).hasFinished()){
             j = (j+1)%ships.size;
         }
-        Assets.getInstance().getSound("Sounds/transition.ogg").play(.2f);
+        Assets.getInstance().getSound("Sounds/transition.ogg").play(.3f);
         return new Vector2(ships.get(j).getPosition().getColonne(), ships.get(j).getPosition().getLigne());
     }
 
@@ -46,7 +46,7 @@ public class Player {
         while (ships.get(j).hasFinished()){
             j = (j+1)%ships.size;
         }
-        Assets.getInstance().getSound("Sounds/transition.ogg").play(.2f);
+        Assets.getInstance().getSound("Sounds/transition.ogg").play(.3f);
         return new Vector2(ships.get(j).getPosition().getColonne(), ships.get(j).getPosition().getLigne());
     }
 }

@@ -3,6 +3,7 @@ package com.team5.seawar.cam;
 import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.screens.PlayScreen;
+import com.team5.seawar.utils.Assets;
 
 public class GlobalCam extends CamState {
 
@@ -28,6 +29,7 @@ public class GlobalCam extends CamState {
         zoom = Math.max(hexWidth * (1+(nbColonne-1) *.75f) / GameApp.WIDTH, hexHeight * (nbLigne+.5f) / GameApp.HEIGHT);
 
         if (Inputs.isPressed(Inputs.SELECT) && canGoToZoomCam){
+            Assets.getInstance().getSound("Sounds/zoom.ogg").play(.2f);
             playScreen.setCamState(ZoomCam.getInstance());
         }
         cam.zoom += (zoom - cam.zoom) * 0.02f;

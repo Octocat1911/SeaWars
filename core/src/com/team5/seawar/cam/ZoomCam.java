@@ -2,6 +2,7 @@ package com.team5.seawar.cam;
 
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.screens.PlayScreen;
+import com.team5.seawar.utils.Assets;
 
 public class ZoomCam extends CamState {
 
@@ -25,6 +26,7 @@ public class ZoomCam extends CamState {
         nbLigne = playScreen.getMap().getLigne();
 
         if (Inputs.isPressed(Inputs.SELECT)){
+            Assets.getInstance().getSound("Sounds/dezoom.ogg").play(.2f);
             playScreen.setCamState(GlobalCam.getInstance());
         }
         cam.zoom += (zoom - cam.zoom) * 0.02f;
