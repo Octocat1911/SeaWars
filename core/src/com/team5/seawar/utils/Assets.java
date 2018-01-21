@@ -3,6 +3,8 @@ package com.team5.seawar.utils;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 
+import java.awt.*;
+
 public class Assets {
     private AssetManager manager = new AssetManager();
 
@@ -60,6 +62,10 @@ public class Assets {
 
         //Effects
         manager.load("Effects/explosion.png", Texture.class);
+
+        //MapEditorScreen
+        manager.load("Maptextures/add.png", Texture.class);
+        manager.load("Maptextures/delete.png",Texture.class);
 
     }
 

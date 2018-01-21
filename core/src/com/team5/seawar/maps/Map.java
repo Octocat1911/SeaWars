@@ -8,7 +8,7 @@ import com.team5.seawar.objects.Element;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.ship.Ship;
 
-public abstract class Map {
+public class Map {
     protected Player player1;
     protected Player player2;
 
@@ -33,6 +33,18 @@ public abstract class Map {
 
     public Case getCase(int j, int i){
         return tab[j][i];
+    }
+
+    public void setColonne(int colonne) {
+        if(!(colonne<0)){
+            this.colonne = colonne;
+        }
+    }
+
+    public void setLigne(int ligne) {
+        if(!(ligne<0)){
+            this.ligne = ligne;
+        }
     }
 
     public void draw(SpriteBatch sb){
@@ -62,6 +74,15 @@ public abstract class Map {
         }
         for (Ship ship: player2.getShips()){
             ship.update(dt);
+        }
+    }
+
+    public void init(){
+        tab = new Case[colonne][ligne];
+        for(int i = 0;i< colonne;i++){
+            for(int j = 0; j < ligne;j++){
+                tab[i][j] = new Case(Element.Type.WATER,i,j);
+            }
         }
     }
 
