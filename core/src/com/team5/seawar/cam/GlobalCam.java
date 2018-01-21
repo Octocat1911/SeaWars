@@ -22,6 +22,10 @@ public class GlobalCam extends CamState {
 
 
     public void update(float dt) {
+        nbColonne = playScreen.getMap().getColonne();
+        nbLigne = playScreen.getMap().getLigne();
+        zoom = Math.max(hexWidth * (1+(nbColonne-1) *.75f) / GameApp.WIDTH, hexHeight * (nbLigne+.5f) / GameApp.HEIGHT);
+
         if (Inputs.isPressed(Inputs.SELECT)){
             playScreen.setCamState(ZoomCam.getInstance());
         }

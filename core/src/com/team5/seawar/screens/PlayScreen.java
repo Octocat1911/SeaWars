@@ -119,6 +119,10 @@ public class PlayScreen extends ScreenAdapter{
         return cam;
     }
 
+    public Viewport getViewport() {
+        return viewport;
+    }
+
     public Vector2 getPosition() {
         return position;
     }
@@ -137,6 +141,10 @@ public class PlayScreen extends ScreenAdapter{
 
     public Animation getExplosion() {
         return explosion;
+    }
+
+    public CamState getCamState() {
+        return camState;
     }
 }
 

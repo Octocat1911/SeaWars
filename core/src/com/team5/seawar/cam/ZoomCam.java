@@ -21,6 +21,9 @@ public class ZoomCam extends CamState {
     }
 
     public void update(float dt) {
+        nbColonne = playScreen.getMap().getColonne();
+        nbLigne = playScreen.getMap().getLigne();
+
         if (Inputs.isPressed(Inputs.SELECT)){
             playScreen.setCamState(GlobalCam.getInstance());
         }
