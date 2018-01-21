@@ -21,6 +21,8 @@ import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
 import com.team5.seawar.utils.BannièreNouveauTour;
 
+import java.util.Random;
+
 public class PlayScreen extends ScreenAdapter{
 
     private GameApp gameApp;
@@ -70,10 +72,35 @@ public class PlayScreen extends ScreenAdapter{
         explosionDegat  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosionDegat.png")), 43, .4f, hexWidth, hexHeight, 10, 5);
         explosionMort  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosionMort.png")), 50, .9f, hexWidth, hexHeight, -8, 5);
 
-        music = Assets.getInstance().getMusic("Sounds/playscreen_music.mp3");
-        music.setLooping(true);
-        music.setVolume(.3f);
+        Random random = new Random();
+        int randomNumber = random.nextInt(3);
+        System.out.println(randomNumber);
+        if(randomNumber == 0){
+            music = Assets.getInstance().getMusic("Sounds/playscreen_music.mp3");
+            music.setVolume(.3f);
+        }if(randomNumber == 1){
+            music = Assets.getInstance().getMusic("Sounds/playscreen_music2.mp3");
+            music.setVolume(.3f);
+        }if(randomNumber == 2){
+            music = Assets.getInstance().getMusic("Sounds/playscreen_music3.mp3");
+            music.setVolume(.2f);
+        }
         music.play();
+        music.setOnCompletionListener(new Music.OnCompletionListener() {
+            @Override
+            public void onCompletion(Music music1) {
+                Random random = new Random();
+                int randomNumber = random.nextInt(3);
+                System.out.println(randomNumber);
+                if(randomNumber== 0){
+                    music = Assets.getInstance().getMusic("Sounds/playscreen_music.mp3");
+                }if(randomNumber == 1){
+                    music = Assets.getInstance().getMusic("Sounds/playscreen_music2.mp3");
+                }if(randomNumber == 2){
+                    music = Assets.getInstance().getMusic("Sounds/playscreen_music3.mp3");
+                }
+            }
+        });
 
     }
 

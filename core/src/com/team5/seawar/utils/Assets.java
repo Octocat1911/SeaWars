@@ -99,6 +99,7 @@ public class Assets {
         //Sounds
         manager.load("Sounds/menu_music.mp3", Music.class);
         manager.load("Sounds/playscreen_music.mp3", Music.class);
+        manager.load("Sounds/playscreen_music2.mp3",Music.class);
         manager.load("Sounds/choice.ogg", Sound.class);
         manager.load("Sounds/new_player.ogg", Sound.class);
         manager.load("Sounds/transition.ogg", Sound.class);
@@ -107,6 +108,7 @@ public class Assets {
         manager.load("Sounds/tir_mort.ogg", Sound.class);
         manager.load("Sounds/zoom.ogg", Sound.class);
         manager.load("Sounds/dezoom.ogg", Sound.class);
+        manager.load("Sounds/playscreen_music3.mp3",Music.class);
 
     }
 
