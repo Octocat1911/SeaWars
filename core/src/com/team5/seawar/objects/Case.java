@@ -39,6 +39,10 @@ public class Case {
         return position;
     }
 
+    public void setElement(Element element) {
+        this.element = element;
+    }
+
     public boolean isNavigable(){
         if (ship != null) {
             return false;

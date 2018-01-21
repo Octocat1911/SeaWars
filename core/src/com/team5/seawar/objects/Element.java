@@ -12,7 +12,7 @@ public class Element {
 
     private Type type;
 
-    public Element(Type type, int colonne, int ligne){
+    public Element(Type type, float colonne, float ligne){
         this.type = type;
         switch (type){
             case WATER:
