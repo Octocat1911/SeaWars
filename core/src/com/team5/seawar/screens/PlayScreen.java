@@ -94,10 +94,13 @@ public class PlayScreen extends ScreenAdapter{
                 System.out.println(randomNumber);
                 if(randomNumber== 0){
                     music = Assets.getInstance().getMusic("Sounds/playscreen_music.mp3");
+                    music.play();
                 }if(randomNumber == 1){
                     music = Assets.getInstance().getMusic("Sounds/playscreen_music2.mp3");
+                    music.play();
                 }if(randomNumber == 2){
                     music = Assets.getInstance().getMusic("Sounds/playscreen_music3.mp3");
+                    music.play();
                 }
             }
         });
