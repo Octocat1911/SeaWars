@@ -107,8 +107,10 @@ public class AttackTurn implements State{
             playScreen.getExplosionMort().startPosition(cible.getPosition().x, cible.getPosition().y);
             ennemie.getShips().removeValue(cible.getShip(), true);
             cible.deleteShip();
+            Assets.getInstance().getSound("Sounds/tir_mort.ogg").play(.1f);
         } else {
             playScreen.getExplosionDegat().startPosition(cible.getPosition().x, cible.getPosition().y);
+            Assets.getInstance().getSound("Sounds/tir_degat.ogg").play();
         }
         attaquant.getShip().attack(canon);
     }

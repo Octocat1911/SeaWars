@@ -3,6 +3,7 @@ package com.team5.seawar.player;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.ship.Ship;
+import com.team5.seawar.utils.Assets;
 
 public class Player {
     private Array<Ship> ships;
@@ -36,6 +37,7 @@ public class Player {
         while (ships.get(j).hasFinished()){
             j = (j+1)%ships.size;
         }
+        Assets.getInstance().getSound("Sounds/transition.ogg").play(.2f);
         return new Vector2(ships.get(j).getPosition().getColonne(), ships.get(j).getPosition().getLigne());
     }
 
@@ -44,6 +46,7 @@ public class Player {
         while (ships.get(j).hasFinished()){
             j = (j+1)%ships.size;
         }
+        Assets.getInstance().getSound("Sounds/transition.ogg").play(.2f);
         return new Vector2(ships.get(j).getPosition().getColonne(), ships.get(j).getPosition().getLigne());
     }
 }

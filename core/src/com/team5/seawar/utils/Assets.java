@@ -98,6 +98,11 @@ public class Assets {
         manager.load("Sounds/menu_music.mp3", Music.class);
         manager.load("Sounds/playscreen_music.mp3", Music.class);
         manager.load("Sounds/choice.ogg", Sound.class);
+        manager.load("Sounds/new_player.ogg", Sound.class);
+        manager.load("Sounds/transition.ogg", Sound.class);
+        manager.load("Sounds/deplacement_bateau.ogg", Sound.class);
+        manager.load("Sounds/tir_degat.ogg", Sound.class);
+        manager.load("Sounds/tir_mort.ogg", Sound.class);
 
     }
 

@@ -39,6 +39,7 @@ public class PlayScreen extends ScreenAdapter{
     private Animation explosionMort;
     private BannièreNouveauTour bannièreNouveauTour;
     private Music music;
+    private boolean debutJeu = true;
 
     public PlayScreen(final GameApp gameApp, Map map){
         this.gameApp = gameApp;
@@ -93,6 +94,10 @@ public class PlayScreen extends ScreenAdapter{
     }
 
     public void update(float dt){
+        if (debutJeu){
+            Assets.getInstance().getSound("Sounds/new_player.ogg").play(.5f);
+            debutJeu = false;
+        }
         handleInput();
         map.update(dt);
         camState.update(dt);

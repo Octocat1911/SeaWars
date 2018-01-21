@@ -61,5 +61,6 @@ public class ShipSelect implements State {
         player.newTurn();
         playScreen.getPosition().set(player.nextShip());
         playScreen.getBannièreNouveauTour().start();
+        Assets.getInstance().getSound("Sounds/new_player.ogg").play(.5f);
     }
 }

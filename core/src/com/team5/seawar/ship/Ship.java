@@ -91,6 +91,7 @@ public abstract class Ship{
         if (!canMove() && !canFire){
             hasFinished = true;
         }
+        Assets.getInstance().getSound("Sounds/deplacement_bateau.ogg").play(.2f);
     }
 
     public void setMainCanon(Canon mainCanon) {
