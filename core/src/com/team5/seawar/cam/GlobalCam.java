@@ -7,8 +7,10 @@ import com.team5.seawar.screens.PlayScreen;
 public class GlobalCam extends CamState {
 
     private static GlobalCam instance = new GlobalCam();
+    private boolean canGoToZoomCam;
 
     private GlobalCam(){
+        canGoToZoomCam = true;
     }
 
     public static GlobalCam getInstance() {
@@ -20,13 +22,12 @@ public class GlobalCam extends CamState {
         zoom = Math.max(hexWidth * (1+(nbColonne-1) *.75f) / GameApp.WIDTH, hexHeight * (nbLigne+.5f) / GameApp.HEIGHT);
     }
 
-
     public void update(float dt) {
         nbColonne = playScreen.getMap().getColonne();
         nbLigne = playScreen.getMap().getLigne();
         zoom = Math.max(hexWidth * (1+(nbColonne-1) *.75f) / GameApp.WIDTH, hexHeight * (nbLigne+.5f) / GameApp.HEIGHT);
 
-        if (Inputs.isPressed(Inputs.SELECT)){
+        if (Inputs.isPressed(Inputs.SELECT) && canGoToZoomCam){
             playScreen.setCamState(ZoomCam.getInstance());
         }
         cam.zoom += (zoom - cam.zoom) * 0.02f;
@@ -34,6 +35,10 @@ public class GlobalCam extends CamState {
                 ((nbLigne+.5f) * hexHeight / 2- cam.position.y) *0.03f,
                 0);
         cam.update();
+    }
+
+    public void setCanGoToZoomCam(boolean canGoToZoomCam) {
+        this.canGoToZoomCam = canGoToZoomCam;
     }
 }
 
