@@ -1,5 +1,6 @@
 package com.team5.seawar.screens.editorstates;
 
+import com.team5.seawar.cam.ZoomCam;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.objects.Element;
 import com.team5.seawar.screens.MapEditorScreen;
@@ -68,6 +69,7 @@ public class MapEditionState implements State {
     @Override
     public void update(float dt) {
         handleInput(dt);
+        mapEditorScreen.getCamState().update(dt);
     }
 
     @Override

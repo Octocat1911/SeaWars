@@ -45,7 +45,6 @@ public class MapEditorScreen extends PlayScreen {
 
     public void update(float dt){
         state.update(dt);
-        getCamState().update(dt);
     }
 
     @Override

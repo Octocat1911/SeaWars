@@ -1,5 +1,6 @@
 package com.team5.seawar.screens.editorstates;
 
+import com.team5.seawar.cam.ZoomCam;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.screens.MapEditorScreen;
 import com.team5.seawar.screens.PlayScreen;
@@ -55,6 +56,7 @@ public class SizeEditionState implements State {
         }
         if(Inputs.isPressed(Inputs.START)){
             mapEditorScreen.changeState(MapEditionState.getInstance());
+            mapEditorScreen.setCamState(ZoomCam.getInstance());
         }
         mapEditorScreen.getMap().handleInput(mapEditorScreen.getCam(),mapEditorScreen.getViewport());
     }
@@ -62,6 +64,7 @@ public class SizeEditionState implements State {
     @Override
     public void update(float dt) {
         handleInput(dt);
+        mapEditorScreen.getCamState().update(dt);
     }
 
     @Override
