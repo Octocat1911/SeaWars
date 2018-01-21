@@ -21,13 +21,13 @@ import com.team5.seawar.utils.Assets;
 
 public class PlayScreen extends ScreenAdapter{
 
-    private GameApp gameApp;
-    private Map map;
+    protected GameApp gameApp;
+    protected Map map;
     private State state;
-    private CamState camState;
+    protected CamState camState;
     public static Vector2 position;
-    private OrthographicCamera cam;
-    private Viewport viewport;
+    protected OrthographicCamera cam;
+    protected Viewport viewport;
     public static final float SCALE = 12;
     public static final float hexWidth = Assets.getInstance().getTexture("Maptextures/hexEau.png").getWidth()/SCALE;
     public static final float hexHeight = Assets.getInstance().getTexture("Maptextures/hexEau.png").getHeight()/SCALE;

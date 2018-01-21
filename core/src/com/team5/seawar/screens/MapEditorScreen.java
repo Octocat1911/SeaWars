@@ -19,23 +19,12 @@ import com.team5.seawar.utils.Assets;
 
 public class MapEditorScreen extends PlayScreen {
 
-    private GameApp gameApp;
-    private OrthographicCamera cam;
-    private CamState camState;
-    private Viewport viewport;
     private Map map;
-    public static Vector2 position;
-    public static final float SCALE = 12;
-    public static final float hexWidth = Assets.getInstance().getTexture("Maptextures/hexEau.png").getWidth()/SCALE;
-    public static final float hexHeight = Assets.getInstance().getTexture("Maptextures/hexEau.png").getHeight()/SCALE;
+
 
     public MapEditorScreen(GameApp gameApp, Map map){
         super(gameApp,map);
         this.map = map;
-        this.gameApp = gameApp;
-        this.cam = new OrthographicCamera();
-        this.cam.position.set(GameApp.WIDTH/2f, GameApp.HEIGHT/2f, 0);
-        this.viewport = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, cam);
         this.map.init();
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
         cam.position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);

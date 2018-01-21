@@ -18,12 +18,12 @@ public abstract class CamState {
 
     public void init(PlayScreen playScreen){
         this.playScreen = playScreen;
-        cam = playScreen.getCam();
-        nbColonne = playScreen.getMap().getColonne();
-        nbLigne = playScreen.getMap().getLigne();
-        hexHeight = PlayScreen.hexHeight;
-        hexWidth = PlayScreen.hexWidth;
-        position = playScreen.getPosition();
+        this.cam = playScreen.getCam();
+        this.nbColonne = playScreen.getMap().getColonne();
+        this.nbLigne = playScreen.getMap().getLigne();
+        this.hexHeight = PlayScreen.hexHeight;
+        this.hexWidth = PlayScreen.hexWidth;
+        this.position = playScreen.getPosition();
     }
 
     public abstract void update(float dt);
