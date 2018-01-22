@@ -34,13 +34,14 @@ public class StartScreen extends ScreenAdapter {
         this.viewport = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, cam);
         this.videoPlayer = VideoPlayerCreator.createVideoPlayer();
         try {
-            this.videoPlayer.play(Gdx.files.internal("Menutextures/test.webm"));
+            this.videoPlayer.play(Gdx.files.internal("Menutextures/credit.webm"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         this.videoPlayer.setOnCompletionListener(new VideoPlayer.CompletionListener() {
             @Override
             public void onCompletionListener(FileHandle file) {
+                MenuScreen.init(gameApp);
                 gameApp.setScreen(MenuScreen.getInstance());
             }
         });
@@ -63,6 +64,7 @@ public class StartScreen extends ScreenAdapter {
     public void handleInput(float dt){
         if(Inputs.isPressed(Inputs.SELECT) || Inputs.isPressed(Inputs.CLICK )|| Inputs.isPressed(Inputs.START)){
             videoPlayer.stop();
+            MenuScreen.init(gameApp);
             gameApp.setScreen(MenuScreen.getInstance());
         }
     }

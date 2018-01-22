@@ -10,6 +10,7 @@ import com.team5.seawar.inputHandler.XBoxHandler;
 import com.team5.seawar.maps.Map;
 import com.team5.seawar.screens.MapEditorScreen;
 import com.team5.seawar.screens.MenuScreen;
+import com.team5.seawar.screens.StartScreen;
 import com.team5.seawar.utils.Assets;
 
 public class GameApp extends Game {
@@ -25,11 +26,12 @@ public class GameApp extends Game {
 		new InputHandler();
 		Assets.getInstance().load();
 		Assets.getInstance().finishLoading();
-		MenuScreen.init(this);
+		//MenuScreen.init(this);
 		batch = new SpriteBatch();
         Gdx.gl.glClearColor(0, 0, 0, 1);
        	//setScreen(new MapEditorScreen(this,new Map(7,6)));
-		setScreen(MenuScreen.getInstance());
+		//setScreen(MenuScreen.getInstance());
+		setScreen(new StartScreen(this));
 	}
 
 	@Override
