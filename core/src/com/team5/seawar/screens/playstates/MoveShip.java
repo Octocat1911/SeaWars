@@ -143,7 +143,11 @@ public class MoveShip implements State{
                 majPortee();
                 majPorteeMax();
                 if (!caseSelected.getShip().canMove()){
-                    playScreen.changeState(AttackTurn.getInstance(caseSelected, player, ennemie));
+                    if (caseSelected.getShip().canFire()) {
+                        playScreen.changeState(AttackTurn.getInstance(caseSelected, player, ennemie));
+                    } else {
+                        playScreen.changeState(ShipSelect.getInstance());
+                    }
                 }
             } else {
                 playScreen.changeState(ShipSelect.getInstance());
