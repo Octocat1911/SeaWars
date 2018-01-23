@@ -219,4 +219,12 @@ public class PlayScreen extends ScreenAdapter{
     public CamState getCamState() {
         return camState;
     }
+
+    public GameApp getGameApp() {
+        return gameApp;
+    }
+
+    public Music getMusic() {
+        return music;
+    }
 }

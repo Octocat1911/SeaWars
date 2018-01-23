@@ -93,7 +93,6 @@ public class MenuScreen extends ScreenAdapter {
         menu_music = Assets.getInstance().getMusic("Sounds/menu_music.mp3");
         menu_music.setLooping(true);
         menu_music.setVolume(.3f);
-        menu_music.play();
     }
 
     public static void init(GameApp gameApp){
@@ -103,6 +102,7 @@ public class MenuScreen extends ScreenAdapter {
     }
 
     public static MenuScreen getInstance(){
+        instance.menu_music.play();
         return instance;
     }
 
@@ -129,6 +129,5 @@ public class MenuScreen extends ScreenAdapter {
     public void resize(int width, int height) {
         viewport.update(width, height);
     }
-
 
 }
