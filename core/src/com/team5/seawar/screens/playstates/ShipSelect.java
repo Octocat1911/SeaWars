@@ -48,7 +48,7 @@ public class ShipSelect implements State {
     }
 
     public void drawUI(){
-        playScreen.getBatch().draw(Assets.getInstance().getTexture("UI/ShipSelect.png"), 1280-428/1.5f-200, 50, 428/1.35f, 206/1.35f);
+        playScreen.getBatch().draw(Assets.getInstance().getTexture("UI/ShipSelect.png"), 1280-428/1.5f-125, 35, 1787/5, 760/5);
     }
 
     public void newTurn() {

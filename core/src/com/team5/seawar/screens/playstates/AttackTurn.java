@@ -90,7 +90,7 @@ public class AttackTurn implements State{
     }
 
     public void drawUI(){
-
+        playScreen.getBatch().draw(Assets.getInstance().getTexture("UI/AttackTurn.png"), 1280-428/1.5f-125, 35, 1787/5, 760/5);
     }
 
     public void majAccessible(){
