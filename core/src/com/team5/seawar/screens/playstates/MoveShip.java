@@ -166,11 +166,13 @@ public class MoveShip implements State{
     }
 
     public void draw(){
-        for (Case c : accessible){
-            playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPortee.png"), c.getPosition().x, c.getPosition().y);
-        }
-        for (Case c : accessibleMax){
-            playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPorteeMax.png"), c.getPosition().x, c.getPosition().y);
+        if (caseSelected.getShip().canMove()) {
+            for (Case c : accessible) {
+                playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPortee.png"), c.getPosition().x, c.getPosition().y);
+            }
+            for (Case c : accessibleMax) {
+                playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPorteeMax.png"), c.getPosition().x, c.getPosition().y);
+            }
         }
         playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexSelected.png"), caseSelected.getPosition().x, caseSelected.getPosition().y);
     }

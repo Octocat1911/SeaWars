@@ -7,15 +7,15 @@ import com.badlogic.gdx.InputAdapter;
 public class InputHandler extends InputAdapter{
 
     public static final int A = Input.Keys.A;
-    public static final int B = Input.Keys.B;
+    public static final int B = Input.Keys.Z;
     public static final int X = Input.Keys.X;
-    public static final int Y = Input.Keys.Y;
-    public static final int L1 = Input.Keys.L;
-    public static final int L2 = Input.Keys.L;
-    public static final int R1 = Input.Keys.R;
-    public static final int R2 = Input.Keys.R;
-    public static final int SELECT = Input.Keys.ESCAPE;
-    public static final int START = Input.Keys.ENTER;
+    public static final int Y = Input.Keys.E;
+    public static final int L1 = Input.Keys.Q;
+    public static final int L2 = Input.Keys.T;
+    public static final int R1 = Input.Keys.D;
+    public static final int R2 = Input.Keys.Y;
+    public static final int SELECT = Input.Keys.TAB;
+    public static final int START = Input.Keys.SPACE;
     public static final int UP = Input.Keys.UP;
     public static final int DOWN = Input.Keys.DOWN;
     public static final int LEFT = Input.Keys.LEFT;
