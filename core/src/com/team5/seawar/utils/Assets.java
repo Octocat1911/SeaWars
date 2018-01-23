@@ -97,12 +97,9 @@ public class Assets {
         manager.load("UI/Victoire_1_2.png", Texture.class);
         manager.load("UI/Victoire_2_1.png", Texture.class);
         manager.load("UI/Victoire_2_2.png", Texture.class);
-        manager.load("UI/ShipSelectJ1.png", Texture.class);
-        manager.load("UI/ShipSelectJ2.png", Texture.class);
-        manager.load("UI/MoveShipJ1.png", Texture.class);
-        manager.load("UI/MoveShipJ2.png", Texture.class);
-        manager.load("UI/AttackTurnJ1.png", Texture.class);
-        manager.load("UI/AttackTurnJ2.png", Texture.class);
+        manager.load("UI/ShipSelect.png", Texture.class);
+        manager.load("UI/MoveShip.png", Texture.class);
+        manager.load("UI/AttackTurn.png", Texture.class);
 
         //Sounds
         manager.load("Sounds/menu_music.mp3", Music.class);

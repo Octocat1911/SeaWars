@@ -17,6 +17,7 @@ import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map;
 import com.team5.seawar.objects.Case;
 import com.team5.seawar.screens.playstates.*;
+import com.team5.seawar.screens.uiState.UIState;
 import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
 import com.team5.seawar.utils.BanniereNouveauTour;
@@ -42,6 +43,7 @@ public class PlayScreen extends ScreenAdapter{
     private BanniereNouveauTour banniereNouveauTour;
     protected Music music;
     private boolean debutJeu = true;
+    private UIState uiState;
 
     public PlayScreen(final GameApp gameApp, Map map){
         this.gameApp = gameApp;
@@ -56,6 +58,8 @@ public class PlayScreen extends ScreenAdapter{
         EndGame.init(this);
 
         state = ShipSelect.getInstance();
+
+        uiState = new UIState(gameApp.getBatch());
 
         cam = new OrthographicCamera();
         cam.position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);

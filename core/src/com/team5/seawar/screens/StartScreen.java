@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.video.*;
 import com.badlogic.gdx.video.VideoPlayerCreator;
-import com.sun.media.jfxmedia.control.VideoRenderControl;
 import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.InputHandler;
 import com.team5.seawar.inputHandler.Inputs;
