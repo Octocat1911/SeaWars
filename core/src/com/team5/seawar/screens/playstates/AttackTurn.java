@@ -89,6 +89,10 @@ public class AttackTurn implements State{
         playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexSelected.png"), caseSelected.getPosition().x, caseSelected.getPosition().y);
     }
 
+    public void drawUI(){
+
+    }
+
     public void majAccessible(){
         accessible = new Array<Case>();
         Array<Vector2> portee = caseSelected.getShip().getRangeCanon(canon);

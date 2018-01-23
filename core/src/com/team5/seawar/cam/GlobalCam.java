@@ -20,6 +20,7 @@ public class GlobalCam extends CamState {
 
     public void init(PlayScreen playScreen) {
         super.init(playScreen);
+        canGoToZoomCam = true;
         zoom = Math.max(hexWidth * (1+(nbColonne-1) *.75f) / GameApp.WIDTH, hexHeight * (nbLigne+.5f) / GameApp.HEIGHT);
     }
 
@@ -43,4 +44,3 @@ public class GlobalCam extends CamState {
         this.canGoToZoomCam = canGoToZoomCam;
     }
 }
-

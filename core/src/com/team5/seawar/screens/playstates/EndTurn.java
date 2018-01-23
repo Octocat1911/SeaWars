@@ -60,4 +60,8 @@ public class EndTurn implements State {
     public void draw(){
 
     }
+
+    public void drawUI(){
+
+    }
 }

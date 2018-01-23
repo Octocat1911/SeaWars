@@ -151,6 +151,7 @@ public class PlayScreen extends ScreenAdapter{
 
         //UI
         gameApp.getBatch().setProjectionMatrix(camUI.combined);
+        state.drawUI();
         banniereNouveauTour.draw(gameApp.getBatch());
         gameApp.getBatch().end(); //
     }

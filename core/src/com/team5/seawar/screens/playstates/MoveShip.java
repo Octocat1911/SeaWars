@@ -177,6 +177,10 @@ public class MoveShip implements State{
         playScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexSelected.png"), caseSelected.getPosition().x, caseSelected.getPosition().y);
     }
 
+    public void drawUI(){
+
+    }
+
     public void moveShip(Case depart, Case arrive){
         caseSelected.getShip().move(arrive.getPosition());
         playScreen.getCurrentCase().addShip(caseSelected.getShip());

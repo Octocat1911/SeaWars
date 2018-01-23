@@ -4,5 +4,6 @@ public interface State {
 
     public void update(float dt);
     public void draw();
+    public void drawUI();
 
 }

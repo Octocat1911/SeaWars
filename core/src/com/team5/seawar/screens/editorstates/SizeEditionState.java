@@ -67,4 +67,8 @@ public class SizeEditionState implements State {
     public void draw() {
         mapEditorScreen.getMap().draw(mapEditorScreen.getBatch());
     }
+
+    public void drawUI(){
+
+    }
 }

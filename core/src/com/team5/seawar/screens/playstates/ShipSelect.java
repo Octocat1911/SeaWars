@@ -47,6 +47,9 @@ public class ShipSelect implements State {
     public void draw(){
     }
 
+    public void drawUI(){
+
+    }
 
     public void newTurn() {
         if (player.equals(playScreen.getMap().getPlayer1())) {

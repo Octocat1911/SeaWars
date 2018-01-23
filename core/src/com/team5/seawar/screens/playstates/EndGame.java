@@ -1,5 +1,6 @@
 package com.team5.seawar.screens.playstates;
 
+import com.team5.seawar.cam.GlobalCam;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.MenuScreen;
@@ -26,6 +27,8 @@ public class EndGame implements State {
             instance.winner = 2;
         }
         instance.type_victoire = type_victoire;
+        GlobalCam.getInstance().setCanGoToZoomCam(false);
+        instance.playScreen.setCamState(GlobalCam.getInstance());
         return instance;
     }
 
@@ -42,6 +45,9 @@ public class EndGame implements State {
     }
 
     public void draw(){
-        //playScreen.getBatch().draw(Assets.getInstance().getTexture("EngGame_"+winner+"_"+type_victoire+".png"), 0, 0);
+    }
+
+    public void drawUI(){
+        playScreen.getBatch().draw(Assets.getInstance().getTexture("UI/Victoire_"+winner+"_"+type_victoire+".png"), 0, 0);
     }
 }

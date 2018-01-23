@@ -94,4 +94,8 @@ public class MapEditionState implements State {
         mapEditorScreen.getMap().draw(mapEditorScreen.getBatch());
         mapEditorScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), mapEditorScreen.position.x, mapEditorScreen.position.y);
     }
+
+    public void drawUI(){
+
+    }
 }
