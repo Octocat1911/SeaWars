@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map1;
+import com.team5.seawar.objects.Case;
 import com.team5.seawar.utils.Action2DSprite;
 import com.team5.seawar.utils.ActionSprite;
 import com.team5.seawar.utils.Assets;
@@ -26,6 +27,8 @@ public class MenuScreen extends ScreenAdapter {
     private Action2DSprite creditButton;
     private Action2DSprite exitButton;
     private Music menu_music;
+    private enum Etat {PLAY, CREDIT, EXIT}
+    private Etat etat;
 
     private MenuScreen(final GameApp gameApp){
         this.gameApp = gameApp;
@@ -36,6 +39,7 @@ public class MenuScreen extends ScreenAdapter {
             @Override
             public void touchAction(Sprite sprite) {
                 sprite.setTexture(Assets.getInstance().getTexture("Menutextures/playpush.png"));
+                etat = Etat.PLAY;
             }
 
             @Override
@@ -53,6 +57,7 @@ public class MenuScreen extends ScreenAdapter {
             @Override
             public void touchAction(Sprite sprite) {
                 sprite.setTexture(Assets.getInstance().getTexture("Menutextures/creditpush.png"));
+                etat = Etat.CREDIT;
             }
 
             @Override
@@ -70,6 +75,7 @@ public class MenuScreen extends ScreenAdapter {
             @Override
             public void touchAction(Sprite sprite) {
                 sprite.setTexture(Assets.getInstance().getTexture("Menutextures/exitpush.png"));
+                etat = Etat.EXIT;
             }
 
             @Override
@@ -102,17 +108,57 @@ public class MenuScreen extends ScreenAdapter {
     }
 
     public static MenuScreen getInstance(){
+        instance.etat = Etat.PLAY;
         instance.menu_music.play();
         return instance;
     }
 
     public void handleInput(float dt){
-       Inputs.isTouched(playButton,cam,viewport);
-       Inputs.isJustClicked(playButton,cam,viewport);
-       Inputs.isTouched(creditButton,cam,viewport);
-       Inputs.isJustClicked(creditButton,cam,viewport);
-       Inputs.isTouched(exitButton,cam,viewport);
-       Inputs.isJustClicked(exitButton,cam,viewport);
+        Inputs.isTouched(playButton,cam,viewport);
+        Inputs.isJustClicked(playButton,cam,viewport);
+        Inputs.isTouched(creditButton,cam,viewport);
+        Inputs.isJustClicked(creditButton,cam,viewport);
+        Inputs.isTouched(exitButton,cam,viewport);
+        Inputs.isJustClicked(exitButton,cam,viewport);
+        if (Inputs.isPressed(Inputs.UP)){
+            switch (etat){
+                case PLAY:
+                    etat = Etat.EXIT;
+                    break;
+                case CREDIT:
+                    etat = Etat.PLAY;
+                    break;
+                case EXIT:
+                    etat = Etat.CREDIT;
+                    break;
+            }
+        }
+        if (Inputs.isPressed(Inputs.DOWN)){
+            switch (etat){
+                case PLAY:
+                    etat = Etat.CREDIT;
+                    break;
+                case CREDIT:
+                    etat = Etat.EXIT;
+                    break;
+                case EXIT:
+                    etat = Etat.PLAY;
+                    break;
+            }
+        }
+        if (Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.START)){
+            switch (etat){
+                case PLAY:
+                    playButton.clickedAction();
+                    break;
+                case CREDIT:
+                    creditButton.clickedAction();
+                    break;
+                case EXIT:
+                    exitButton.clickedAction();
+                    break;
+            }
+        }
     }
 
     public void render(float dt){
@@ -120,6 +166,18 @@ public class MenuScreen extends ScreenAdapter {
         gameApp.getBatch().setProjectionMatrix(cam.combined);
         gameApp.getBatch().begin();
         gameApp.getBatch().draw(background,0,0);
+        if (Inputs.mode == Inputs.Mode.INPUT_MODE){
+            switch (etat){
+                case PLAY:
+                    playButton.touchAction();
+                    break;
+                case CREDIT:
+                    creditButton.touchAction();
+                    break;
+                case EXIT:
+                    exitButton.touchAction();
+            }
+        }
         playButton.getSprite().draw(gameApp.getBatch());
         creditButton.getSprite().draw(gameApp.getBatch());
         exitButton.getSprite().draw(gameApp.getBatch());
