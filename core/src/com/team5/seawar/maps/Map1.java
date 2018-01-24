@@ -1,15 +1,11 @@
 package com.team5.seawar.maps;
 
 
-import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.objects.Case;
 import com.team5.seawar.objects.Element;
 import com.team5.seawar.player.Player;
-import com.team5.seawar.ship.Amiral;
-import com.team5.seawar.ship.Fregate;
 import com.team5.seawar.ship.Ship;
 import com.team5.seawar.ship.ShipPosition;
-import com.team5.seawar.utils.Assets;
 
 public class Map1 extends Map {
 
@@ -34,13 +30,13 @@ public class Map1 extends Map {
         player1 = new Player();
         player2 = new Player();
 
-        player1.getShips().add(new Fregate(0,10, ShipPosition.Orientation.BOTTOM_RIGHT));
-        player1.getShips().add(new Amiral(1,10, ShipPosition.Orientation.BOTTOM_RIGHT));
-        player1.getShips().add(new Fregate(3, 10, ShipPosition.Orientation.BOTTOM));
+        player1.getShips().add(new Ship(0,10, ShipPosition.Orientation.BOTTOM_RIGHT, Ship.Type.FREGATE));
+        player1.getShips().add(new Ship(1,10, ShipPosition.Orientation.BOTTOM_RIGHT, Ship.Type.AMIRAL));
+        player1.getShips().add(new Ship(3, 10, ShipPosition.Orientation.BOTTOM, Ship.Type.FREGATE));
 
-        player2.getShips().add(new Amiral(12,0, ShipPosition.Orientation.TOP_LEFT));
-        player2.getShips().add(new Fregate(12,1, ShipPosition.Orientation.TOP_LEFT));
-        player2.getShips().add(new Fregate(10, 0, ShipPosition.Orientation.TOP));
+        player2.getShips().add(new Ship(12,0, ShipPosition.Orientation.TOP_LEFT, Ship.Type.AMIRAL));
+        player2.getShips().add(new Ship(12,1, ShipPosition.Orientation.TOP_LEFT, Ship.Type.FREGATE));
+        player2.getShips().add(new Ship(10, 0, ShipPosition.Orientation.TOP, Ship.Type.FREGATE));
 
         for (Ship ship : player1.getShips()){
             getCase(ship.getPosition().getColonne(), ship.getPosition().getLigne()).addShip(ship);

@@ -1,6 +1,5 @@
 package com.team5.seawar.ship;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -8,7 +7,7 @@ import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
 import com.team5.seawar.utils.CanonCalcul;
 
-public abstract class Ship{
+public class Ship{
     private int maxLifePoints;
     private int currentLifePoints;
 
@@ -32,14 +31,11 @@ public abstract class Ship{
     protected float posX;
     protected float posY;
 
-    public Ship(int maxLifePoints, Canon mainCanon, Canon secondaryCanon, int maxMovements, int colonne, int ligne, ShipPosition.Orientation orientation){
+    public enum Type {AMIRAL, FREGATE}
+    private Type type;
+
+    public Ship(int colonne, int ligne, ShipPosition.Orientation orientation, Type type){
         this.destination = new Vector2();
-        this.maxLifePoints = maxLifePoints;
-        this.currentLifePoints = maxLifePoints;
-        this.mainCanon = mainCanon;
-        this.secondaryCanon = secondaryCanon;
-        this.maxMovements = maxMovements;
-        this.movements = maxMovements;
         this.shipPosition = new ShipPosition(colonne,ligne,orientation);
         this.posX = colonne * PlayScreen.hexWidth *3/4;
         if (colonne%2==0){
@@ -52,9 +48,111 @@ public abstract class Ship{
         this.hasFinished = false;
         this.canFire = true;
         this.hasFired = false;
+        this.type = type;
+
+        if (type == Type.AMIRAL){
+            this.maxLifePoints = 100;
+            this.maxMovements = 3;
+            Array<Vector2> lprincipal = new Array<Vector2>();
+            lprincipal.add(new Vector2(0,1));
+            lprincipal.add(new Vector2(0,2));
+            lprincipal.add(new Vector2(0,3));
+            lprincipal.add(new Vector2(0,4));
+            Canon principal = new Canon(lprincipal, 50,3);
+            this.setMainCanon(principal);
+
+            Array<Vector2> lsecondaire = new Array<Vector2>();
+            lsecondaire.add(new Vector2(0,1));
+            lsecondaire.add(new Vector2(0,2));
+            lsecondaire.add(new Vector2(1,0));
+            lsecondaire.add(new Vector2(-1,0));
+            lsecondaire.add(new Vector2(1,1));
+            lsecondaire.add(new Vector2(-1,1));
+            Canon secondaire = new Canon(lsecondaire, 30,1);
+            this.setSecondaryCanon(secondaire);
+        } else {
+            this.maxLifePoints = 50;
+            this.maxMovements = 6;
+            Array<Vector2> lprincipal = new Array<Vector2>();
+            lprincipal.add(new Vector2(0,1));
+            lprincipal.add(new Vector2(0,2));
+            lprincipal.add(new Vector2(1,0));
+            lprincipal.add(new Vector2(-1,0));
+            lprincipal.add(new Vector2(1,-1));
+            lprincipal.add(new Vector2(-1,-1));
+            Canon principal = new Canon(lprincipal, 30,1);
+            this.setMainCanon(principal);
+
+            Array<Vector2> lsecondaire = new Array<Vector2>();
+            lsecondaire.add(new Vector2(0,1));
+            lsecondaire.add(new Vector2(1,0));
+            lsecondaire.add(new Vector2(-1,0));
+            lsecondaire.add(new Vector2(1,-1));
+            lsecondaire.add(new Vector2(-1,-1));
+            lsecondaire.add(new Vector2(0,-1));
+            Canon secondaire = new Canon(lsecondaire, 10,0);
+            this.setSecondaryCanon(secondaire);
+        }
+        this.currentLifePoints = maxLifePoints;
+        this.movements = maxMovements;
     }
 
-    public abstract void draw(SpriteBatch sb);
+    public  void draw(SpriteBatch sb){
+        String navire = "";
+        switch (type){
+            case AMIRAL:
+                navire = "Amiral";
+                break;
+            case FREGATE:
+                navire = "Fregate";
+                break;
+        }
+        switch (getPosition().getOrientation()){
+            case TOP:
+                if (!hasFinished()) {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"H_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                } else {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"H_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                }
+                break;
+            case TOP_RIGHT:
+                if (!hasFinished()) {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"HD_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                } else {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"HD_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                }
+                break;
+            case BOTTOM_RIGHT:
+                if (!hasFinished()) {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"BD_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                } else {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"BD_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                }
+                break;
+            case BOTTOM:
+                if (!hasFinished()) {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"B_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                } else {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"B_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                }
+                break;
+            case BOTTOM_LEFT:
+                if (!hasFinished()) {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"BG_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                } else {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"BG_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                }
+                break;
+            case TOP_LEFT:
+                if (!hasFinished()) {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"HG_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                } else {
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/"+navire+"HG_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
+                }
+                break;
+        }
+
+    }
 
     public void move(Vector2 arrive){
         float deltaX = arrive.x - shipPosition.getColonne();

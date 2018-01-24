@@ -10,8 +10,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map1;
-import com.team5.seawar.maps.Map2;
-import com.team5.seawar.objects.Case;
 import com.team5.seawar.utils.Action2DSprite;
 import com.team5.seawar.utils.ActionSprite;
 import com.team5.seawar.utils.Assets;
