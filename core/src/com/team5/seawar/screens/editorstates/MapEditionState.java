@@ -67,18 +67,24 @@ public class MapEditionState implements State {
             }
             mapEditorScreen.getCurrentCase().setElement(new Element(Element.Type.DIRT,mapEditorScreen.position.x,mapEditorScreen.position.y));
         }
-        if(Inputs.isPressed(Inputs.B)){
+        if(Inputs.isPressed(Inputs.X)){
             if(lightHouseNb > 0){
                 lightHouseNb --;
                 mapEditorScreen.getCurrentCase().setElement(new Element(Element.Type.LIGHTHOUSE,mapEditorScreen.position.x,mapEditorScreen.position.y));
             }
 
         }
-        if(Inputs.isPressed(Inputs.X)){
+        if(Inputs.isPressed(Inputs.B)){
             if(mapEditorScreen.getCurrentCase().getElement().getType() == Element.Type.LIGHTHOUSE){
                 lightHouseNb ++;
             }
             mapEditorScreen.getCurrentCase().setElement(new Element(Element.Type.WATER,mapEditorScreen.position.x,mapEditorScreen.position.y));
+        }
+        if(Inputs.isPressed(Inputs.Y)){
+            if(mapEditorScreen.getCurrentCase().getElement().getType() == Element.Type.LIGHTHOUSE){
+                lightHouseNb ++;
+            }
+            mapEditorScreen.getCurrentCase().setElement(new Element(Element.Type.VOID,mapEditorScreen.position.x,mapEditorScreen.position.y));
         }
         mapEditorScreen.getMap().handleInput(mapEditorScreen.getCam(), mapEditorScreen.getViewport());
     }
