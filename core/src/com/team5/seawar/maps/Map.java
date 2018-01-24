@@ -57,15 +57,15 @@ public class Map {
     }
 
     public void setColonne(int colonne) {
-        //if(!(colonne<7) && colonne <=41){
+        if(!(colonne<7) && colonne <=41){
             this.colonne = colonne;
-        //}
+        }
     }
 
     public void setLigne(int ligne) {
-       // if(!(ligne<6) && ligne <=40){
+       if(!(ligne<6) && ligne <=40){
             this.ligne = ligne;
-       // }
+       }
     }
 
     public void draw(SpriteBatch sb){
