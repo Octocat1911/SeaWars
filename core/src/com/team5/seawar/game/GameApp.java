@@ -35,7 +35,7 @@ public class GameApp extends Game {
         Gdx.gl.glClearColor(0, 0, 0, 1);
        	//setScreen(new MapEditorScreen(this,new Map(7,6)));
 		//setScreen(MenuScreen.getInstance());
-		//setScreen(new StartScreen(this));
+		setScreen(new StartScreen(this));
 		//setScreen(MapSelectScreen.getInstance());
 	}
 
