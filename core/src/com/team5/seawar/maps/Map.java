@@ -3,20 +3,26 @@ package com.team5.seawar.maps;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.objects.Case;
 import com.team5.seawar.objects.Element;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.ship.Ship;
+import com.team5.seawar.utils.Save;
 
 public class Map {
+
     protected Player player1;
     protected Player player2;
 
-    protected int colonne;
-    protected int ligne;
     protected Case tab[][];
     protected int nbLighthouses;
+
+    private int colonne;
+    private int ligne;
+
+    public Map(){}
 
     public Map(int colonne, int ligne) {
         if(!(colonne<7) && !(ligne<6) && colonne<= 41 && ligne<= 40){
@@ -32,11 +38,11 @@ public class Map {
     }
 
     public int getColonne() {
-        return colonne;
+        return (int)colonne;
     }
 
     public int getLigne() {
-        return ligne;
+        return (int)ligne;
     }
 
     public Case getCase(int j, int i){
@@ -44,15 +50,15 @@ public class Map {
     }
 
     public void setColonne(int colonne) {
-        if(!(colonne<7) && colonne <=41){
+        //if(!(colonne<7) && colonne <=41){
             this.colonne = colonne;
-        }
+        //}
     }
 
     public void setLigne(int ligne) {
-        if(!(ligne<6) && ligne <=40){
+       // if(!(ligne<6) && ligne <=40){
             this.ligne = ligne;
-        }
+       // }
     }
 
     public void draw(SpriteBatch sb){
@@ -106,7 +112,7 @@ public class Map {
         return nbLighthouses;
     }
 
-    protected void majNbLighthouses(){
+    public void majNbLighthouses(){
         int nb = 0;
         for (int i=0; i<colonne; i++){
             for (int j=0; j<ligne; j++) {
@@ -118,6 +124,33 @@ public class Map {
             nbLighthouses = nb;
         } else {
             nbLighthouses = -1;
+        }
+    }
+
+    /*public void save(){
+        Json json = new Json();
+        json.toJson(this, Gdx.files.absolute("C:/Seawars/test.txt"));
+    }*/
+
+    public void save(){
+        Json json = new Json();
+        json.toJson(new Save(this), Gdx.files.absolute("C:/Seawars/test.txt"));
+    }
+
+    public void load(){
+        for (int i=0; i<colonne; i++){
+            for (int j=0; j<ligne; j++) {
+                getCase(i,j).deleteShip();
+            }
+        }
+        for (Ship ship : player1.getShips()){
+            getCase(ship.getPosition().getColonne(), ship.getPosition().getLigne()).addShip(ship);
+            ship.setJoueur(1);
+        }
+
+        for (Ship ship : player2.getShips()){
+            getCase(ship.getPosition().getColonne(), ship.getPosition().getLigne()).addShip(ship);
+            ship.setJoueur(2);
         }
     }
 }

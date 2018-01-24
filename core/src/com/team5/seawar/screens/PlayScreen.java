@@ -1,5 +1,6 @@
 package com.team5.seawar.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -7,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.cam.CamState;
@@ -22,6 +24,7 @@ import com.team5.seawar.screens.uiState.UIState;
 import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
 import com.team5.seawar.utils.BanniereNouveauTour;
+import com.team5.seawar.utils.Save;
 
 import java.util.Random;
 
@@ -46,6 +49,82 @@ public class PlayScreen extends ScreenAdapter{
     private boolean debutJeu = true;
     private Player player;
     private Player ennemie;
+
+    public PlayScreen(final GameApp gameApp){
+        this.gameApp = gameApp;
+        Json json = new Json();
+        Save save = json.fromJson(Save.class, Gdx.files.absolute("C:/Seawars/test.txt"));
+        this.map = save.getMap();
+
+        map.load();
+
+        System.out.println(map.getNbLighthouses());
+
+        player = map.getPlayer1();
+        ennemie = map.getPlayer2();
+
+        position = new Vector2(map.getColonne()/2, map.getLigne()/2);
+
+        banniereNouveauTour = new BanniereNouveauTour();
+        ShipSelect.init(this);
+        MoveShip.init(this);
+        AttackTurn.init(this);
+        EndTurn.init(this);
+        EndGame.init(this);
+
+        UIState.init(this);
+
+        state = ShipSelect.getInstance();
+
+        cam = new OrthographicCamera();
+        cam.position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
+        viewport = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, cam);
+
+        camUI = new OrthographicCamera();
+        camUI.position.set(GameApp.WIDTH/2f, GameApp.HEIGHT/2f, 0);
+        viewportUI = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, camUI);
+
+        ZoomCam.getInstance().init(this);
+        GlobalCam.getInstance().init(this);
+        camState = ZoomCam.getInstance();
+
+        explosionDegat  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosionDegat.png")), 43, .4f, hexWidth, hexHeight, 10, 5);
+        explosionMort  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosionMort.png")), 50, .9f, hexWidth, hexHeight, -8, 5);
+
+        Random random = new Random();
+        int randomNumber = random.nextInt(3);
+        if(randomNumber == 0){
+            music = Assets.getInstance().getMusic("Sounds/playscreen_music.mp3");
+            music.setVolume(.3f);
+        }if(randomNumber == 1){
+            music = Assets.getInstance().getMusic("Sounds/playscreen_music2.mp3");
+            music.setVolume(.3f);
+        }if(randomNumber == 2){
+            music = Assets.getInstance().getMusic("Sounds/playscreen_music3.mp3");
+            music.setVolume(.2f);
+        }
+        music.play();
+        music.setOnCompletionListener(new Music.OnCompletionListener() {
+            @Override
+            public void onCompletion(Music music1) {
+                Random random = new Random();
+                int randomNumber = random.nextInt(3);
+                if(randomNumber== 0){
+                    music = Assets.getInstance().getMusic("Sounds/playscreen_music.mp3");
+                    music.setVolume(.3f);
+                    music.play();
+                }if(randomNumber == 1){
+                    music = Assets.getInstance().getMusic("Sounds/playscreen_music2.mp3");
+                    music.setVolume(.3f);
+                    music.play();
+                }if(randomNumber == 2){
+                    music = Assets.getInstance().getMusic("Sounds/playscreen_music3.mp3");
+                    music.setVolume(.2f);
+                    music.play();
+                }
+            }
+        });
+    }
 
     public PlayScreen(final GameApp gameApp, Map map){
         this.gameApp = gameApp;

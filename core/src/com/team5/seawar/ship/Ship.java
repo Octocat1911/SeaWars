@@ -34,6 +34,8 @@ public class Ship{
     public enum Type {AMIRAL, FREGATE}
     private Type type;
 
+    public Ship(){}
+
     public Ship(int colonne, int ligne, ShipPosition.Orientation orientation, Type type){
         this.destination = new Vector2();
         this.shipPosition = new ShipPosition(colonne,ligne,orientation);

@@ -2,6 +2,7 @@ package com.team5.seawar.screens.playstates;
 
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.player.Player;
+import com.team5.seawar.screens.MenuScreen;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
 
@@ -41,6 +42,10 @@ public class ShipSelect implements State {
             }
         } else if (Inputs.isPressed(Inputs.START)){
             playScreen.changeState(EndTurn.getInstance());
+        } else if (Inputs.isPressed(Inputs.L1)){
+            playScreen.getMusic().stop();
+            playScreen.getMap().save();
+            playScreen.getGameApp().setScreen(MenuScreen.getInstance());
         }
     }
 

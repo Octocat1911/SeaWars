@@ -8,6 +8,8 @@ public class ShipPosition {
     public enum Orientation {TOP, BOTTOM, TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT};
     private Orientation orientation;
 
+    public ShipPosition(){}
+
     public ShipPosition(int x, int y, Orientation orientation){
         this.colonne = x;
         this.ligne = y;

@@ -62,7 +62,7 @@ public class MenuScreen extends ScreenAdapter {
             @Override
             public void clickedAction(Sprite sprite) {
                 menu_music.stop();
-                gameApp.setScreen(new StartScreen(gameApp));
+                gameApp.setScreen(new PlayScreen(gameApp));
             }
 
             @Override

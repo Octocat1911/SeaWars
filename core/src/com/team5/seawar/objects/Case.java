@@ -18,6 +18,8 @@ public class Case {
     private Ship ship;
     private int proprietaire;
 
+    public Case(){}
+
     public Case(Element.Type type, int colonne, int ligne){
         element = new Element(type, colonne, ligne);
         ship = null;

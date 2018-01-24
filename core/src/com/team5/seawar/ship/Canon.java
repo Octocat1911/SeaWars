@@ -17,9 +17,7 @@ public class Canon {
         this.currentCooldown = 0;
     }
 
-    public Canon(){
-
-    }
+    public Canon(){}
 
     public boolean canAttack(){
         return currentCooldown == 0;

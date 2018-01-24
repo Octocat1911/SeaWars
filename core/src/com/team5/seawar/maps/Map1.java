@@ -11,8 +11,8 @@ public class Map1 extends Map {
 
     public Map1(){
         super(13, 11);
-        for (int i=0; i<colonne; i++){
-            for (int j=0; j<ligne; j++){
+        for (int i=0; i<getColonne(); i++){
+            for (int j=0; j<getLigne(); j++){
                 tab[i][j]= new Case(Element.Type.WATER, i, j);
             }
         }

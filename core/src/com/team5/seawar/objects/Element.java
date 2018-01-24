@@ -17,6 +17,8 @@ public class Element {
 
     private int proprietaire;
 
+    public Element(){}
+
     public Element(Type type, float colonne, float ligne){
         this.type = type;
         proprietaire = 0;
