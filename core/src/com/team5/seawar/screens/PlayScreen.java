@@ -59,7 +59,7 @@ public class PlayScreen extends ScreenAdapter{
 
         state = ShipSelect.getInstance();
 
-        uiState = new UIState(gameApp.getBatch());
+        uiState = new UIState(this);
 
         cam = new OrthographicCamera();
         cam.position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
@@ -156,6 +156,7 @@ public class PlayScreen extends ScreenAdapter{
         //UI
         gameApp.getBatch().setProjectionMatrix(camUI.combined);
         state.drawUI();
+        uiState.drawUI();
         banniereNouveauTour.draw(gameApp.getBatch());
         gameApp.getBatch().end(); //
     }

@@ -49,6 +49,8 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
         //rajout Octocat1911
         compile "es.e-ucm.com.badlogicgames.gdx:gdx-video-desktop:0.0.1-SNAPSHOT"
+        //rajout Ilias
+        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
 
     }
 }
@@ -66,6 +68,8 @@ project(":core") {
         // rajout Octocat1911
         compile "es.e-ucm.com.badlogicgames.gdx:gdx-video:0.0.1-SNAPSHOT"
         compile fileTree(dir: 'libs', include: 'gdx-video-desktop-natives.jar')
+        //rajout Ilias
+        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
     }
 }
 
