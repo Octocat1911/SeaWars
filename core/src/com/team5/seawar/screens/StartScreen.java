@@ -4,17 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.video.*;
 import com.badlogic.gdx.video.VideoPlayerCreator;
 import com.team5.seawar.game.GameApp;
-import com.team5.seawar.inputHandler.InputHandler;
 import com.team5.seawar.inputHandler.Inputs;
-import com.team5.seawar.utils.Action2DSprite;
-import javafx.scene.media.VideoTrack;
-import jdk.internal.util.xml.impl.Input;
 
 import java.io.FileNotFoundException;
 
