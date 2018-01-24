@@ -141,6 +141,7 @@ public class MenuState implements State {
                 case MEDIT:
                     etat = MenuState.Etat.MEDIT;
                     break;
+
                 case EXIT:
                     etat = MenuState.Etat.CREDIT;
                     break;
