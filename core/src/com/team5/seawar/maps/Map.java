@@ -22,6 +22,8 @@ public class Map {
     private int colonne;
     private int ligne;
 
+    private int tour_joueur;
+
     public Map(){}
 
     public Map(int colonne, int ligne) {
@@ -35,6 +37,11 @@ public class Map {
         }
 
         tab = new Case[colonne][ligne];
+
+        player1 = new Player();
+        player2 = new Player();
+
+        tour_joueur = 1;
     }
 
     public int getColonne() {
@@ -134,7 +141,7 @@ public class Map {
 
     public void save(){
         Json json = new Json();
-        json.toJson(new Save(this), Gdx.files.absolute("C:/Seawars/test.txt"));
+        json.toJson(new Save(this), Gdx.files.local("save.txt"));
     }
 
     public void load(){
@@ -152,5 +159,17 @@ public class Map {
             getCase(ship.getPosition().getColonne(), ship.getPosition().getLigne()).addShip(ship);
             ship.setJoueur(2);
         }
+    }
+
+    public void newTurn(){
+        if (tour_joueur == 1){
+            tour_joueur = 2;
+        } else {
+            tour_joueur = 1;
+        }
+    }
+
+    public int getTour_joueur() {
+        return tour_joueur;
     }
 }

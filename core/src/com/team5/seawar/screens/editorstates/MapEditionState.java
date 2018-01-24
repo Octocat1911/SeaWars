@@ -44,12 +44,16 @@ public class MapEditionState implements State {
     }
 
     public void handleInput(float dt){
-        if(Inputs.isPressed(Inputs.START)){
+        if(Inputs.isPressed(Inputs.SELECT)){
             GlobalCam.getInstance().setCanGoToZoomCam(false);
             mapEditorScreen.setCamState(GlobalCam.getInstance());
             mapEditorScreen.getMap().init();
             mapEditorScreen.changeState(SizeEditionState.getInstance());
-        } if (Inputs.isPressed(Inputs.LEFT) && mapEditorScreen.position.x>0){
+        }
+        if (Inputs.isPressed(Inputs.START)){
+            mapEditorScreen.changeState(ShipEditionState.getInstance());
+        }
+        if (Inputs.isPressed(Inputs.LEFT) && mapEditorScreen.position.x>0){
             mapEditorScreen.position.x--;
         }
         if (Inputs.isPressed(Inputs.RIGHT) && mapEditorScreen.position.x<mapEditorScreen.getMap().getColonne()-1){
@@ -67,18 +71,24 @@ public class MapEditionState implements State {
             }
             mapEditorScreen.getCurrentCase().setElement(new Element(Element.Type.DIRT,mapEditorScreen.position.x,mapEditorScreen.position.y));
         }
-        if(Inputs.isPressed(Inputs.B)){
+        if(Inputs.isPressed(Inputs.X)){
             if(lightHouseNb > 0){
                 lightHouseNb --;
                 mapEditorScreen.getCurrentCase().setElement(new Element(Element.Type.LIGHTHOUSE,mapEditorScreen.position.x,mapEditorScreen.position.y));
             }
 
         }
-        if(Inputs.isPressed(Inputs.X)){
+        if(Inputs.isPressed(Inputs.B)){
             if(mapEditorScreen.getCurrentCase().getElement().getType() == Element.Type.LIGHTHOUSE){
                 lightHouseNb ++;
             }
             mapEditorScreen.getCurrentCase().setElement(new Element(Element.Type.WATER,mapEditorScreen.position.x,mapEditorScreen.position.y));
+        }
+        if (Inputs.isPressed(Inputs.Y)){
+            if(mapEditorScreen.getCurrentCase().getElement().getType() == Element.Type.LIGHTHOUSE){
+                lightHouseNb ++;
+            }
+            mapEditorScreen.getCurrentCase().setElement(new Element(Element.Type.VOID,mapEditorScreen.position.x,mapEditorScreen.position.y));
         }
         mapEditorScreen.getMap().handleInput(mapEditorScreen.getCam(), mapEditorScreen.getViewport());
     }
@@ -96,6 +106,6 @@ public class MapEditionState implements State {
     }
 
     public void drawUI(){
-
+        mapEditorScreen.getBatch().draw(Assets.getInstance().getTexture("UI/MapEditionState.png"), 880, 40, 448/2, 725/2);
     }
 }

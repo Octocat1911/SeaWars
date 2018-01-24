@@ -100,6 +100,8 @@ public class Assets {
         manager.load("UI/ShipSelect.png", Texture.class);
         manager.load("UI/MoveShip.png", Texture.class);
         manager.load("UI/AttackTurn.png", Texture.class);
+        manager.load("UI/MapEditionState.png", Texture.class);
+        manager.load("UI/SizeEditionState.png", Texture.class);
 
         //Sounds
         manager.load("Sounds/menu_music.mp3", Music.class);

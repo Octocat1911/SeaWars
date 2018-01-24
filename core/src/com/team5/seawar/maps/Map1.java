@@ -27,9 +27,6 @@ public class Map1 extends Map {
         tab[9][2]= new Case(Element.Type.DIRT, 9, 2);
         tab[9][3]= new Case(Element.Type.DIRT, 9, 3);
 
-        player1 = new Player();
-        player2 = new Player();
-
         player1.getShips().add(new Ship(0,10, ShipPosition.Orientation.BOTTOM_RIGHT, Ship.Type.FREGATE));
         player1.getShips().add(new Ship(1,10, ShipPosition.Orientation.BOTTOM_RIGHT, Ship.Type.AMIRAL));
         player1.getShips().add(new Ship(3, 10, ShipPosition.Orientation.BOTTOM, Ship.Type.FREGATE));

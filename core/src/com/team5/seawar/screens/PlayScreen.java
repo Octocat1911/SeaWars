@@ -53,19 +53,24 @@ public class PlayScreen extends ScreenAdapter{
     public PlayScreen(final GameApp gameApp){
         this.gameApp = gameApp;
         Json json = new Json();
-        Save save = json.fromJson(Save.class, Gdx.files.absolute("C:/Seawars/test.txt"));
+        Save save = json.fromJson(Save.class, Gdx.files.local("save.txt"));
         this.map = save.getMap();
 
         map.load();
 
-        System.out.println(map.getNbLighthouses());
+        banniereNouveauTour = new BanniereNouveauTour();
 
-        player = map.getPlayer1();
-        ennemie = map.getPlayer2();
+        if (map.getTour_joueur() == 1){
+            player = map.getPlayer1();
+            ennemie = map.getPlayer2();
+        } else {
+            player = map.getPlayer2();
+            ennemie = map.getPlayer1();
+            getBanniereNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur2.png"), Assets.getInstance().getTexture("UI/Tour2.png"));
+        }
 
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
 
-        banniereNouveauTour = new BanniereNouveauTour();
         ShipSelect.init(this);
         MoveShip.init(this);
         AttackTurn.init(this);
@@ -277,6 +282,10 @@ public class PlayScreen extends ScreenAdapter{
 
     public OrthographicCamera getCam() {
         return cam;
+    }
+
+    public OrthographicCamera getCamUI() {
+        return camUI;
     }
 
     public Viewport getViewport() {

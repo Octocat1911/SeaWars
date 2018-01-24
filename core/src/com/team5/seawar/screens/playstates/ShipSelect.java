@@ -57,6 +57,7 @@ public class ShipSelect implements State {
     }
 
     public void newTurn() {
+        playScreen.getMap().newTurn();
         if (playScreen.getPlayer().equals(playScreen.getMap().getPlayer1())) {
             playScreen.setPlayer(playScreen.getMap().getPlayer2());
             playScreen.setEnnemie(playScreen.getMap().getPlayer1());

@@ -4,8 +4,10 @@ import com.team5.seawar.cam.GlobalCam;
 import com.team5.seawar.cam.ZoomCam;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.screens.MapEditorScreen;
+import com.team5.seawar.screens.MenuScreen;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.screens.playstates.State;
+import com.team5.seawar.utils.Assets;
 
 public class SizeEditionState implements State {
 
@@ -25,6 +27,7 @@ public class SizeEditionState implements State {
     }
 
     public static SizeEditionState getInstance(){
+        instance.mapEditorScreen.getMap().init();
         return instance;
     }
 
@@ -54,6 +57,9 @@ public class SizeEditionState implements State {
             PlayScreen.position.y = mapEditorScreen.getMap().getLigne() - 1;
             mapEditorScreen.changeState(MapEditionState.getInstance());
         }
+        if (Inputs.isPressed(Inputs.SELECT)){
+            mapEditorScreen.getGameApp().setScreen(MenuScreen.getInstance());
+        }
         mapEditorScreen.getMap().handleInput(mapEditorScreen.getCam(),mapEditorScreen.getViewport());
     }
 
@@ -69,6 +75,6 @@ public class SizeEditionState implements State {
     }
 
     public void drawUI(){
-
+        mapEditorScreen.getBatch().draw(Assets.getInstance().getTexture("UI/SizeEditionState.png"), 870, 50, 1683/5, 724/5);
     }
 }

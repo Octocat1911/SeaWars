@@ -13,6 +13,7 @@ import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map;
 import com.team5.seawar.screens.editorstates.MapEditionState;
+import com.team5.seawar.screens.editorstates.ShipEditionState;
 import com.team5.seawar.screens.editorstates.SizeEditionState;
 import com.team5.seawar.screens.playstates.State;
 import com.team5.seawar.utils.Action2DSprite;
@@ -36,6 +37,7 @@ public class MapEditorScreen extends PlayScreen {
         this.map.init();
         MapEditionState.init(this);
         SizeEditionState.init(this);
+        ShipEditionState.init(this);
         this.state = SizeEditionState.getInstance();
         getCam().position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
         setCamState(GlobalCam.getInstance());
@@ -57,6 +59,8 @@ public class MapEditorScreen extends PlayScreen {
         gameApp.getBatch().setProjectionMatrix(getCam().combined);
         gameApp.getBatch().begin();
         state.draw();
+        gameApp.getBatch().setProjectionMatrix(getCamUI().combined);
+        state.drawUI();
         gameApp.getBatch().end();
     }
 
