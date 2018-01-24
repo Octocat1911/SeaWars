@@ -1,4 +1,4 @@
-package com.team5.seawar.screens.uiState;
+package com.team5.seawar.screens.uistates;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

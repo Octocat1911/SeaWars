@@ -20,7 +20,7 @@ import com.team5.seawar.maps.Map;
 import com.team5.seawar.objects.Case;
 import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.playstates.*;
-import com.team5.seawar.screens.uiState.UIState;
+import com.team5.seawar.screens.uistates.UIState;
 import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
 import com.team5.seawar.utils.BanniereNouveauTour;
