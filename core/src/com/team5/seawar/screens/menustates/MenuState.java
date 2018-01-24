@@ -104,7 +104,7 @@ public class MenuState implements State {
         this.playButton.getSprite().setSize(playButton.getSprite().getWidth()/10,playButton.getSprite().getHeight()/10);
         this.creditButton.getSprite().setPosition(GameApp.WIDTH/3 - creditButton.getSprite().getWidth()/5, 2*GameApp.HEIGHT/3 - creditButton.getSprite().getHeight()/2.7f);
         this.creditButton.getSprite().setSize(creditButton.getSprite().getWidth()/10, creditButton.getSprite().getHeight()/10);
-        this.exitButton.getSprite().setPosition(GameApp.WIDTH/3 - exitButton.getSprite().getWidth()/6, 2*GameApp.HEIGHT/3 - exitButton.getSprite().getHeight()/6f);
+        this.exitButton.getSprite().setPosition(GameApp.WIDTH/3 - exitButton.getSprite().getWidth()/4, 2*GameApp.HEIGHT/3 - exitButton.getSprite().getHeight()/2.2f);
         this.exitButton.getSprite().setSize(exitButton.getSprite().getWidth()/10,exitButton.getSprite().getHeight()/10);
     }
 
@@ -138,6 +138,9 @@ public class MenuState implements State {
                 case CREDIT:
                     etat = MenuState.Etat.PLAY;
                     break;
+                case MEDIT:
+                    etat = MenuState.Etat.MEDIT;
+                    break;
                 case EXIT:
                     etat = MenuState.Etat.CREDIT;
                     break;
@@ -151,6 +154,9 @@ public class MenuState implements State {
                 case CREDIT:
                     etat = MenuState.Etat.EXIT;
                     break;
+                case MEDIT:
+                    etat = MenuState.Etat.MEDIT;
+                    break;
                 case EXIT:
                     etat = MenuState.Etat.PLAY;
                     break;
@@ -162,6 +168,9 @@ public class MenuState implements State {
                     playButton.clickedAction();
                     break;
                 case CREDIT:
+                    creditButton.clickedAction();
+                    break;
+                case MEDIT:
                     creditButton.clickedAction();
                     break;
                 case EXIT:
@@ -182,13 +191,16 @@ public class MenuState implements State {
                 case CREDIT:
                     creditButton.touchAction();
                     break;
+                case MEDIT:
+                    mapEditorButton.touchAction();
+                    break;
                 case EXIT:
                     exitButton.touchAction();
             }
         }
         playButton.getSprite().draw(menuScreen.getGameApp().getBatch());
         creditButton.getSprite().draw(menuScreen.getGameApp().getBatch());
-        //exitButton.getSprite().draw(menuScreen.getGameApp().getBatch());
+        exitButton.getSprite().draw(menuScreen.getGameApp().getBatch());
         mapEditorButton.getSprite().draw(menuScreen.getGameApp().getBatch());
     }
 
