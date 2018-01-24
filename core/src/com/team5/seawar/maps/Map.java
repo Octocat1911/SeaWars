@@ -58,12 +58,12 @@ public class Map {
     public void draw(SpriteBatch sb){
         for (int i=0; i<colonne; i++){
             for (int j=0; j<ligne; j++) {
-                getCase(i, j).drawElements(sb);
+                getCase(i, j).drawElement(sb);
             }
         }
         for (int i=0; i<colonne; i++){
             for (int j=0; j<ligne; j++) {
-                getCase(i, j).drawShips(sb);
+                getCase(i, j).drawShip(sb);
             }
         }
     }

@@ -59,13 +59,13 @@ public class Case {
         Inputs.updateCase(this, cam, viewport);
     }
 
-    public void drawElements(SpriteBatch sb){
-        element.getSprite().draw(sb);
+    public void drawElement(SpriteBatch sb){
+        element.draw(sb);
     }
 
-    public void drawShips(SpriteBatch sb){
+    public void drawShip(SpriteBatch sb){
         if (ship != null){
-            ship.getSprite().draw(sb);
+            ship.draw(sb);
         }
     }
 
@@ -84,15 +84,10 @@ public class Case {
     }
 
     public void setProprietaire(int proprietaire) {
-        this.proprietaire = proprietaire;
-        if (proprietaire == 1){
-            element.getSprite().setTexture(Assets.getInstance().getTexture("Maptextures/hexPhareJ1.png"));
-        } else {
-            element.getSprite().setTexture(Assets.getInstance().getTexture("Maptextures/hexPhareJ2.png"));
-        }
+        element.setProprietaire(proprietaire);
     }
 
     public int getProprietaire() {
-        return proprietaire;
+        return element.getProprietaire();
     }
 }

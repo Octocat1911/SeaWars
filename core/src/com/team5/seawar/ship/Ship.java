@@ -1,6 +1,7 @@
 package com.team5.seawar.ship;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.screens.PlayScreen;
@@ -19,8 +20,6 @@ public abstract class Ship{
 
     private ShipPosition shipPosition;
 
-    protected Sprite sprite;
-
     private boolean hasFired; //utilisé seulement pour rotationer un bateau
     private boolean canFire;
     private boolean hasFinished;
@@ -29,6 +28,9 @@ public abstract class Ship{
     private float speedAnimation = 0.05f;
 
     protected int joueur;
+
+    protected float posX;
+    protected float posY;
 
     public Ship(int maxLifePoints, Canon mainCanon, Canon secondaryCanon, int maxMovements, int colonne, int ligne, ShipPosition.Orientation orientation){
         this.destination = new Vector2();
@@ -39,20 +41,20 @@ public abstract class Ship{
         this.maxMovements = maxMovements;
         this.movements = maxMovements;
         this.shipPosition = new ShipPosition(colonne,ligne,orientation);
-        this.sprite = new Sprite(Assets.getInstance().getTexture("Maptextures/void.png"));
+        this.posX = colonne * PlayScreen.hexWidth *3/4;
         if (colonne%2==0){
-            sprite.setPosition(colonne * PlayScreen.hexWidth *3/4, ligne * PlayScreen.hexHeight);
+            this.posY = ligne * PlayScreen.hexHeight;
         } else {
-            sprite.setPosition(colonne * PlayScreen.hexWidth *3/4, ligne * PlayScreen.hexHeight + PlayScreen.hexHeight/2);
+            this.posY = ligne * PlayScreen.hexHeight + PlayScreen.hexHeight/2;
         }
-        destination.set(sprite.getX(), sprite.getY());
-        sprite.setSize(PlayScreen.hexWidth, PlayScreen.hexHeight);
+        destination.x = posX;
+        destination.y = posY;
         this.hasFinished = false;
         this.canFire = true;
         this.hasFired = false;
     }
 
-    public abstract Sprite getSprite();
+    public abstract void draw(SpriteBatch sb);
 
     public void move(Vector2 arrive){
         float deltaX = arrive.x - shipPosition.getColonne();
@@ -191,7 +193,8 @@ public abstract class Ship{
     }
 
     public void update(float dt){
-        sprite.setPosition(sprite.getX() + (destination.x - sprite.getX()) * speedAnimation, sprite.getY() + (destination.y - sprite.getY()) * speedAnimation);
+        posX += (destination.x - posX) * speedAnimation;
+        posY += (destination.y - posY) * speedAnimation;
     }
 
     public void setHasFinished(boolean bool){

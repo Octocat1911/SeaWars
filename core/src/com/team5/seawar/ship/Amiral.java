@@ -1,8 +1,10 @@
 package com.team5.seawar.ship;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
 
 public class Amiral extends Ship {
@@ -28,52 +30,51 @@ public class Amiral extends Ship {
         this.setSecondaryCanon(secondaire);
     }
 
-    public Sprite getSprite() {
+    public void draw(SpriteBatch sb) {
         switch (getPosition().getOrientation()){
             case TOP:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralH_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralH_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralH_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralH_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
             case TOP_RIGHT:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralHD_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralHD_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralHD_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralHD_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
             case BOTTOM_RIGHT:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralBD_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralBD_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralBD_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralBD_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
             case BOTTOM:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralB_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralB_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralB_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralB_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
             case BOTTOM_LEFT:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralBG_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralBG_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralBG_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralBG_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
             case TOP_LEFT:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralHG_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralHG_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/AmiralHG_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/AmiralHG_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
         }
-        return sprite;
     }
 
 }

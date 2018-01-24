@@ -1,8 +1,10 @@
 package com.team5.seawar.ship;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
 
 public class Fregate extends Ship {
@@ -31,51 +33,51 @@ public class Fregate extends Ship {
 
     }
 
-    public Sprite getSprite() {
+    public void draw(SpriteBatch sb) {
         switch (getPosition().getOrientation()){
             case TOP:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateH_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateH_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateH_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateH_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
             case TOP_RIGHT:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateHD_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateHD_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateHD_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateHD_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
             case BOTTOM_RIGHT:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateBD_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateBD_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateBD_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateBD_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
             case BOTTOM:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateB_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateB_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateB_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateB_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
             case BOTTOM_LEFT:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateBG_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateBG_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateBG_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateBG_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
             case TOP_LEFT:
                 if (!hasFinished()) {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateHG_J"+joueur+".png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateHG_J"+joueur+".png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 } else {
-                    sprite.setTexture(Assets.getInstance().getTexture("Shiptextures/FregateHG_end.png"));
+                    sb.draw(Assets.getInstance().getTexture("Shiptextures/FregateHG_end.png"), posX, posY, PlayScreen.hexWidth, PlayScreen.hexHeight);
                 }
                 break;
         }
-        return sprite;
     }
+
 }
