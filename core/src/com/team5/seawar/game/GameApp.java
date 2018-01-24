@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.SerializationException;
 import com.team5.seawar.inputHandler.InputHandler;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.inputHandler.XBoxHandler;
@@ -26,6 +27,7 @@ public class GameApp extends Game {
     public static final int HEIGHT = 720;
     public static final int WIDTH = 1280;
     public static final String TITLE = "Sea-Wars";
+    public static int NBMAP = 2;
     public static Array<Map> MAPS;
 
 	private SpriteBatch batch;
@@ -42,13 +44,22 @@ public class GameApp extends Game {
 		MAPS = new Array<Map>();
 		MAPS.add(new Map1());
 		MAPS.add(new Map2());
-		/*
-		for (int i= 1; i<= 5; i++){
+
+		for (int i= 3; i <= 5; i++){
+			boolean error = false;
 			Json json = new Json();
-			Save save = json.fromJson(Save.class, Gdx.files.absolute("C:/Seawars/test.txt"));
-			MAPS.add(save.getMap());
+			Save save = new Save();
+			try {
+				save = json.fromJson(Save.class, Gdx.files.local("map" +i+".txt"));
+				NBMAP++;
+			} catch (SerializationException e){
+				error = true;
+			}
+			if (!error) {
+				MAPS.add(save.getMap());
+			}
 		}
-		*/
+
 		MapSelectScreen.init(this);
 		//setScreen(MapSelectScreen.getInstance());
        	//setScreen(new MapEditorScreen(this,new Map(7,6)));

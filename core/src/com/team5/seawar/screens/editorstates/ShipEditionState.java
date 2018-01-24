@@ -1,13 +1,19 @@
 package com.team5.seawar.screens.editorstates;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.Json;
 import com.team5.seawar.cam.GlobalCam;
+import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.objects.Element;
 import com.team5.seawar.screens.MapEditorScreen;
+import com.team5.seawar.screens.MenuScreen;
+import com.team5.seawar.screens.menustates.MenuState;
 import com.team5.seawar.screens.playstates.State;
 import com.team5.seawar.ship.Ship;
 import com.team5.seawar.ship.ShipPosition;
 import com.team5.seawar.utils.Assets;
+import com.team5.seawar.utils.Save;
 
 import static com.team5.seawar.screens.PlayScreen.position;
 
@@ -23,12 +29,11 @@ public class ShipEditionState implements State {
 
 
     public static void init(MapEditorScreen mapEditorScreen){
-        if(instance ==null){
             instance = new ShipEditionState(mapEditorScreen);
-        }
     }
 
     public static ShipEditionState getInstance(){
+        GlobalCam.getInstance().setCanGoToZoomCam(true);
         return instance;
     }
 
@@ -38,7 +43,10 @@ public class ShipEditionState implements State {
             mapEditorScreen.changeState(SizeEditionState.getInstance());
         }
         if (Inputs.isPressed(Inputs.START) && mapEditorScreen.getMap().getPlayer1().getShips().size > 0 && mapEditorScreen.getMap().getPlayer2().getShips().size > 0) {
-
+            Json json = new Json();
+            json.toJson(new Save(mapEditorScreen.getMap()), Gdx.files.local("map"+ (GameApp.NBMAP + 1) +".txt"));
+            MenuState.init(MenuScreen.getInstance());
+            mapEditorScreen.getGameApp().setScreen(MenuScreen.getInstance());
         }
         if (Inputs.isPressed(Inputs.LEFT) && position.x>0){
             position.x--;
