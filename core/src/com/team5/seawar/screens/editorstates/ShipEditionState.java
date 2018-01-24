@@ -54,34 +54,34 @@ public class ShipEditionState implements State {
             if (Inputs.isPressed(Inputs.A)) {
                 if (mapEditorScreen.getMap().getCase((int) mapEditorScreen.getPosition().x, (int) mapEditorScreen.getPosition().y).getShip() == null) {
                     mapEditorScreen.getMap().getPlayer1().getShips().add(new Ship((int) mapEditorScreen.position.x, (int) mapEditorScreen.position.y, ShipPosition.Orientation.TOP, Ship.Type.AMIRAL));
-                    mapEditorScreen.getMap().load();
                 } else {
                     mapEditorScreen.getMap().getCase((int) mapEditorScreen.getPosition().x, (int) mapEditorScreen.getPosition().y).deleteShip();
                 }
+                mapEditorScreen.getMap().load();
             }
             if (Inputs.isPressed(Inputs.B)) {
                 if (mapEditorScreen.getMap().getCase((int) mapEditorScreen.getPosition().x, (int) mapEditorScreen.getPosition().y).getShip() == null) {
                     mapEditorScreen.getMap().getPlayer1().getShips().add(new Ship((int) mapEditorScreen.position.x, (int) mapEditorScreen.position.y, ShipPosition.Orientation.TOP, Ship.Type.FREGATE));
-                    mapEditorScreen.getMap().load();
                 } else {
                     mapEditorScreen.getMap().getCase((int) mapEditorScreen.getPosition().x, (int) mapEditorScreen.getPosition().y).deleteShip();
                 }
+                mapEditorScreen.getMap().load();
             }
             if (Inputs.isPressed(Inputs.X)) {
                 if (mapEditorScreen.getMap().getCase((int) mapEditorScreen.getPosition().x, (int) mapEditorScreen.getPosition().y).getShip() == null) {
                     mapEditorScreen.getMap().getPlayer2().getShips().add(new Ship((int) mapEditorScreen.position.x, (int) mapEditorScreen.position.y, ShipPosition.Orientation.TOP, Ship.Type.AMIRAL));
-                    mapEditorScreen.getMap().load();
                 } else {
                     mapEditorScreen.getMap().getCase((int) mapEditorScreen.getPosition().x, (int) mapEditorScreen.getPosition().y).deleteShip();
                 }
+                mapEditorScreen.getMap().load();
             }
             if (Inputs.isPressed(Inputs.Y)) {
                 if (mapEditorScreen.getMap().getCase((int) mapEditorScreen.getPosition().x, (int) mapEditorScreen.getPosition().y).getShip() == null) {
                     mapEditorScreen.getMap().getPlayer2().getShips().add(new Ship((int) mapEditorScreen.position.x, (int) mapEditorScreen.position.y, ShipPosition.Orientation.TOP, Ship.Type.FREGATE));
-                    mapEditorScreen.getMap().load();
                 } else {
                     mapEditorScreen.getMap().getCase((int) mapEditorScreen.getPosition().x, (int) mapEditorScreen.getPosition().y).deleteShip();
                 }
+                mapEditorScreen.getMap().load();
             }
             if (Inputs.isPressed(Inputs.L1) && mapEditorScreen.getMap().getCase((int) mapEditorScreen.getPosition().x, (int) mapEditorScreen.getPosition().y).getShip() != null) {
                 mapEditorScreen.getMap().getCase((int) mapEditorScreen.getPosition().x, (int) mapEditorScreen.getPosition().y).getShip().rotateLeft();
