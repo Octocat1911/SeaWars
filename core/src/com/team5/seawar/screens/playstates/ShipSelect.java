@@ -32,7 +32,11 @@ public class ShipSelect implements State {
             playScreen.changeState(EndTurn.getInstance(player));
         }
         if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK)) && player.getShips().contains(playScreen.getCurrentCase().getShip(), true) && !playScreen.getCurrentCase().getShip().hasFinished()){
-            playScreen.changeState(MoveShip.getInstance(playScreen.getCurrentCase(),player, ennemie));
+            if (playScreen.getCurrentCase().getShip().canMove()) {
+                playScreen.changeState(MoveShip.getInstance(playScreen.getCurrentCase(), player, ennemie));
+            } else {
+                playScreen.changeState(AttackTurn.getInstance(playScreen.getCurrentCase(), player, ennemie));
+            }
         } else if (Inputs.isPressed(Inputs.R1)){
             if (player.getShips().contains(playScreen.getCurrentCase().getShip(), true)){
                 playScreen.getPosition().set(player.nextShip(playScreen.getCurrentCase().getShip()));
@@ -48,7 +52,7 @@ public class ShipSelect implements State {
     }
 
     public void drawUI(){
-        playScreen.getBatch().draw(Assets.getInstance().getTexture("UI/ShipSelect.png"), 1280-428/1.5f-125, 35, 1787/5, 760/5);
+        playScreen.getBatch().draw(Assets.getInstance().getTexture("UI/ShipSelect.png"), 870, 35, 1787/5, 760/5);
     }
 
     public void newTurn() {
