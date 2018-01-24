@@ -121,10 +121,6 @@ public class MenuState implements State {
         return instance;
     }
 
-    public void setEtat(Etat etat) {
-        this.etat = etat;
-    }
-
     public void handleInput(float dt){
         Inputs.isTouched(playButton,menuScreen.getCam(),menuScreen.getViewport());
         Inputs.isJustClicked(playButton,menuScreen.getCam(),menuScreen.getViewport());
