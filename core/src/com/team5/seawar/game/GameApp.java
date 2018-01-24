@@ -29,14 +29,14 @@ public class GameApp extends Game {
 		new InputHandler();
 		Assets.getInstance().load();
 		Assets.getInstance().finishLoading();
-		//MenuScreen.init(this);
+		MenuScreen.init(this);
 		batch = new SpriteBatch();
         Gdx.gl.glClearColor(0, 0, 0, 1);
         MapSelectScreen.init(this, new Map1());
        	//setScreen(new MapEditorScreen(this,new Map(7,6)));
-		//setScreen(MenuScreen.getInstance());
+		setScreen(MenuScreen.getInstance());
 		//setScreen(new StartScreen(this));
-		setScreen(MapSelectScreen.getInstance());
+		//setScreen(MapSelectScreen.getInstance());
 	}
 
 	@Override

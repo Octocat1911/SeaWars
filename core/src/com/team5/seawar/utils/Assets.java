@@ -30,6 +30,8 @@ public class Assets {
         manager.load("Menutextures/exitpush.png",Texture.class);
         manager.load("Menutextures/credit.png",Texture.class);
         manager.load("Menutextures/creditpush.png",Texture.class);
+        manager.load("Menutextures/MapEditor.png",Texture.class);
+        manager.load("Menutextures/MapEditorpush.png",Texture.class);
 
 
         // PlayScreen
