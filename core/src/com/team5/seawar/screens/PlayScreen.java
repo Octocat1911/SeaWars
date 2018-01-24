@@ -271,6 +271,10 @@ public class PlayScreen extends ScreenAdapter{
         return map;
     }
 
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
     public OrthographicCamera getCam() {
         return cam;
     }
