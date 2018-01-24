@@ -42,15 +42,15 @@ public class UIState implements State{
     }
 
     public void drawUI() {
+        if (!playScreen.getMap().getPlayer1().hasFinished()){
+            font.setColor(new Color(.204f,.506f,.859f,1));
+            joueur = "Joueur 1";
+        } else {
+            font.setColor(new Color(.87f, .20f, .20f, 1));
+            joueur = "Joueur 2";
+        }
+        font.draw(playScreen.getBatch(), joueur, 1100, 680);
         if (playScreen.getCurrentCase().getShip() != null) {
-            if (playScreen.getMap().getPlayer1().getShips().contains(playScreen.getCurrentCase().getShip(), true)){
-                font.setColor(new Color(.204f,.506f,.859f,1));
-                joueur = "Joueur 1";
-            } else {
-                font.setColor(new Color(.87f, .20f, .20f, 1));
-                joueur = "Joueur 2";
-            }
-            //font.draw(playScreen.getBatch(), joueur, 700, 1200);
             font.draw(playScreen.getBatch(), "PV : " + playScreen.getCurrentCase().getShip().getCurrentLifePoints() + " / " + playScreen.getCurrentCase().getShip().getMaxLifePoints(), 60, 185);
             font.draw(playScreen.getBatch(), "Déplacement : " + playScreen.getCurrentCase().getShip().getMovements() + " / " + playScreen.getCurrentCase().getShip().getMaxMovements(),60, 150);
             font.draw(playScreen.getBatch(),"Dégats Canon Principal : " + playScreen.getCurrentCase().getShip().getMainCanon().getDamage(), 60, 115);
