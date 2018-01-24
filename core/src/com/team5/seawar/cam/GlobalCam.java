@@ -29,7 +29,7 @@ public class GlobalCam extends CamState {
         nbLigne = playScreen.getMap().getLigne();
         zoom = Math.max(hexWidth * (1+(nbColonne-1) *.75f) / GameApp.WIDTH, hexHeight * (nbLigne+.5f) / GameApp.HEIGHT);
 
-        if (Inputs.isPressed(Inputs.SELECT) && canGoToZoomCam){
+        if (Inputs.isPressed(Inputs.R3) && canGoToZoomCam){
             Assets.getInstance().getSound("Sounds/zoom.ogg").play(.2f);
             playScreen.setCamState(ZoomCam.getInstance());
         }

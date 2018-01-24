@@ -11,10 +11,9 @@ public class InputHandler extends InputAdapter{
     public static final int X = Input.Keys.X;
     public static final int Y = Input.Keys.E;
     public static final int L1 = Input.Keys.Q;
-    public static final int L2 = Input.Keys.T;
     public static final int R1 = Input.Keys.D;
-    public static final int R2 = Input.Keys.Y;
-    public static final int SELECT = Input.Keys.TAB;
+    public static final int L3 = Input.Keys.TAB;
+    public static final int SELECT = Input.Keys.ESCAPE;
     public static final int START = Input.Keys.SPACE;
     public static final int UP = Input.Keys.UP;
     public static final int DOWN = Input.Keys.DOWN;
@@ -52,6 +51,9 @@ public class InputHandler extends InputAdapter{
                 break;
             case R1:
                 Inputs.R1 = Inputs.BUFFER;
+                break;
+            case L3:
+                Inputs.R3 = Inputs.BUFFER;
                 break;
             case UP:
                 Inputs.UP = Inputs.BUFFER;

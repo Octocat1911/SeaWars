@@ -42,7 +42,7 @@ public class ShipSelect implements State {
             }
         } else if (Inputs.isPressed(Inputs.START)){
             playScreen.changeState(EndTurn.getInstance());
-        } else if (Inputs.isPressed(Inputs.L1)){
+        } else if (Inputs.isPressed(Inputs.SELECT)){
             playScreen.getMusic().stop();
             playScreen.getMap().save();
             playScreen.getGameApp().setScreen(MenuScreen.getInstance());

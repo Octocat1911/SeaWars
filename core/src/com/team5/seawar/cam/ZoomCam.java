@@ -25,7 +25,7 @@ public class ZoomCam extends CamState {
         nbColonne = playScreen.getMap().getColonne();
         nbLigne = playScreen.getMap().getLigne();
 
-        if (Inputs.isPressed(Inputs.SELECT)){
+        if (Inputs.isPressed(Inputs.R3)){
             Assets.getInstance().getSound("Sounds/dezoom.ogg").play(.2f);
             playScreen.setCamState(GlobalCam.getInstance());
         }

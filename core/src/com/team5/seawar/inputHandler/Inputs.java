@@ -19,9 +19,8 @@ public class Inputs {
     public static int X = 0;
     public static int Y = 0;
     public static int L1 = 0;
-    public static int L2 = 0;
     public static int R1 = 0;
-    public static int R2 = 0;
+    public static int R3 = 0;
     public static int SELECT = 0;
     public static int START = 0;
     public static int UP = 0;
@@ -44,12 +43,10 @@ public class Inputs {
             Y--;
         if (L1 > 0)
             L1--;
-        if (L2 > 0)
-            L2--;
         if (R1 > 0)
             R1--;
-        if (R2 > 0)
-            R2--;
+        if (R3 > 0)
+            R3--;
         if (SELECT > 0)
             SELECT--;
         if (START > 0)
