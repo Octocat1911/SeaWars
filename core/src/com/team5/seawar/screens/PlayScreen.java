@@ -66,7 +66,7 @@ public class PlayScreen extends ScreenAdapter{
         } else {
             player = map.getPlayer2();
             ennemie = map.getPlayer1();
-            getBanniereNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur2.png"), Assets.getInstance().getTexture("UI/Tour2.png"));
+            banniereNouveauTour.setTextures(Assets.getInstance().getTexture("UI/Joueur2.png"), Assets.getInstance().getTexture("UI/Tour2.png"));
         }
 
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
