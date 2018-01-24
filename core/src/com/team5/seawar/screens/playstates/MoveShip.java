@@ -172,7 +172,7 @@ public class MoveShip implements State{
     }
 
     public void drawUI(){
-        playScreen.getBatch().draw(Assets.getInstance().getTexture("UI/MoveShip.png"), 870, 35, 1675/5, 1006/5);
+        playScreen.getBatch().draw(Assets.getInstance().getTexture("UI/MoveShip.png"), 860, 35, 1768/5, 1251/5);
     }
 
     public void moveShip(Case depart, Case arrive){

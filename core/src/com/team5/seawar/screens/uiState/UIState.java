@@ -50,8 +50,8 @@ public class UIState implements State{
             }
             font.draw(playScreen.getBatch(), "PV : " + playScreen.getCurrentCase().getShip().getCurrentLifePoints() + " / " + playScreen.getCurrentCase().getShip().getMaxLifePoints(), 60, 185);
             font.draw(playScreen.getBatch(), "Déplacement : " + playScreen.getCurrentCase().getShip().getMovements() + " / " + playScreen.getCurrentCase().getShip().getMaxMovements(),60, 150);
-            font.draw(playScreen.getBatch(),"Dégats Canon Principal : " + playScreen.getCurrentCase().getShip().getMainCanon().getDamage(), 60, 115);
-            font.draw(playScreen.getBatch(),"Dégats Canon Secondaire : " + playScreen.getCurrentCase().getShip().getSecondaryCanon().getDamage(), 60, 80);
+            font.draw(playScreen.getBatch(),"Dégats Canon Principal : " + playScreen.getCurrentCase().getShip().getMainCanon().getDamage() + " ( " + playScreen.getCurrentCase().getShip().getMainCanon().getCurrentCooldown() + " / " + playScreen.getCurrentCase().getShip().getMainCanon().getCooldown() + " )", 60, 115);
+            font.draw(playScreen.getBatch(),"Dégats Canon Secondaire : " + playScreen.getCurrentCase().getShip().getSecondaryCanon().getDamage() + " ( " + playScreen.getCurrentCase().getShip().getSecondaryCanon().getCurrentCooldown() + " / " + playScreen.getCurrentCase().getShip().getSecondaryCanon().getCooldown() + " )", 60, 80);
         }
         if (playScreen.getPlayer() == playScreen.getMap().getPlayer1()){
             font.setColor(new Color(.204f,.506f,.859f,1));

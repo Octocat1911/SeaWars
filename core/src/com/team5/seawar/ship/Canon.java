@@ -46,6 +46,10 @@ public class Canon {
         return cooldown;
     }
 
+    public int getCurrentCooldown(){
+        return currentCooldown;
+    }
+
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
     }
