@@ -19,8 +19,6 @@ public class MoveShip implements State{
     private Array<Vector2> porteeMax;
     private Array<Case> accessible;
     private Array<Case> accessibleMax;
-    private Player player;
-    private Player ennemie;
 
     private static MoveShip instance = new MoveShip();
 
@@ -29,9 +27,7 @@ public class MoveShip implements State{
         portee.setSize(3);
     }
 
-    public static MoveShip getInstance(Case c, Player player, Player ennemie){
-        instance.player = player;
-        instance.ennemie = ennemie;
+    public static MoveShip getInstance(Case c){
         instance.caseSelected = c;
         instance.majPortee();
         instance.majPorteeMax();
@@ -134,7 +130,7 @@ public class MoveShip implements State{
         if (caseSelected.getShip().hasFinished()){
             playScreen.changeState(ShipSelect.getInstance());
         } else if (!caseSelected.getShip().canMove()){
-            playScreen.changeState(AttackTurn.getInstance(caseSelected, player, ennemie));
+            playScreen.changeState(AttackTurn.getInstance(caseSelected));
         }
         if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK))){
             if (accessible.contains(playScreen.getCurrentCase(), true)){
@@ -144,7 +140,7 @@ public class MoveShip implements State{
                 majPorteeMax();
                 if (!caseSelected.getShip().canMove()){
                     if (caseSelected.getShip().canFire()) {
-                        playScreen.changeState(AttackTurn.getInstance(caseSelected, player, ennemie));
+                        playScreen.changeState(AttackTurn.getInstance(caseSelected));
                     } else {
                         playScreen.changeState(ShipSelect.getInstance());
                     }
@@ -153,7 +149,7 @@ public class MoveShip implements State{
                 playScreen.changeState(ShipSelect.getInstance());
             }
         } else if (Inputs.isPressed(Inputs.X) && caseSelected.getShip().canFire()){
-            playScreen.changeState(AttackTurn.getInstance(caseSelected, player, ennemie));
+            playScreen.changeState(AttackTurn.getInstance(caseSelected));
         } else if (Inputs.isPressed(Inputs.START)){
             caseSelected.getShip().finish();
         } else if (Inputs.isPressed(Inputs.B)){

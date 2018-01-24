@@ -16,8 +16,6 @@ public class AttackTurn implements State{
     private PlayScreen playScreen;
     private Case caseSelected;
     private Array<Case> accessible;
-    private Player player;
-    private Player ennemie;
     private Canon canon;
 
     private static AttackTurn instance = new AttackTurn();
@@ -25,9 +23,7 @@ public class AttackTurn implements State{
     private AttackTurn(){
     }
 
-    public static AttackTurn getInstance(Case c, Player player, Player ennemie){
-        instance.player = player;
-        instance.ennemie = ennemie;
+    public static AttackTurn getInstance(Case c){
         instance.caseSelected = c;
         if (instance.caseSelected.getShip().getMainCanon().canAttack()){
             instance.canon = instance.caseSelected.getShip().getMainCanon();
@@ -48,16 +44,16 @@ public class AttackTurn implements State{
             playScreen.changeState(ShipSelect.getInstance());
         }
         if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK))){
-            if (accessible.contains(playScreen.getCurrentCase(), true) && ennemie.getShips().contains(playScreen.getCurrentCase().getShip(), true)) {
+            if (accessible.contains(playScreen.getCurrentCase(), true) && playScreen.getEnnemie().getShips().contains(playScreen.getCurrentCase().getShip(), true)) {
                 attackShip(caseSelected, playScreen.getCurrentCase());
-                playScreen.changeState(MoveShip.getInstance(caseSelected, player, ennemie));
+                playScreen.changeState(MoveShip.getInstance(caseSelected));
             } else {
                 playScreen.changeState(ShipSelect.getInstance());
             }
         } else if (Inputs.isPressed(Inputs.START)){
             caseSelected.getShip().finish();
         } else if (Inputs.isPressed(Inputs.X) && caseSelected.getShip().canMove()){
-            playScreen.changeState(MoveShip.getInstance(caseSelected, player, ennemie));
+            playScreen.changeState(MoveShip.getInstance(caseSelected));
         } else if (Inputs.isPressed(Inputs.Y)){
             if (canon.equals(caseSelected.getShip().getMainCanon())){
                 if (caseSelected.getShip().getSecondaryCanon().canAttack()) {
@@ -77,8 +73,8 @@ public class AttackTurn implements State{
         } else if (Inputs.isPressed(Inputs.R1) && !caseSelected.getShip().hasFired() && caseSelected.getShip().getMaxMovements()==caseSelected.getShip().getMovements()){
             caseSelected.getShip().rotateRight();
         }
-        if (ennemie.getShips().size == 0){
-            playScreen.changeState(EndGame.getInstance(player, EndGame.VICTOIRE_DANS_LES_LARMES_ET_LE_SANG));
+        if (playScreen.getEnnemie().getShips().size == 0){
+            playScreen.changeState(EndGame.getInstance(EndGame.VICTOIRE_DANS_LES_LARMES_ET_LE_SANG));
         }
     }
 
@@ -109,7 +105,7 @@ public class AttackTurn implements State{
         cible.getShip().takeDamages(canon.getDamage());
         if (cible.getShip().getCurrentLifePoints() == 0){
             playScreen.getExplosionMort().startPosition(cible.getPosition().x, cible.getPosition().y);
-            ennemie.getShips().removeValue(cible.getShip(), true);
+            playScreen.getEnnemie().getShips().removeValue(cible.getShip(), true);
             cible.deleteShip();
             Assets.getInstance().getSound("Sounds/tir_mort.ogg").play(.15f);
         } else {

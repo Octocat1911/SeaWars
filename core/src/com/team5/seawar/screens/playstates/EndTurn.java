@@ -7,15 +7,13 @@ import com.team5.seawar.ship.Ship;
 
 public class EndTurn implements State {
     private PlayScreen playScreen;
-    private Player player;
 
     private static EndTurn instance = new EndTurn();
 
     private EndTurn(){
     }
 
-    public static EndTurn getInstance(Player player){
-        instance.player = player;
+    public static EndTurn getInstance(){
         return instance;
     }
 
@@ -25,10 +23,10 @@ public class EndTurn implements State {
 
 
     public void update(float dt){
-        for (Ship ship: player.getShips()){
+        for (Ship ship: playScreen.getPlayer().getShips()){
             ship.setHasFinished(false);
             if (playScreen.getMap().getCase(ship.getPosition().getColonne(),ship.getPosition().getLigne()).getElement().getType() == Element.Type.LIGHTHOUSE){
-                if (player == playScreen.getMap().getPlayer1()){
+                if (playScreen.getPlayer() == playScreen.getMap().getPlayer1()){
                     playScreen.getMap().getCase(ship.getPosition().getColonne(),ship.getPosition().getLigne()).setProprietaire(1);
                 } else {
                     playScreen.getMap().getCase(ship.getPosition().getColonne(),ship.getPosition().getLigne()).setProprietaire(2);
@@ -37,7 +35,7 @@ public class EndTurn implements State {
         }
         int nbLighthouse = 0;
         int idPlayer;
-        if (player == playScreen.getMap().getPlayer1()){
+        if (playScreen.getPlayer() == playScreen.getMap().getPlayer1()){
             idPlayer = 1;
         } else {
             idPlayer = 2;
@@ -50,7 +48,7 @@ public class EndTurn implements State {
             }
         }
         if (nbLighthouse == playScreen.getMap().getNbLighthouses()){
-            playScreen.changeState(EndGame.getInstance(player, EndGame.VICTOIRE_PACIFIQUE));
+            playScreen.changeState(EndGame.getInstance(EndGame.VICTOIRE_PACIFIQUE));
         } else {
             ShipSelect.getInstance().newTurn();
             playScreen.changeState(ShipSelect.getInstance());

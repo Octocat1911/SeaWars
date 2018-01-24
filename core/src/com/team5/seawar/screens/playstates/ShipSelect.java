@@ -7,8 +7,6 @@ import com.team5.seawar.utils.Assets;
 
 public class ShipSelect implements State {
     private PlayScreen playScreen;
-    private Player player;
-    private Player ennemie;
 
     private static ShipSelect instance = new ShipSelect();
 
@@ -21,30 +19,28 @@ public class ShipSelect implements State {
 
     public static void init(PlayScreen playScreen){
         instance.playScreen = playScreen;
-        instance.player = playScreen.getMap().getPlayer1();
-        instance.ennemie = playScreen.getMap().getPlayer2();
         instance.playScreen.getBanniereNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
         instance.playScreen.getBanniereNouveauTour().start();
     }
 
     public void update(float dt){
-        if (player.hasFinished()){
-            playScreen.changeState(EndTurn.getInstance(player));
+        if (playScreen.getPlayer().hasFinished()){
+            playScreen.changeState(EndTurn.getInstance());
         }
-        if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK)) && player.getShips().contains(playScreen.getCurrentCase().getShip(), true) && !playScreen.getCurrentCase().getShip().hasFinished()){
+        if ((Inputs.isPressed(Inputs.A) || Inputs.isPressed(Inputs.CLICK)) && playScreen.getPlayer().getShips().contains(playScreen.getCurrentCase().getShip(), true) && !playScreen.getCurrentCase().getShip().hasFinished()){
             if (playScreen.getCurrentCase().getShip().canMove()) {
-                playScreen.changeState(MoveShip.getInstance(playScreen.getCurrentCase(), player, ennemie));
+                playScreen.changeState(MoveShip.getInstance(playScreen.getCurrentCase()));
             } else {
-                playScreen.changeState(AttackTurn.getInstance(playScreen.getCurrentCase(), player, ennemie));
+                playScreen.changeState(AttackTurn.getInstance(playScreen.getCurrentCase()));
             }
         } else if (Inputs.isPressed(Inputs.R1)){
-            if (player.getShips().contains(playScreen.getCurrentCase().getShip(), true)){
-                playScreen.getPosition().set(player.nextShip(playScreen.getCurrentCase().getShip()));
+            if (playScreen.getPlayer().getShips().contains(playScreen.getCurrentCase().getShip(), true)){
+                playScreen.getPosition().set(playScreen.getPlayer().nextShip(playScreen.getCurrentCase().getShip()));
             } else {
-                playScreen.getPosition().set(player.nextShip());
+                playScreen.getPosition().set(playScreen.getPlayer().nextShip());
             }
         } else if (Inputs.isPressed(Inputs.START)){
-            playScreen.changeState(EndTurn.getInstance(player));
+            playScreen.changeState(EndTurn.getInstance());
         }
     }
 
@@ -56,17 +52,17 @@ public class ShipSelect implements State {
     }
 
     public void newTurn() {
-        if (player.equals(playScreen.getMap().getPlayer1())) {
-            player = playScreen.getMap().getPlayer2();
-            ennemie = playScreen.getMap().getPlayer1();
+        if (playScreen.getPlayer().equals(playScreen.getMap().getPlayer1())) {
+            playScreen.setPlayer(playScreen.getMap().getPlayer2());
+            playScreen.setEnnemie(playScreen.getMap().getPlayer1());
             playScreen.getBanniereNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur2.png"), Assets.getInstance().getTexture("UI/Tour2.png"));
         } else {
-            player = playScreen.getMap().getPlayer1();
-            ennemie = playScreen.getMap().getPlayer2();
+            playScreen.setPlayer(playScreen.getMap().getPlayer1());
+            playScreen.setEnnemie(playScreen.getMap().getPlayer2());
             playScreen.getBanniereNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
         }
-        player.newTurn();
-        playScreen.getPosition().set(player.nextShip());
+        playScreen.getPlayer().newTurn();
+        playScreen.getPosition().set(playScreen.getPlayer().nextShip());
         playScreen.getBanniereNouveauTour().start();
         Assets.getInstance().getSound("Sounds/new_player.ogg").play(.5f);
     }

@@ -20,8 +20,8 @@ public class EndGame implements State {
     private EndGame(){
     }
 
-    public static EndGame getInstance(Player player, int type_victoire){
-        if (player.equals(instance.playScreen.getMap().getPlayer1())) {
+    public static EndGame getInstance(int type_victoire){
+        if (instance.playScreen.getPlayer().equals(instance.playScreen.getMap().getPlayer1())) {
             instance.winner = 1;
         } else {
             instance.winner = 2;
