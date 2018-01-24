@@ -43,7 +43,6 @@ public class PlayScreen extends ScreenAdapter{
     private BanniereNouveauTour banniereNouveauTour;
     protected Music music;
     private boolean debutJeu = true;
-    private UIState uiState;
 
     public PlayScreen(final GameApp gameApp, Map map){
         this.gameApp = gameApp;
@@ -57,9 +56,9 @@ public class PlayScreen extends ScreenAdapter{
         EndTurn.init(this);
         EndGame.init(this);
 
-        state = ShipSelect.getInstance();
+        UIState.init(this);
 
-        uiState = new UIState(this);
+        state = ShipSelect.getInstance();
 
         cam = new OrthographicCamera();
         cam.position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
@@ -156,7 +155,7 @@ public class PlayScreen extends ScreenAdapter{
         //UI
         gameApp.getBatch().setProjectionMatrix(camUI.combined);
         state.drawUI();
-        uiState.drawUI();
+        UIState.getInstance().drawUI();
         banniereNouveauTour.draw(gameApp.getBatch());
         gameApp.getBatch().end(); //
     }
