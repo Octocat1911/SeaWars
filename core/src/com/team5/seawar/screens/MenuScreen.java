@@ -48,13 +48,13 @@ public class MenuScreen extends ScreenAdapter {
         }
     }
 
+    public void setState(State state) {
+        this.state = state;
+    }
+
     public static MenuScreen getInstance(){
         instance.menu_music.play();
         return instance;
-    }
-
-    public void setState(State state){
-        this.state = state;
     }
 
     public GameApp getGameApp() {

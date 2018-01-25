@@ -62,7 +62,6 @@ public class MapSelectScreen extends PlayScreen{
     }
 
     public void render(float dt) {
-        System.out.println(maps.size);
         update(dt);
         gameApp.getBatch().setProjectionMatrix(getCam().combined);
         gameApp.getBatch().begin();
