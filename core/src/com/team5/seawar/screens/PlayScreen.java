@@ -137,6 +137,9 @@ public class PlayScreen extends ScreenAdapter{
         this.gameApp = gameApp;
         this.map = map;
 
+        map.load();
+        map.majNbLighthouses();
+
         player = map.getPlayer1();
         ennemie = map.getPlayer2();
 

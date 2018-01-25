@@ -45,6 +45,7 @@ public class ShipEditionState implements State {
         if (Inputs.isPressed(Inputs.START) && mapEditorScreen.getMap().getPlayer1().getShips().size > 0 && mapEditorScreen.getMap().getPlayer2().getShips().size > 0) {
             Json json = new Json();
             json.toJson(new Save(mapEditorScreen.getMap()), Gdx.files.local("map"+ (GameApp.NBMAP + 1) +".txt"));
+            GameApp.NBMAP =+ 1;
             MenuState.init(MenuScreen.getInstance());
             mapEditorScreen.getGameApp().setScreen(MenuScreen.getInstance());
         }

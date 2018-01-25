@@ -57,10 +57,6 @@ public class MenuScreen extends ScreenAdapter {
         return instance;
     }
 
-    public void setState(State state){
-        this.state = state;
-    }
-
     public GameApp getGameApp() {
         return gameApp;
     }
