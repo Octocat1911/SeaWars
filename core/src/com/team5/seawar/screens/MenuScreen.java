@@ -11,6 +11,7 @@ import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map1;
 import com.team5.seawar.screens.menustates.MenuState;
+import com.team5.seawar.screens.menustates.NewGameMenuState;
 import com.team5.seawar.screens.playstates.State;
 import com.team5.seawar.utils.Action2DSprite;
 import com.team5.seawar.utils.ActionSprite;
@@ -34,6 +35,7 @@ public class MenuScreen extends ScreenAdapter {
         this.background = new Sprite(Assets.getInstance().getTexture("Menutextures/background.png"));
         this.viewport = new FitViewport(GameApp.WIDTH, GameApp.HEIGHT, cam);
         MenuState.init(this);
+        NewGameMenuState.init(this);
         state = MenuState.getInstance();
         menu_music = Assets.getInstance().getMusic("Sounds/menu_music.mp3");
         menu_music.setLooping(true);
@@ -49,6 +51,10 @@ public class MenuScreen extends ScreenAdapter {
     public static MenuScreen getInstance(){
         instance.menu_music.play();
         return instance;
+    }
+
+    public void setState(State state){
+        this.state = state;
     }
 
     public GameApp getGameApp() {

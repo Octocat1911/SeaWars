@@ -67,6 +67,8 @@ public class MapSelectScreen extends PlayScreen{
         gameApp.getBatch().setProjectionMatrix(getCam().combined);
         gameApp.getBatch().begin();
         getMap().draw(gameApp.getBatch());
+        gameApp.getBatch().setProjectionMatrix(getCamUI().combined);
+        gameApp.getBatch().draw(Assets.getInstance().getTexture("UI/validerCarte.png"),300,0, 1280/1.4f, 720/1.4f);
         gameApp.getBatch().end();
     }
 }

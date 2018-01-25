@@ -36,10 +36,8 @@ public class MenuState implements State {
 
             @Override
             public void clickedAction(Sprite sprite) {
-                menuScreen.getMenu_music().stop();
-                //menuScreen.getGameApp().setScreen(new PlayScreen(menuScreen.getGameApp(), new Map1()));
                 MapSelectScreen.init(menuScreen.getGameApp());
-                menuScreen.getGameApp().setScreen(MapSelectScreen.getInstance());
+                menuScreen.setState(NewGameMenuState.getInstance());
             }
 
             @Override

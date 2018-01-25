@@ -33,6 +33,15 @@ public class Assets {
         manager.load("Menutextures/MapEditor.png",Texture.class);
         manager.load("Menutextures/MapEditorpush.png",Texture.class);
 
+        manager.load("Menutextures/NewGame.png", Texture.class);
+        manager.load("Menutextures/NewGamepush.png", Texture.class);
+        manager.load("Menutextures/Load.png", Texture.class);
+        manager.load("Menutextures/Loadpush.png", Texture.class);
+        manager.load("Menutextures/Back.png", Texture.class);
+        manager.load("Menutextures/Backpush.png", Texture.class);
+
+
+
 
         // PlayScreen
         manager.load("Maptextures/hexPointeur.png", Texture.class);
@@ -104,6 +113,7 @@ public class Assets {
         manager.load("UI/AttackTurn.png", Texture.class);
         manager.load("UI/MapEditionState.png", Texture.class);
         manager.load("UI/SizeEditionState.png", Texture.class);
+        manager.load("UI/validerCarte.png", Texture.class);
 
         //Sounds
         manager.load("Sounds/menu_music.mp3", Music.class);
