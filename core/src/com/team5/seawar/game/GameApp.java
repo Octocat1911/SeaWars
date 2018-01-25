@@ -41,26 +41,8 @@ public class GameApp extends Game {
 		MenuScreen.init(this);
 		batch = new SpriteBatch();
         Gdx.gl.glClearColor(0, 0, 0, 1);
-		MAPS = new Array<Map>();
-		MAPS.add(new Map1());
-		MAPS.add(new Map2());
 
-		for (int i= 3; i <= 5; i++){
-			boolean error = false;
-			Json json = new Json();
-			Save save = new Save();
-			try {
-				save = json.fromJson(Save.class, Gdx.files.local("map" +i+".txt"));
-				NBMAP++;
-			} catch (SerializationException e){
-				error = true;
-			}
-			if (!error) {
-				MAPS.add(save.getMap());
-			}
-		}
-
-		MapSelectScreen.init(this);
+		//MapSelectScreen.init(this);
 		//setScreen(MapSelectScreen.getInstance());
        	//setScreen(new MapEditorScreen(this,new Map(7,6)));
 		//setScreen(MenuScreen.getInstance());
