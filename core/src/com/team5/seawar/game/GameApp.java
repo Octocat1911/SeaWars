@@ -63,8 +63,8 @@ public class GameApp extends Game {
 		MapSelectScreen.init(this);
 		//setScreen(MapSelectScreen.getInstance());
        	//setScreen(new MapEditorScreen(this,new Map(7,6)));
-		//setScreen(MenuScreen.getInstance());
-		setScreen(new StartScreen(this));
+		setScreen(MenuScreen.getInstance());
+		//setScreen(new StartScreen(this));
 	}
 
 	@Override
