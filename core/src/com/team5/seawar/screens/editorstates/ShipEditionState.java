@@ -47,20 +47,6 @@ public class ShipEditionState implements State {
             Json json = new Json();
             json.toJson(new Save(mapEditorScreen.getMap()), Gdx.files.local("map"+ (GameApp.NBMAP + 1) +".txt"));
             GameApp.NBMAP =+ 1;
-            for (int i= 3; i <= 5; i++){
-                boolean error = false;
-                Json js = new Json();
-                Save save = new Save();
-                try {
-                    save = js.fromJson(Save.class, Gdx.files.local("map" +i+".txt"));
-                    GameApp.NBMAP++;
-                } catch (SerializationException e){
-                    error = true;
-                }
-                if (!error) {
-                    GameApp.MAPS.add(save.getMap());
-                }
-            }
             MenuState.init(MenuScreen.getInstance());
             mapEditorScreen.getGameApp().setScreen(MenuScreen.getInstance());
         }
