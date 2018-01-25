@@ -137,6 +137,7 @@ public class PlayScreen extends ScreenAdapter{
         this.gameApp = gameApp;
         this.map = map;
 
+
         try {
             map.load();
             map.majNbLighthouses();
