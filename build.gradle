@@ -8,7 +8,6 @@ buildscript {
         jcenter()
     }
     dependencies {
-        
 
     }
 }
@@ -45,7 +44,14 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
-        
+        //rajout Anivial
+        compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
+        //rajout Octocat1911
+        compile "es.e-ucm.com.badlogicgames.gdx:gdx-video-desktop:0.0.1-SNAPSHOT"
+        //rajout Ilias
+        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+
     }
 }
 
@@ -57,7 +63,13 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
-        
+        // rajout Anivial
+        compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+        // rajout Octocat1911
+        compile "es.e-ucm.com.badlogicgames.gdx:gdx-video:0.0.1-SNAPSHOT"
+        compile fileTree(dir: 'libs', include: 'gdx-video-desktop-natives.jar')
+        //rajout Ilias
+        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
     }
 }
 
