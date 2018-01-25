@@ -54,8 +54,8 @@ public class MenuState implements State {
 
             @Override
             public void clickedAction(Sprite sprite) {
-                //menuScreen.getMenu_music().stop();
-                //menuScreen.getGameApp().setScreen(new StartScreen(menuScreen.getGameApp()));
+                menuScreen.getMenu_music().stop();
+                menuScreen.getGameApp().setScreen(new StartScreen(menuScreen.getGameApp()));
             }
 
             @Override
