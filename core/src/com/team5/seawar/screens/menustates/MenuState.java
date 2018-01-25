@@ -2,13 +2,12 @@ package com.team5.seawar.screens.menustates;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.team5.seawar.cam.GlobalCam;
 import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map;
 import com.team5.seawar.maps.Map1;
-import com.team5.seawar.screens.MapEditorScreen;
-import com.team5.seawar.screens.MenuScreen;
-import com.team5.seawar.screens.PlayScreen;
+import com.team5.seawar.screens.*;
 import com.team5.seawar.screens.playstates.State;
 import com.team5.seawar.utils.Action2DSprite;
 import com.team5.seawar.utils.ActionSprite;
@@ -37,8 +36,8 @@ public class MenuState implements State {
 
             @Override
             public void clickedAction(Sprite sprite) {
-                menuScreen.getMenu_music().stop();
-                menuScreen.getGameApp().setScreen(new PlayScreen(menuScreen.getGameApp(), new Map1()));
+                MapSelectScreen.init(menuScreen.getGameApp());
+                menuScreen.setState(NewGameMenuState.getInstance());
             }
 
             @Override
@@ -56,7 +55,7 @@ public class MenuState implements State {
             @Override
             public void clickedAction(Sprite sprite) {
                 menuScreen.getMenu_music().stop();
-                menuScreen.getGameApp().setScreen(new PlayScreen(menuScreen.getGameApp()));
+                menuScreen.getGameApp().setScreen(new StartScreen(menuScreen.getGameApp()));
             }
 
             @Override
@@ -136,10 +135,10 @@ public class MenuState implements State {
                     etat = MenuState.Etat.EXIT;
                     break;
                 case CREDIT:
-                    etat = MenuState.Etat.PLAY;
+                    etat = MenuState.Etat.MEDIT;
                     break;
                 case MEDIT:
-                    etat = MenuState.Etat.MEDIT;
+                    etat = MenuState.Etat.PLAY;
                     break;
 
                 case EXIT:
@@ -150,13 +149,13 @@ public class MenuState implements State {
         if (Inputs.isPressed(Inputs.DOWN)){
             switch (etat){
                 case PLAY:
-                    etat = MenuState.Etat.CREDIT;
+                    etat = MenuState.Etat.MEDIT;
                     break;
                 case CREDIT:
                     etat = MenuState.Etat.EXIT;
                     break;
                 case MEDIT:
-                    etat = MenuState.Etat.MEDIT;
+                    etat = MenuState.Etat.CREDIT;
                     break;
                 case EXIT:
                     etat = MenuState.Etat.PLAY;
@@ -172,7 +171,7 @@ public class MenuState implements State {
                     creditButton.clickedAction();
                     break;
                 case MEDIT:
-                    creditButton.clickedAction();
+                    mapEditorButton.clickedAction();
                     break;
                 case EXIT:
                     exitButton.clickedAction();

@@ -52,6 +52,7 @@ public class PlayScreen extends ScreenAdapter{
 
     public PlayScreen(final GameApp gameApp){
         this.gameApp = gameApp;
+
         Json json = new Json();
         Save save = json.fromJson(Save.class, Gdx.files.local("save.txt"));
         this.map = save.getMap();
@@ -91,6 +92,7 @@ public class PlayScreen extends ScreenAdapter{
 
         ZoomCam.getInstance().init(this);
         GlobalCam.getInstance().init(this);
+
         camState = ZoomCam.getInstance();
 
         explosionDegat  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosionDegat.png")), 43, .4f, hexWidth, hexHeight, 10, 5);
@@ -161,6 +163,7 @@ public class PlayScreen extends ScreenAdapter{
 
         ZoomCam.getInstance().init(this);
         GlobalCam.getInstance().init(this);
+
         camState = ZoomCam.getInstance();
 
         explosionDegat  = new Animation(new TextureRegion(Assets.getInstance().getTexture("Effects/explosionDegat.png")), 43, .4f, hexWidth, hexHeight, 10, 5);

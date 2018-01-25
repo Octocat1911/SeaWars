@@ -21,13 +21,12 @@ public class SizeEditionState implements State {
 
 
     public static void init(MapEditorScreen mapEditorScreen){
-        if(instance ==null){
             instance = new SizeEditionState(mapEditorScreen);
-        }
     }
 
     public static SizeEditionState getInstance(){
         instance.mapEditorScreen.getMap().init();
+        GlobalCam.getInstance().setCanGoToZoomCam(false);
         return instance;
     }
 
