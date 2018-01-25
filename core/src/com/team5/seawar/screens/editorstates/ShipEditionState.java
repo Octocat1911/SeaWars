@@ -2,6 +2,7 @@ package com.team5.seawar.screens.editorstates;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.SerializationException;
 import com.team5.seawar.cam.GlobalCam;
 import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;

@@ -5,17 +5,23 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.SerializationException;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
+import com.team5.seawar.maps.Map;
 import com.team5.seawar.maps.Map1;
+import com.team5.seawar.maps.Map2;
 import com.team5.seawar.screens.menustates.MenuState;
 import com.team5.seawar.screens.menustates.NewGameMenuState;
 import com.team5.seawar.screens.playstates.State;
 import com.team5.seawar.utils.Action2DSprite;
 import com.team5.seawar.utils.ActionSprite;
 import com.team5.seawar.utils.Assets;
+import com.team5.seawar.utils.Save;
 
 
 public class MenuScreen extends ScreenAdapter {
@@ -53,6 +59,24 @@ public class MenuScreen extends ScreenAdapter {
     }
 
     public static MenuScreen getInstance(){
+        GameApp.MAPS = new Array<Map>();
+        GameApp.MAPS.add(new Map1());
+        GameApp.MAPS.add(new Map2());
+        GameApp.NBMAP = 2;
+        for (int i= 3; i <= 5; i++){
+            boolean error = false;
+            Json json = new Json();
+            Save save = new Save();
+            try {
+                save = json.fromJson(Save.class, Gdx.files.local("map" +i+".txt"));
+                GameApp.NBMAP++;
+            } catch (SerializationException e){
+                error = true;
+            }
+            if (!error) {
+                GameApp.MAPS.add(save.getMap());
+            }
+        }
         instance.menu_music.play();
         return instance;
     }
