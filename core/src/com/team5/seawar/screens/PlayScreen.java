@@ -64,6 +64,7 @@ public class PlayScreen extends ScreenAdapter{
         if (map.getTour_joueur() == 1){
             player = map.getPlayer1();
             ennemie = map.getPlayer2();
+            banniereNouveauTour.setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
         } else {
             player = map.getPlayer2();
             ennemie = map.getPlayer1();
@@ -72,7 +73,7 @@ public class PlayScreen extends ScreenAdapter{
 
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
 
-        ShipSelect.init(this);
+        ShipSelect.init_load(this);
         MoveShip.init(this);
         AttackTurn.init(this);
         EndTurn.init(this);

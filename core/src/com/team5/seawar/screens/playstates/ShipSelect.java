@@ -24,6 +24,11 @@ public class ShipSelect implements State {
         instance.playScreen.getBanniereNouveauTour().start();
     }
 
+    public static void init_load(PlayScreen playScreen){
+        instance.playScreen = playScreen;
+        instance.playScreen.getBanniereNouveauTour().start();
+    }
+
     public void update(float dt){
         if (playScreen.getPlayer().hasFinished()){
             playScreen.changeState(EndTurn.getInstance());
