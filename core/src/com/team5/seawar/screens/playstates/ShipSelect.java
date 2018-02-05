@@ -20,12 +20,6 @@ public class ShipSelect implements State {
 
     public static void init(PlayScreen playScreen){
         instance.playScreen = playScreen;
-        instance.playScreen.getBanniereNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
-        instance.playScreen.getBanniereNouveauTour().start();
-    }
-
-    public static void init_load(PlayScreen playScreen){
-        instance.playScreen = playScreen;
         instance.playScreen.getBanniereNouveauTour().start();
     }
 

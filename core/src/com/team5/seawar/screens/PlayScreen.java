@@ -73,7 +73,7 @@ public class PlayScreen extends ScreenAdapter{
 
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
 
-        ShipSelect.init_load(this);
+        ShipSelect.init(this);
         MoveShip.init(this);
         AttackTurn.init(this);
         EndTurn.init(this);
@@ -152,6 +152,8 @@ public class PlayScreen extends ScreenAdapter{
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
 
         banniereNouveauTour = new BanniereNouveauTour();
+        banniereNouveauTour.setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
+
         ShipSelect.init(this);
         MoveShip.init(this);
         AttackTurn.init(this);
