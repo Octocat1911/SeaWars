@@ -4,6 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class InputHandler extends InputAdapter{
 
     public static final int A = Input.Keys.A;

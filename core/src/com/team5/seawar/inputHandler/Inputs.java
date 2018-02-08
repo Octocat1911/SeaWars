@@ -7,6 +7,10 @@ import com.team5.seawar.objects.Case;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Action2DSprite;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class Inputs {
 
     public static final int BUFFER = 2;
@@ -97,6 +101,7 @@ public class Inputs {
                 PlayScreen.position.set(myCase.getPosition());
             } else {
                 //coucou
+                // If u don't know the meaning of this, think harder !........oh wait no, this is actually useless :D
             }
         }
     }

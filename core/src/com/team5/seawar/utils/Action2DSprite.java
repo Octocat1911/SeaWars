@@ -2,6 +2,10 @@ package com.team5.seawar.utils;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class Action2DSprite{
 
     private Sprite sprite;

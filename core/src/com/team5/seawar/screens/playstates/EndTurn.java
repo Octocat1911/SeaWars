@@ -1,9 +1,12 @@
 package com.team5.seawar.screens.playstates;
 
 import com.team5.seawar.objects.Element;
-import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.ship.Ship;
+
+/**
+ * Created with love by Team 5
+ */
 
 public class EndTurn implements State {
     private PlayScreen playScreen;

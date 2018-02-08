@@ -23,6 +23,9 @@ import com.team5.seawar.utils.ActionSprite;
 import com.team5.seawar.utils.Assets;
 import com.team5.seawar.utils.Save;
 
+/**
+ * Created with love by Team 5
+ */
 
 public class MenuScreen extends ScreenAdapter {
 

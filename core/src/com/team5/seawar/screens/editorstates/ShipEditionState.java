@@ -2,7 +2,6 @@ package com.team5.seawar.screens.editorstates;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.SerializationException;
 import com.team5.seawar.cam.GlobalCam;
 import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
@@ -18,30 +17,23 @@ import com.team5.seawar.utils.Save;
 
 import static com.team5.seawar.screens.PlayScreen.position;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class ShipEditionState implements State {
 
     private MapEditorScreen mapEditorScreen;
 
-    private static ShipEditionState instance;
-
-    private ShipEditionState(MapEditorScreen mapEditorScreen) {
+    public ShipEditionState(MapEditorScreen mapEditorScreen) {
+        GlobalCam.getInstance().setSetZoomCamActive(true);
         this.mapEditorScreen = mapEditorScreen;
-    }
-
-
-    public static void init(MapEditorScreen mapEditorScreen){
-            instance = new ShipEditionState(mapEditorScreen);
-    }
-
-    public static ShipEditionState getInstance(){
-        GlobalCam.getInstance().setCanGoToZoomCam(true);
-        return instance;
     }
 
     public void handleInput(float dt){
         if(Inputs.isPressed(Inputs.SELECT)) {
             mapEditorScreen.setCamState(GlobalCam.getInstance());
-            mapEditorScreen.changeState(SizeEditionState.getInstance());
+            mapEditorScreen.changeState(new SizeEditionState(mapEditorScreen));
         }
         if (Inputs.isPressed(Inputs.START) && mapEditorScreen.getMap().getPlayer1().getShips().size > 0 && mapEditorScreen.getMap().getPlayer2().getShips().size > 0) {
             Json json = new Json();

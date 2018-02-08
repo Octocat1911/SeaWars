@@ -1,10 +1,13 @@
 package com.team5.seawar.screens.playstates;
 
 import com.team5.seawar.inputHandler.Inputs;
-import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.MenuScreen;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
+
+/**
+ * Created with love by Team 5
+ */
 
 public class ShipSelect implements State {
     private PlayScreen playScreen;
@@ -20,7 +23,7 @@ public class ShipSelect implements State {
 
     public static void init(PlayScreen playScreen){
         instance.playScreen = playScreen;
-        instance.playScreen.getBanniereNouveauTour().start();
+        instance.playScreen.getNewTurnBanner().start();
     }
 
     public void update(float dt){
@@ -60,15 +63,15 @@ public class ShipSelect implements State {
         if (playScreen.getPlayer().equals(playScreen.getMap().getPlayer1())) {
             playScreen.setPlayer(playScreen.getMap().getPlayer2());
             playScreen.setEnnemie(playScreen.getMap().getPlayer1());
-            playScreen.getBanniereNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur2.png"), Assets.getInstance().getTexture("UI/Tour2.png"));
+            playScreen.getNewTurnBanner().setTextures(Assets.getInstance().getTexture("UI/Joueur2.png"), Assets.getInstance().getTexture("UI/Tour2.png"));
         } else {
             playScreen.setPlayer(playScreen.getMap().getPlayer1());
             playScreen.setEnnemie(playScreen.getMap().getPlayer2());
-            playScreen.getBanniereNouveauTour().setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
+            playScreen.getNewTurnBanner().setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
         }
         playScreen.getPlayer().newTurn();
         playScreen.getPosition().set(playScreen.getPlayer().nextShip());
-        playScreen.getBanniereNouveauTour().start();
+        playScreen.getNewTurnBanner().start();
         Assets.getInstance().getSound("Sounds/new_player.ogg").play(.5f);
     }
 }

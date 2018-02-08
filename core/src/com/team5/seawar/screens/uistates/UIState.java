@@ -7,10 +7,14 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.screens.playstates.State;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class UIState implements State{
     private PlayScreen playScreen;
     private BitmapFont font;
-    private String joueur;
+    private String player;
 
     private static UIState instance = new UIState();
 
@@ -19,10 +23,8 @@ public class UIState implements State{
     }
 
     private UIState(){
-        //FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/vik.ttf"));
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("Fonts/PiecesOfEight.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        //parameter.size = 23;
         parameter.size = 35;
         parameter.borderWidth = 1.3f;
         font = generator.generateFont(parameter);
@@ -55,12 +57,12 @@ public class UIState implements State{
         }
         if (playScreen.getPlayer() == playScreen.getMap().getPlayer1()){
             font.setColor(new Color(.204f,.506f,.859f,1));
-            joueur = "Tour Joueur 1";
+            player = "Tour Joueur 1";
         } else {
             font.setColor(new Color(.87f, .20f, .20f, 1));
-            joueur = "Tour Joueur 2";
+            player = "Tour Joueur 2";
         }
-        font.draw(playScreen.getBatch(), joueur, 1050, 680);
+        font.draw(playScreen.getBatch(), player, 1050, 680);
     }
 
     public void dispose(){

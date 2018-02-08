@@ -4,6 +4,10 @@ import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class ZoomCam extends CamState {
 
     private static ZoomCam instance = new ZoomCam();

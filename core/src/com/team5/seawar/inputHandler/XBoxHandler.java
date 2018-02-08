@@ -2,6 +2,10 @@ package com.team5.seawar.inputHandler;
 
 import com.badlogic.gdx.controllers.*;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class XBoxHandler extends ControllerAdapter {
 
     public static final int BUTTON_X = 2;

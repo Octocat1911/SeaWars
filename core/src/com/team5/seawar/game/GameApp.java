@@ -23,6 +23,10 @@ import com.team5.seawar.utils.Save;
 
 import java.util.ArrayList;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class GameApp extends Game {
     public static final int HEIGHT = 720;
     public static final int WIDTH = 1280;
@@ -41,11 +45,6 @@ public class GameApp extends Game {
 		MenuScreen.init(this);
 		batch = new SpriteBatch();
         Gdx.gl.glClearColor(0, 0, 0, 1);
-
-		//MapSelectScreen.init(this);
-		//setScreen(MapSelectScreen.getInstance());
-       	//setScreen(new MapEditorScreen(this,new Map(7,6)));
-		//setScreen(MenuScreen.getInstance());
 		setScreen(new StartScreen(this));
 	}
 

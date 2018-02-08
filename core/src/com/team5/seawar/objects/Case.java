@@ -11,6 +11,10 @@ import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.ship.Ship;
 import com.team5.seawar.utils.Assets;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class Case {
     private Vector2 position;
     private Circle bounds;

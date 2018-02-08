@@ -1,25 +1,16 @@
 package com.team5.seawar.screens;
 
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
-import com.team5.seawar.cam.CamState;
+
 import com.team5.seawar.cam.GlobalCam;
-import com.team5.seawar.cam.ZoomCam;
 import com.team5.seawar.game.GameApp;
-import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map;
-import com.team5.seawar.screens.editorstates.MapEditionState;
-import com.team5.seawar.screens.editorstates.ShipEditionState;
 import com.team5.seawar.screens.editorstates.SizeEditionState;
 import com.team5.seawar.screens.playstates.State;
-import com.team5.seawar.utils.Action2DSprite;
-import com.team5.seawar.utils.ActionSprite;
 import com.team5.seawar.utils.Assets;
 
+/**
+ * Created with love by Team 5
+ */
 
 public class MapEditorScreen extends PlayScreen {
 
@@ -35,10 +26,7 @@ public class MapEditorScreen extends PlayScreen {
         this.map = map;
         this.gameApp = gameApp;
         this.map.init();
-        MapEditionState.init(this);
-        SizeEditionState.init(this);
-        ShipEditionState.init(this);
-        this.state = SizeEditionState.getInstance();
+        this.state = new SizeEditionState(this);
         getCam().position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
         setCamState(GlobalCam.getInstance());
         music.stop();
