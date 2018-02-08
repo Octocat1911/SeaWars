@@ -45,13 +45,20 @@ public class MapSelectScreen extends PlayScreen{
         if(Inputs.isPressed(Inputs.RIGHT)){
             if (currentMap < maps.size - 1){
                 currentMap++;
-            } else {
-                currentMap = 0;
+            }
+            setMap(maps.get(currentMap));
+        }
+        if(Inputs.isPressed(Inputs.LEFT)){
+            if (currentMap > 0){
+                currentMap--;
             }
             setMap(maps.get(currentMap));
         }
         if(Inputs.isPressed(Inputs.START)){
             gameApp.setScreen(new PlayScreen(gameApp, getMap()));
+        }
+        if(Inputs.isPressed(Inputs.SELECT)){
+            gameApp.setScreen(MenuScreen.getInstance());
         }
     }
 
