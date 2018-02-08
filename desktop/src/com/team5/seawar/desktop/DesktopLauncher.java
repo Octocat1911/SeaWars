@@ -4,6 +4,12 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.team5.seawar.game.GameApp;
 
+/**
+ * Created with love by Team5
+ *
+ * Remember that if you don't risk it, you won't get the biscuit ! :D
+ */
+
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
