@@ -13,6 +13,9 @@ import com.team5.seawar.inputHandler.Inputs;
 
 import java.io.FileNotFoundException;
 
+/**
+ * Created with love by Team 5
+ */
 
 public class StartScreen extends ScreenAdapter {
 

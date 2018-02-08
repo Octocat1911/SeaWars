@@ -23,10 +23,14 @@ import com.team5.seawar.screens.playstates.*;
 import com.team5.seawar.screens.uistates.UIState;
 import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
-import com.team5.seawar.utils.BanniereNouveauTour;
+import com.team5.seawar.utils.NewTurnBanner;
 import com.team5.seawar.utils.Save;
 
 import java.util.Random;
+
+/**
+ * Created with love by Team 5
+ */
 
 public class PlayScreen extends ScreenAdapter{
 
@@ -44,7 +48,7 @@ public class PlayScreen extends ScreenAdapter{
     public static final float hexHeight = Assets.getInstance().getTexture("Maptextures/hexEau.png").getHeight()/SCALE;
     private Animation explosionDegat;
     private Animation explosionMort;
-    private BanniereNouveauTour banniereNouveauTour;
+    private NewTurnBanner newTurnBanner;
     protected Music music;
     private boolean debutJeu = true;
     private Player player;
@@ -59,15 +63,16 @@ public class PlayScreen extends ScreenAdapter{
 
         map.load();
 
-        banniereNouveauTour = new BanniereNouveauTour();
+        newTurnBanner = new NewTurnBanner();
 
         if (map.getTour_joueur() == 1){
             player = map.getPlayer1();
             ennemie = map.getPlayer2();
+            newTurnBanner.setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
         } else {
             player = map.getPlayer2();
             ennemie = map.getPlayer1();
-            banniereNouveauTour.setTextures(Assets.getInstance().getTexture("UI/Joueur2.png"), Assets.getInstance().getTexture("UI/Tour2.png"));
+            newTurnBanner.setTextures(Assets.getInstance().getTexture("UI/Joueur2.png"), Assets.getInstance().getTexture("UI/Tour2.png"));
         }
 
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
@@ -150,7 +155,9 @@ public class PlayScreen extends ScreenAdapter{
 
         position = new Vector2(map.getColonne()/2, map.getLigne()/2);
 
-        banniereNouveauTour = new BanniereNouveauTour();
+        newTurnBanner = new NewTurnBanner();
+        newTurnBanner.setTextures(Assets.getInstance().getTexture("UI/Joueur1.png"), Assets.getInstance().getTexture("UI/Tour1.png"));
+
         ShipSelect.init(this);
         MoveShip.init(this);
         AttackTurn.init(this);
@@ -240,7 +247,7 @@ public class PlayScreen extends ScreenAdapter{
         state.update(dt);
         explosionDegat.update(dt);
         explosionMort.update(dt);
-        banniereNouveauTour.update(dt);
+        newTurnBanner.update(dt);
     }
 
     public void render(float dt) {
@@ -258,7 +265,7 @@ public class PlayScreen extends ScreenAdapter{
         gameApp.getBatch().setProjectionMatrix(camUI.combined);
         state.drawUI();
         UIState.getInstance().drawUI();
-        banniereNouveauTour.draw(gameApp.getBatch());
+        newTurnBanner.draw(gameApp.getBatch());
         gameApp.getBatch().end(); //
     }
 
@@ -327,8 +334,8 @@ public class PlayScreen extends ScreenAdapter{
         return explosionMort;
     }
 
-    public BanniereNouveauTour getBanniereNouveauTour() {
-        return banniereNouveauTour;
+    public NewTurnBanner getNewTurnBanner() {
+        return newTurnBanner;
     }
 
     public CamState getCamState() {

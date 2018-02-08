@@ -18,30 +18,23 @@ import com.team5.seawar.utils.Save;
 
 import static com.team5.seawar.screens.PlayScreen.position;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class ShipEditionState implements State {
 
     private MapEditorScreen mapEditorScreen;
 
-    private static ShipEditionState instance;
-
-    private ShipEditionState(MapEditorScreen mapEditorScreen) {
+    public ShipEditionState(MapEditorScreen mapEditorScreen) {
+        GlobalCam.getInstance().setSetZoomCamActive(true);
         this.mapEditorScreen = mapEditorScreen;
-    }
-
-
-    public static void init(MapEditorScreen mapEditorScreen){
-            instance = new ShipEditionState(mapEditorScreen);
-    }
-
-    public static ShipEditionState getInstance(){
-        GlobalCam.getInstance().setCanGoToZoomCam(true);
-        return instance;
     }
 
     public void handleInput(float dt){
         if(Inputs.isPressed(Inputs.SELECT)) {
             mapEditorScreen.setCamState(GlobalCam.getInstance());
-            mapEditorScreen.changeState(SizeEditionState.getInstance());
+            mapEditorScreen.changeState(new MapEditionState(mapEditorScreen));
         }
         if (Inputs.isPressed(Inputs.START) && mapEditorScreen.getMap().getPlayer1().getShips().size > 0 && mapEditorScreen.getMap().getPlayer2().getShips().size > 0) {
             Json json = new Json();
@@ -127,8 +120,7 @@ public class ShipEditionState implements State {
         mapEditorScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), position.x, position.y);
     }
 
-    @Override
-    public void drawUI() {
-
+    public void drawUI(){
+        mapEditorScreen.getBatch().draw(Assets.getInstance().getTexture("UI/shipCreation.png"), 870, 50, 965/3, 1078/3);
     }
 }

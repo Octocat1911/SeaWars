@@ -5,13 +5,17 @@ import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class GlobalCam extends CamState {
 
     private static GlobalCam instance = new GlobalCam();
-    private boolean canGoToZoomCam;
+    private boolean setZoomCamActive;
 
     private GlobalCam(){
-        canGoToZoomCam = true;
+        setZoomCamActive = true;
     }
 
     public static GlobalCam getInstance() {
@@ -20,7 +24,7 @@ public class GlobalCam extends CamState {
 
     public void init(PlayScreen playScreen) {
         super.init(playScreen);
-        canGoToZoomCam = true;
+        setZoomCamActive = true;
         zoom = Math.max(hexWidth * (1+(nbColonne-1) *.75f) / GameApp.WIDTH, hexHeight * (nbLigne+.5f) / GameApp.HEIGHT);
     }
 
@@ -29,7 +33,7 @@ public class GlobalCam extends CamState {
         nbLigne = playScreen.getMap().getLigne();
         zoom = Math.max(hexWidth * (1+(nbColonne-1) *.75f) / GameApp.WIDTH, hexHeight * (nbLigne+.5f) / GameApp.HEIGHT);
 
-        if (Inputs.isPressed(Inputs.R3) && canGoToZoomCam){
+        if (Inputs.isPressed(Inputs.R3) && setZoomCamActive){
             Assets.getInstance().getSound("Sounds/zoom.ogg").play(.2f);
             playScreen.setCamState(ZoomCam.getInstance());
         }
@@ -40,7 +44,7 @@ public class GlobalCam extends CamState {
         cam.update();
     }
 
-    public void setCanGoToZoomCam(boolean canGoToZoomCam) {
-        this.canGoToZoomCam = canGoToZoomCam;
+    public void setSetZoomCamActive(boolean setZoomCamActive) {
+        this.setZoomCamActive = setZoomCamActive;
     }
 }

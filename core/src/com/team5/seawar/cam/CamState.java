@@ -4,6 +4,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.team5.seawar.screens.PlayScreen;
 
+/**
+ * Created with love by Team 5
+ */
+
 public abstract class CamState {
 
     protected PlayScreen playScreen;

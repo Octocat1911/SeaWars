@@ -13,6 +13,10 @@ import com.team5.seawar.utils.Action2DSprite;
 import com.team5.seawar.utils.ActionSprite;
 import com.team5.seawar.utils.Assets;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class MenuState implements State {
 
     private static MenuState instance;

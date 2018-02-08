@@ -2,10 +2,13 @@ package com.team5.seawar.screens.playstates;
 
 import com.team5.seawar.cam.GlobalCam;
 import com.team5.seawar.inputHandler.Inputs;
-import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.MenuScreen;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
+
+/**
+ * Created with love by Team 5
+ */
 
 public class EndGame implements State {
     private PlayScreen playScreen;
@@ -27,7 +30,7 @@ public class EndGame implements State {
             instance.winner = 2;
         }
         instance.type_victoire = type_victoire;
-        GlobalCam.getInstance().setCanGoToZoomCam(false);
+        GlobalCam.getInstance().setSetZoomCamActive(false);
         instance.playScreen.setCamState(GlobalCam.getInstance());
         return instance;
     }

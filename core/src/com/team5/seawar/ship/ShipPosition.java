@@ -2,6 +2,10 @@ package com.team5.seawar.ship;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class ShipPosition {
     private int colonne;
     private int ligne;

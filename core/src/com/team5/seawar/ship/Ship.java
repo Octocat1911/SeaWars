@@ -5,7 +5,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.Assets;
-import com.team5.seawar.utils.CanonCalcul;
+import com.team5.seawar.utils.CanonMetric;
+
+/**
+ * Created with love by Team 5
+ */
 
 public class Ship{
     private int maxLifePoints;
@@ -276,9 +280,9 @@ public class Ship{
         Array<Vector2> range = new Array<Vector2>();
         for (Vector2 vector2 : canon.getRange()){
             if (shipPosition.getColonne()%2 == 0){
-                range.add(CanonCalcul.rotation(vector2, shipPosition.getOrientation(), false));
+                range.add(CanonMetric.rotation(vector2, shipPosition.getOrientation(), false));
             } else {
-                range.add(CanonCalcul.rotation(CanonCalcul.even2odd(vector2), shipPosition.getOrientation(), true));
+                range.add(CanonMetric.rotation(CanonMetric.even2odd(vector2), shipPosition.getOrientation(), true));
             }
         }
         return range;

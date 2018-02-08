@@ -1,16 +1,16 @@
 package com.team5.seawar.screens.playstates;
 
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.objects.Case;
-import com.team5.seawar.player.Player;
 import com.team5.seawar.screens.PlayScreen;
-import com.team5.seawar.utils.Animation;
 import com.team5.seawar.utils.Assets;
-import com.team5.seawar.utils.CanonCalcul;
+import com.team5.seawar.utils.CanonMetric;
+
+/**
+ * Created with love by Team 5
+ */
 
 public class MoveShip implements State{
     private PlayScreen playScreen;
@@ -117,7 +117,7 @@ public class MoveShip implements State{
     }
 
     public void majPorteeMax(){
-        instance.porteeMax = CanonCalcul.reachablePosition(caseSelected.getShip(), playScreen.getMap());
+        instance.porteeMax = CanonMetric.reachablePosition(caseSelected.getShip(), playScreen.getMap());
         accessibleMax = new Array<Case>();
         for (Vector2 vector2 : porteeMax){
             //if (vector2.x >= 0 && vector2.x < playScreen.getMap().getColonne() && vector2.y >= 0 && vector2.y < playScreen.getMap().getLigne() && playScreen.getMap().getCase((int)vector2.x, (int)vector2.y).isNavigable()){

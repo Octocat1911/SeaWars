@@ -5,13 +5,12 @@ import com.team5.seawar.cam.GlobalCam;
 import com.team5.seawar.game.GameApp;
 import com.team5.seawar.inputHandler.Inputs;
 import com.team5.seawar.maps.Map;
-import com.team5.seawar.maps.Map2;
-import com.team5.seawar.player.Player;
 import com.team5.seawar.utils.Assets;
-
-import java.util.ArrayList;
-
 import static com.team5.seawar.game.GameApp.MAPS;
+
+/**
+ * Created with love by Team 5
+ */
 
 public class MapSelectScreen extends PlayScreen{
 
@@ -31,7 +30,7 @@ public class MapSelectScreen extends PlayScreen{
         getCam().position.set(hexWidth/2 + position.x * hexWidth*.75f, hexHeight/2 + position.y * hexHeight, 0);
         setCamState(GlobalCam.getInstance());
         music.stop();
-        GlobalCam.getInstance().setCanGoToZoomCam(false);
+        GlobalCam.getInstance().setSetZoomCamActive(false);
     }
 
     public static void init(GameApp gameApp){
@@ -46,13 +45,20 @@ public class MapSelectScreen extends PlayScreen{
         if(Inputs.isPressed(Inputs.RIGHT)){
             if (currentMap < maps.size - 1){
                 currentMap++;
-            } else {
-                currentMap = 0;
+            }
+            setMap(maps.get(currentMap));
+        }
+        if(Inputs.isPressed(Inputs.LEFT)){
+            if (currentMap > 0){
+                currentMap--;
             }
             setMap(maps.get(currentMap));
         }
         if(Inputs.isPressed(Inputs.START)){
             gameApp.setScreen(new PlayScreen(gameApp, getMap()));
+        }
+        if(Inputs.isPressed(Inputs.SELECT)){
+            gameApp.setScreen(MenuScreen.getInstance());
         }
     }
 

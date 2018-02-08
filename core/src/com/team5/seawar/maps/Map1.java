@@ -7,6 +7,10 @@ import com.team5.seawar.player.Player;
 import com.team5.seawar.ship.Ship;
 import com.team5.seawar.ship.ShipPosition;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class Map1 extends Map {
 
     public Map1(){

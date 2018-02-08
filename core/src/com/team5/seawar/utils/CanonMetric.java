@@ -7,7 +7,11 @@ import com.team5.seawar.maps.Map;
 import com.team5.seawar.ship.Ship;
 import com.team5.seawar.ship.ShipPosition;
 
-public class CanonCalcul {
+/**
+ * Created with love by Team 5
+ */
+
+public class CanonMetric {
 
     //Pour canon
 

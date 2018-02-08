@@ -5,6 +5,10 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class Assets {
     private AssetManager manager = new AssetManager();
 
@@ -114,6 +118,7 @@ public class Assets {
         manager.load("UI/MapEditionState.png", Texture.class);
         manager.load("UI/SizeEditionState.png", Texture.class);
         manager.load("UI/validerCarte.png", Texture.class);
+        manager.load("UI/shipCreation.png",Texture.class);
 
         //Sounds
         manager.load("Sounds/menu_music.mp3", Music.class);

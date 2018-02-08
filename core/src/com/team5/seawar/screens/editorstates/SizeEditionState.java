@@ -9,27 +9,18 @@ import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.screens.playstates.State;
 import com.team5.seawar.utils.Assets;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class SizeEditionState implements State {
 
     private MapEditorScreen mapEditorScreen;
 
-    private static SizeEditionState instance;
-
-    private SizeEditionState(MapEditorScreen mapEditorScreen){
+    public SizeEditionState(MapEditorScreen mapEditorScreen){
+        GlobalCam.getInstance().setSetZoomCamActive(false);
         this.mapEditorScreen = mapEditorScreen;
     }
-
-
-    public static void init(MapEditorScreen mapEditorScreen){
-            instance = new SizeEditionState(mapEditorScreen);
-    }
-
-    public static SizeEditionState getInstance(){
-        instance.mapEditorScreen.getMap().init();
-        GlobalCam.getInstance().setCanGoToZoomCam(false);
-        return instance;
-    }
-
 
     public void handleInput(float dt){
         if(Inputs.isPressed(Inputs.UP)){
@@ -49,12 +40,12 @@ public class SizeEditionState implements State {
             this.mapEditorScreen.getMap().init();
         }
         if(Inputs.isPressed(Inputs.START)){
-            GlobalCam.getInstance().setCanGoToZoomCam(true);
+            GlobalCam.getInstance().setSetZoomCamActive(true);
             mapEditorScreen.setCamState(ZoomCam.getInstance());
             MapEditionState.setLightHouseNb(mapEditorScreen);
             PlayScreen.position.x = mapEditorScreen.getMap().getColonne() - 1;
             PlayScreen.position.y = mapEditorScreen.getMap().getLigne() - 1;
-            mapEditorScreen.changeState(MapEditionState.getInstance());
+            mapEditorScreen.changeState(new MapEditionState(mapEditorScreen));
         }
         if (Inputs.isPressed(Inputs.SELECT)){
             mapEditorScreen.getGameApp().setScreen(MenuScreen.getInstance());

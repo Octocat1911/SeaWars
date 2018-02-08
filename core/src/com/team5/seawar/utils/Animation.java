@@ -4,6 +4,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class Animation {
     private Array<TextureRegion> frames;
     private float maxFrameTime;

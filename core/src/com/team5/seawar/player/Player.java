@@ -5,6 +5,10 @@ import com.badlogic.gdx.utils.Array;
 import com.team5.seawar.ship.Ship;
 import com.team5.seawar.utils.Assets;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class Player {
     private Array<Ship> ships;
 

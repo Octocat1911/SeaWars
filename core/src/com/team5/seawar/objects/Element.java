@@ -1,20 +1,19 @@
 package com.team5.seawar.objects;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.team5.seawar.screens.PlayScreen;
 import com.team5.seawar.utils.*;
+
+/**
+ * Created with love by Team 5
+ */
 
 public class Element {
     public enum Type {WATER, DIRT, LIGHTHOUSE, VOID}
     private boolean navigable;
-
     private Type type;
-
     private float posX;
     private float posY;
-
     private int proprietaire;
 
     public Element(){}

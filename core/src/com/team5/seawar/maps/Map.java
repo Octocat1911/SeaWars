@@ -11,17 +11,18 @@ import com.team5.seawar.player.Player;
 import com.team5.seawar.ship.Ship;
 import com.team5.seawar.utils.Save;
 
+/**
+ * Created with love by Team 5
+ */
+
 public class Map {
 
     protected Player player1;
     protected Player player2;
-
     protected Case tab[][];
     protected int nbLighthouses;
-
     private int colonne;
     private int ligne;
-
     private int tour_joueur;
 
     public Map(){}
@@ -133,11 +134,6 @@ public class Map {
             nbLighthouses = -1;
         }
     }
-
-    /*public void save(){
-        Json json = new Json();
-        json.toJson(this, Gdx.files.absolute("C:/Seawars/test.txt"));
-    }*/
 
     public void save(){
         Json json = new Json();
