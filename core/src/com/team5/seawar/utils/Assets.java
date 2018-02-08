@@ -118,6 +118,7 @@ public class Assets {
         manager.load("UI/MapEditionState.png", Texture.class);
         manager.load("UI/SizeEditionState.png", Texture.class);
         manager.load("UI/validerCarte.png", Texture.class);
+        manager.load("UI/shipCreation.png",Texture.class);
 
         //Sounds
         manager.load("Sounds/menu_music.mp3", Music.class);

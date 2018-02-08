@@ -33,7 +33,7 @@ public class ShipEditionState implements State {
     public void handleInput(float dt){
         if(Inputs.isPressed(Inputs.SELECT)) {
             mapEditorScreen.setCamState(GlobalCam.getInstance());
-            mapEditorScreen.changeState(new SizeEditionState(mapEditorScreen));
+            mapEditorScreen.changeState(new MapEditionState(mapEditorScreen));
         }
         if (Inputs.isPressed(Inputs.START) && mapEditorScreen.getMap().getPlayer1().getShips().size > 0 && mapEditorScreen.getMap().getPlayer2().getShips().size > 0) {
             Json json = new Json();
@@ -119,8 +119,7 @@ public class ShipEditionState implements State {
         mapEditorScreen.renderTexture(Assets.getInstance().getTexture("Maptextures/hexPointeur.png"), position.x, position.y);
     }
 
-    @Override
-    public void drawUI() {
-
+    public void drawUI(){
+        mapEditorScreen.getBatch().draw(Assets.getInstance().getTexture("UI/shipCreation.png"), 870, 50, 965/3, 1078/3);
     }
 }
